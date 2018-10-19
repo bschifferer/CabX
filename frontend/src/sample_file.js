@@ -4,4 +4,3 @@ function printThis(str) {
 }
 
 printThis("hello!");
-
