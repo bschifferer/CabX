@@ -3,7 +3,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
   "scripts": {
-	"test": "node_modules/mocha/bin/mocha ./backend/test frontend/components/test",
+	"test": "node_modules/mocha/bin/mocha ./backend/test frontend/test",
+    "eslint": "node_modules/eslint/bin/eslint.js backend/src frontend/src",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
@@ -15,6 +16,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
   },
   "devDependencies": {
+    "eslint": "^5.7.0",
+    "eslint-config-google": "^0.11.0",
     "mocha": "^5.2.0"
   }
 }
