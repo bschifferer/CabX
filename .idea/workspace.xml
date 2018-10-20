@@ -2,12 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d72ac20-1617-49f5-9f8b-fa7e18115517" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/getLatLongFromAddress.js.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/coverage/lcov-report/src/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/getLatLongFromAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/coverage.json" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/coverage.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov.info" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,19 +39,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2" />
+          <entry key="js" value="8" />
           <entry key="json" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="30" />
-          <entry key="JavaScript" value="2" />
+          <entry key="JavaScript" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="4" />
+          <entry key="js" value="5" />
           <entry key="json" value="1" />
           <entry key="yml" value="1" />
         </counts>
@@ -53,7 +59,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="4" />
+          <entry key="JavaScript" value="5" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -67,17 +73,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/backend/getLatLongFromAddress.js">
+        <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+            <state>
+              <caret column="6" selection-start-column="6" selection-end-column="6" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/test/sample_test.js">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -98,6 +99,7 @@
         <option value="$PROJECT_DIR$/backend/src/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/backend/getLatLongFromAddress.js" />
+        <option value="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" />
       </list>
     </option>
   </component>
@@ -188,7 +190,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1255000" />
+    <option name="totallyTimeSpent" value="1492000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="23" width="1408" height="797" extended-state="0" />
@@ -248,13 +250,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/backend/getLatLongFromAddress.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="35" lean-forward="true" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/server.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/getLatLongFromAddress.js">
+    <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="1" selection-start-line="37" selection-start-column="1" selection-end-line="37" selection-end-column="1" />
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
