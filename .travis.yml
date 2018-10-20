@@ -2,6 +2,6 @@ language: node_js
 node_js:
  - "node"
 script:
-  - ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha frontend/src/*.js backend/src/*.js
+  - npm run coverage
 after_script:
   - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info
