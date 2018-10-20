@@ -17,5 +17,18 @@ app.get('/uber', function(req, res) {
 	});
 })
 
+app.get('/lyft', function(req, res) {
+	var options = {
+		url: 'https://api.lyft.com/v1/cost?start_lat=37.7763&start_lng=-122.3918&end_lat=37.7972&end_lng=-122.4533',
+		headers: {
+			'Authorization': 'bearer sG1iQES+ARRImYkpZAQZ7PnTJEBv8e7tRHG6E1AZWCtOr7aYO64C6BUhHbTav3p7JiMwA84pIYOCvYHQo+POUMfAIYFVkjbaqEhgcvzx3MOSiteK1Cxb+oE='
+  		}
+	}
+	request.get(options, function (error, response, body) {
+		res.send(JSON.stringify(response.body), null, '\t');
+	});
+
+})
+
 app.listen(3000)
 
