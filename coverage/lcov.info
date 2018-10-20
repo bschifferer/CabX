@@ -1,4 +1,5 @@
 TN:
+<<<<<<< HEAD
 SF:/Users/bennys/Projects/Columbia/05_Adv/04_CabX/CabX/backend/src/getLatLongFromAddress.js
 FN:7,requestLatLongFromAddress
 FN:14,processBingLatLongResponse
@@ -9,6 +10,14 @@ FNDA:0,requestLatLongFromAddress
 FNDA:0,processBingLatLongResponse
 FNDA:0,getRelevantInformationFromLatLongResponse
 DA:1,1
+=======
+SF:/Users/clydebazile/Documents/CabX/frontend/src/sample_file.js
+FN:2,printThis
+FNF:1
+FNH:1
+FNDA:1,printThis
+DA:2,1
+>>>>>>> origin/master
 DA:3,1
 DA:4,1
 DA:5,1
@@ -41,7 +50,7 @@ BRF:6
 BRH:0
 end_of_record
 TN:
-SF:/Users/bennys/Projects/Columbia/05_Adv/04_CabX/CabX/backend/src/sample_file.js
+SF:/Users/clydebazile/Documents/CabX/backend/src/sample_file.js
 FN:2,printThis
 FNF:1
 FNH:1
