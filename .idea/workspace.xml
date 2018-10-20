@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d72ac20-1617-49f5-9f8b-fa7e18115517" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/sample_file.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/sample_file.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/pre-commit/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/pre-commit/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -180,7 +176,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="571000" />
+    <option name="totallyTimeSpent" value="764000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="12" y="23" width="1408" height="797" extended-state="0" />
