@@ -8,7 +8,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "install": "npm install --save-dev pre-commit"
   },
   "dependencies": {
     "expo": "^30.0.1",
