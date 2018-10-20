@@ -8,7 +8,8 @@
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "backend": "node ./backend/src/index.js"
   },
   "dependencies": {
     "expo": "^30.0.1",
@@ -16,8 +17,10 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz"
   },
   "devDependencies": {
+    "body-parser": "^1.18.3",
     "eslint": "^5.7.0",
     "eslint-config-google": "^0.11.0",
+    "express": "^4.16.4",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2"
   },
