@@ -55,15 +55,15 @@ class ListView extends Component {
   }
 
   componentDidMount(){
-    return fetch('https://facebook.github.io/react-native/movies.json')
+    return fetch('http://160.39.142.46:3000/uber')
       .then((response) => response.json())
       .then((responseJson) => {
 
         this.setState({
           isLoading: false,
-          dataSource: responseJson.movies,
+          dataSource: responseJson,
         }, function(){
-
+			console.log(this.state.dataSource);
         });
 
       })
@@ -87,11 +87,7 @@ class ListView extends Component {
 
     return(
       <View style={{flex: 1, paddingTop:20}}>
-        <FlatList
-          data={this.state.dataSource}
-          renderItem={({item}) => <Text>{item.title}, {item.releaseYear}</Text>}
-          keyExtractor={({id}, index) => id}
-        />
+		{"Hello!"}
       </View>
     );
   }
