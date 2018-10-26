@@ -3,38 +3,6 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 
-
-const list = [
-  {
-    type: 'Uber Pool',
-    price: 2.0,
-    eta: '4:25pm',
-    service: 'Uber',
-    icon: 'refresh',
-  },
-  {
-    type: 'Uber X',
-    price: 5.0,
-    eta: '4:30pm',
-    service: 'Uber',
-    icon: 'refresh',
-  },
-  {
-    type: 'Uber Pool',
-    price: 1.05,
-    eta: '4:25pm',
-    service: 'Uber',
-    icon: 'refresh',
-  },
-  {
-      type: 'Uber X',
-    price: 50.0,
-    eta: '4:30pm',
-    service: 'Uber',
-    icon: 'refresh',
-  }
-]
-
 export default class App extends React.Component {
   constructor(props) {
     super(props);
@@ -44,6 +12,7 @@ export default class App extends React.Component {
     };
   }
   render() {
+	data = getRideData();
     return (
       <View style={styles.container}>
         <SearchBar
@@ -61,9 +30,9 @@ export default class App extends React.Component {
         onChangeText={(toAddress) => console.log(toAddress)} />
 
 		{
-			list.map((item) => (
+			data.map((item, index) => (
 			<ListItem
-			key={item}
+			key={index}
 			leftIcon={ {name: item.icon }}
 			badge={{ value: "$" + item.price, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
 			title={item.type}
@@ -76,6 +45,40 @@ export default class App extends React.Component {
       </View>
     );
   }
+}
+
+function getRideData() {
+	const list = [
+		{
+			type: 'Uber Pool',
+			price: 2.0,
+			eta: '4:25pm',
+			service: 'Uber',
+			icon: 'refresh',
+		},
+		{
+			type: 'Uber X',
+			price: 5.0,
+			eta: '4:30pm',
+			service: 'Uber',
+			icon: 'refresh',
+		},
+		{
+			type: 'Uber Pool',
+			price: 1.05,
+			eta: '4:25pm',
+			service: 'Uber',
+			icon: 'refresh',
+		},
+		{
+			type: 'Uber X',
+			price: 50.0,
+			eta: '4:30pm',
+			service: 'Uber',
+			icon: 'refresh',
+		}
+	]
+	return list;
 }
 
 const styles = StyleSheet.create({
