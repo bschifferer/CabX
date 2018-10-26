@@ -57,8 +57,8 @@ function getRelevantInformationFromUberResponse(jsonResponseBody) {
     display_name: jsonResponseBody.display_name,
     estimated_duration_seconds: jsonResponseBody.duration,
     estimated_distance_miles: jsonResponseBody.distance,
-    estimated_cost_cents_min: jsonResponseBody.low_estimate,
-    estimated_cost_cents_max: jsonResponseBody.high_estimate
+    estimated_cost_cents_min: jsonResponseBody.low_estimate*100,
+    estimated_cost_cents_max: jsonResponseBody.high_estimate*100
   };
   return jsonProcessedResponseBody;
 }

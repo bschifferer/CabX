@@ -6,7 +6,7 @@ const BING_KEY = 'AjpMdmorYvx_955ltPZVK1BNYpGA0Dl' +
   '8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f';
 
 module.exports = {
-  getRequestLatLongFromAddress: async function (sAddress) {
+  getRequestLatLongFromAddress: async function(sAddress) {
     let response = await requestLatLongFromAddress(sAddress);
     processedResponse = processBingLatLongResponse(response);
     return processedResponse;
