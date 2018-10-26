@@ -20,14 +20,14 @@ export default class App extends React.Component {
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
         placeholder='From...' 
-        onChangeText={(fromAddress) => console.log(fromAddress)} />
+        onChangeText={resolveOrigin} />
         
 		    <SearchBar
         showLoading
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
         placeholder='To...' 
-        onChangeText={(toAddress) => console.log(toAddress)} />
+        onChangeText={resolveDestination} />
 
 		{
 			data.map((item, index) => (
@@ -45,6 +45,14 @@ export default class App extends React.Component {
       </View>
     );
   }
+}
+
+function resolveOrigin(address) {
+	console.log("origin:", address);
+}
+
+function resolveDestination(address) {
+	console.log("destination:", address);
 }
 
 function getRideData() {
