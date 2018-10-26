@@ -9,30 +9,31 @@ module.exports = {
   getRequestLatLongFromAddress: async function(sAddress) {
     let response = await requestLatLongFromAddress(sAddress);
     processedResponse = processBingLatLongResponse(response);
-    return processedResponse;
-  }
+    return (processedResponse);
+  },
 };
 
 /**
  * Returns addresses based on a input address (string) with Lat and Loing.
  * @param {string} sAddress - Keyword for the address
+ * @return {string} jsonObject - Response body from Bing
  */
 function requestLatLongFromAddress(sAddress) {
-  return new Promise(function (resolve, reject) {
-  request(PRE_URL + encodeURIComponent(sAddress) + POST_URL + BING_KEY,
-      {json: true}, (err, res, body) => {
-        if (err) {
-          reject(err);
-        }
-      resolve(body);
-      });
+  return new Promise(function(resolve, reject) {
+    request(PRE_URL + encodeURIComponent(sAddress) + POST_URL + BING_KEY,
+        {json: true}, (err, res, body) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(body);
+        });
   });
 }
 
 /**
  * Process the response of a geocoding search with Bing
  * @param {jsonObject} jsonResponses - jsonObject of the response from bing
- * @return {string} error msg
+ * @return {jsonArray} jsonProcessedResponses - processed json array with
  */
 function processBingLatLongResponse(jsonResponses) {
   if (!jsonResponses.hasOwnProperty('resourceSets')) {
@@ -43,7 +44,7 @@ function processBingLatLongResponse(jsonResponses) {
   }
   let jsonResponsesBody = jsonResponses.resourceSets[0].resources;
   let jsonProcessedResponses = processBingResponseBody(jsonResponsesBody);
-  return(jsonProcessedResponses);
+  return (jsonProcessedResponses);
 }
 
 /**
@@ -71,7 +72,7 @@ function getRelevantInformationFromLatLongResponse(jsonResponseBody) {
     confidence: jsonResponseBody.confidence,
     lat: jsonResponseBody.geocodePoints[0].coordinates[0],
     long: jsonResponseBody.geocodePoints[0].coordinates[1],
-    address: jsonResponseBody.address
+    address: jsonResponseBody.address,
   };
-  return jsonProcessedResponseBody;
+  return (jsonProcessedResponseBody);
 }

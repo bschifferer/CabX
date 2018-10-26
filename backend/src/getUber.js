@@ -3,21 +3,21 @@ const request = require('request');
 const PRE_URL_UBER = 'https://api.uber.com/v1.2/estimates/price?';
 
 module.exports = {
-  getUberPrices: async function (from_lat, from_long, to_lat, to_long) {
-    let response = await uberPrices(from_lat, from_long, to_lat, to_long);
+  getUberPrices: async function (fromLat, fromLong, toLat, toLong) {
+    let response = await uberPrices(fromLat, fromLong, toLat, toLong);
     processedResponses = processUberResponseBody(JSON.parse(response).prices);
     return processedResponses;
-  }
+  },
 };
 
 /**
  * Returns addresses based on a input address (string) with Lat and Loing.
  * @param {string} sAddress - Keyword for the address
  */
-function uberPrices(from_lat, from_long, to_lat, to_long) {
+function uberPrices(fromLat, fromLong, toLat, toLong) {
   var options = {
-    url: PRE_URL_UBER + 'start_latitude=' + from_lat + '&start_longitude=' +
-      from_long + '&end_latitude=' + to_lat + '&end_longitude=' + to_long,
+    url: PRE_URL_UBER + 'start_latitude=' + fromLat + '&start_longitude=' +
+      fromLong + '&end_latitude=' + toLat + '&end_longitude=' + toLong,
     headers: {
       'User-Agent': 'request',
       'Authorization': 'Token cds-RMpAWPazEskuTK1gWxP7EAl_vyvBmT4jjKnY',

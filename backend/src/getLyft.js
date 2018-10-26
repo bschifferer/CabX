@@ -3,21 +3,21 @@ const request = require('request');
 const PRE_URL_LYFT = 'https://api.lyft.com/v1/cost?';
 
 module.exports = {
-  getLyftPrices: async function (from_lat, from_long, to_lat, to_long) {
-    let response = await lyftPrices(from_lat, from_long, to_lat, to_long);
+  getLyftPrices: async function (fromLat, fromLong, toLat, toLong) {
+    let response = await lyftPrices(fromLat, fromLong, toLat, toLong);
     processedResponses = processLyftResponseBody(JSON.parse(response).cost_estimates);
     return processedResponses;
-  }
+  },
 };
 
 /**
  * Returns addresses based on a input address (string) with Lat and Loing.
  * @param {string} sAddress - Keyword for the address
  */
-function lyftPrices(from_lat, from_long, to_lat, to_long) {
+function lyftPrices(fromLat, fromLong, toLat, toLong) {
   var options = {
-    url: PRE_URL_LYFT + 'start_lat=' + from_lat + '&start_lng=' +
-      from_long + '&end_lat=' + to_lat + '&end_lng=' + to_long,
+    url: PRE_URL_LYFT + 'start_lat=' + fromLat + '&start_lng=' +
+      fromLong + '&end_lat=' + toLat + '&end_lng=' + toLong,
     headers: {
       'Authorization': 'bearer sG1iQES+ARRImYkpZAQZ7PnTJEBv8e7tRHG6E1AZWCtOr7aYO64C6BUhHbTav3p7JiMwA84pIYOCvYHQo+POUMfAIYFVkjbaqEhgcvzx3MOSiteK1Cxb+oE='
     }

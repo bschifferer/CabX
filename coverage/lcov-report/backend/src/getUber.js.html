@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for backend/src/getUber.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../../index.html">All files</a> / <a href="index.html">backend/src</a> getUber.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.75% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>3/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">18.75% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>3/16</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const request = require('request');
+&nbsp;
+const PRE_URL_UBER = 'https://api.uber.com/v1.2/estimates/price?';
+&nbsp;
+module.exports = {
+  getUberPrices: <span class="fstat-no" title="function not covered" >as</span>ync function (from_lat, from_long, to_lat, to_long) {
+    let response = <span class="cstat-no" title="statement not covered" >await uberPrices(from_lat, from_long, to_lat, to_long);</span>
+<span class="cstat-no" title="statement not covered" >    processedResponses = processUberResponseBody(JSON.parse(response).prices);</span>
+<span class="cstat-no" title="statement not covered" >    return processedResponses;</span>
+  }
+};
+&nbsp;
+/**
+ * Returns addresses based on a input address (string) with Lat and Loing.
+ * @param {string} sAddress - Keyword for the address
+ */
+function <span class="fstat-no" title="function not covered" >uberPrices(</span>from_lat, from_long, to_lat, to_long) {
+  var options = <span class="cstat-no" title="statement not covered" >{</span>
+    url: PRE_URL_UBER + 'start_latitude=' + from_lat + '&amp;start_longitude=' +
+      from_long + '&amp;end_latitude=' + to_lat + '&amp;end_longitude=' + to_long,
+    headers: {
+      'User-Agent': 'request',
+      'Authorization': 'Token cds-RMpAWPazEskuTK1gWxP7EAl_vyvBmT4jjKnY',
+      'Accept-Language': 'en_US',
+      'Content-Type': 'application/json'
+    }
+  }
+<span class="cstat-no" title="statement not covered" >  return new Promise(<span class="fstat-no" title="function not covered" >fu</span>nction (resolve, reject) {</span>
+<span class="cstat-no" title="statement not covered" >    request.get(options, <span class="fstat-no" title="function not covered" >fu</span>nction (error, response, body) {</span>
+<span class="cstat-no" title="statement not covered" >      resolve(body);</span>
+    });
+  });
+}
+&nbsp;
+/**
+ * Process the response body of a geocoding search with Bing
+ * @param {string} jsonResponsesBody - jsonObject - part of Bing response
+ * @return {jsonObject} jsonProcessedResponses
+ */
+function <span class="fstat-no" title="function not covered" >processUberResponseBody(</span>jsonResponsesBody) {
+<span class="cstat-no" title="statement not covered" >  jsonProcessedResponses = [];</span>
+<span class="cstat-no" title="statement not covered" >  for (let i=0; i&lt;jsonResponsesBody.length; i++) {</span>
+<span class="cstat-no" title="statement not covered" >    jsonProcessedResponses[i] = getRelevantInformationFromUberResponse(</span>
+      jsonResponsesBody[i]);
+  }
+<span class="cstat-no" title="statement not covered" >  return jsonProcessedResponses;</span>
+}
+&nbsp;
+/**
+ * Process a single search result and extract only relevant information
+ * @param {jsonObject} jsonResponseBody -  single search result
+ * @return {jsonObject} jsonProcessedResponseBody - single processed response
+ */
+function <span class="fstat-no" title="function not covered" >getRelevantInformationFromUberResponse(</span>jsonResponseBody) {
+  let jsonProcessedResponseBody = <span class="cstat-no" title="statement not covered" >{</span>
+    ride_hailing_service: 'uber',
+    display_name: jsonResponseBody.display_name,
+    estimated_duration_seconds: jsonResponseBody.duration,
+    estimated_distance_miles: jsonResponseBody.distance,
+    estimated_cost_cents_min: jsonResponseBody.low_estimate*100,
+    estimated_cost_cents_max: jsonResponseBody.high_estimate*100
+  };
+<span class="cstat-no" title="statement not covered" >  return jsonProcessedResponseBody;</span>
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Oct 26 2018 16:20:24 GMT-0400 (Eastern Daylight Time)
+</div>
+</div>
+<script src="../../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../../sorter.js"></script>
+</body>
+</html>
