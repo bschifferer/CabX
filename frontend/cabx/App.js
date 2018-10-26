@@ -36,6 +36,13 @@ const list = [
 ]
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toAddress:'', 
+      fromAddress:''
+    };
+  }
   render() {
     return (
       <View style={styles.container}>
@@ -43,13 +50,15 @@ export default class App extends React.Component {
         showLoading
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
-        placeholder='From...' />
+        placeholder='From...' 
+        onChangeText={(fromAddress) => console.log(fromAddress)} />
         
-		<SearchBar
+		    <SearchBar
         showLoading
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
-        placeholder='To...' />
+        placeholder='To...' 
+        onChangeText={(toAddress) => console.log(toAddress)} />
 
 		{
 			list.map((item) => (
