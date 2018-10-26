@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 import { SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -13,6 +13,7 @@ export default class App extends React.Component {
   }
   render() {
 	data = getRideData();
+  console.log(this.state.fromAddress);
     return (
       <View style={styles.container}>
         <SearchBar
@@ -20,14 +21,21 @@ export default class App extends React.Component {
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
         placeholder='From...' 
-        onChangeText={resolveOrigin} />
+        onChangeText={(fromAddress) => this.setState({fromAddress})} />
         
 		    <SearchBar
         showLoading
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
         placeholder='To...' 
-        onChangeText={resolveDestination} />
+        onChangeText={(toAddress) => this.setState({toAddress})} />
+
+        <Button
+          title="Find me a car!"
+          onPress={(state) => {
+            resolveAddress(this.state.toAddress, this.state.fromAddress)
+          }}
+        />
 
 		{
 			data.map((item, index) => (
@@ -47,8 +55,31 @@ export default class App extends React.Component {
   }
 }
 
+
+
+function resolveAddress(fromAddress, toAddress) {
+	fetch('http://ec2-18-215-158-47.compute-1.amazonaws.com:3000/findRides/', {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      "from": fromAddress,
+      "to": toAddress
+    }),
+  }).then((response) => response.json())
+    .then((responseJson) => {
+      console.log(responseJson)
+    })
+    .catch((error) => {
+      console.error(error)
+    })
+
+  // console.log("origin:", address);
+}
+
 function resolveOrigin(address) {
-	console.log("origin:", address);
+  this.setState({fromAddress: address});
 }
 
 function resolveDestination(address) {
