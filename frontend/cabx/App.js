@@ -35,17 +35,15 @@ export default class App extends React.Component {
   }
 
   render() {
-	  console.log("beginning")
-    console.log(this.state.fromAddress)
-    console.log(this.state.toAddress)
-    console.log(this.state.buttonPress)
+	  // console.log("beginning")
+   //  console.log(this.state.fromAddress)
+   //  console.log(this.state.toAddress)
+   //  console.log(this.state.buttonPress)
 
     if (this.state.buttonPress) {
       this.resolveAddress(this.state.toAddress, this.state.fromAddress)
-    } else {
-      data = getRideData()  
-    }
-    console.log(this.state.data)
+    } 
+    // console.log(this.state.data)
     
     return (
       <View style={styles.container}>
@@ -76,10 +74,10 @@ export default class App extends React.Component {
     			this.state.data.map((item, index) => (
     			<ListItem
     			key={index}
-    			// leftIcon={ {name: item.icon }}
+    			// leftIcon={ {name: item.ride_hailing_service }}
     			badge={{ value: "$" + item.estimated_cost_cents_min + '-' + item.estimated_cost_cents_max, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
-    			title={item.display_name}
-    			subtitle={item.estimated_duration_seconds}
+    			title={ item.ride_hailing_service + ' ' + item.display_name }
+    			subtitle={ "Estimated time:" + Math.floor(item.estimated_duration_seconds / 60) + ' minutes'}
     			hideChevron
     			/>
     		))
@@ -90,52 +88,12 @@ export default class App extends React.Component {
   }
 }
 
-
-
-
-
 function resolveOrigin(address) {
   this.setState({fromAddress: address});
 }
 
 function resolveDestination(address) {
 	console.log("destination:", address);
-}
-
-function getRideData() {
-	const list = [
-		{
-			display_name: 'Uber Pool',
-			estimated_cost_cents_max: 2.0,
-			estimated_cost_cents_min: '4:25pm',
-      estimated_distance_miles: 0,
-      estimated_duration_seconds: 0,
-			ride_hailing_service: 'Uber',
-			// icon: 'refresh',
-		},
-		{
-			type: 'Uber X',
-			price: 5.0,
-			eta: '4:30pm',
-			service: 'Uber',
-			icon: 'refresh',
-		},
-		{
-			type: 'Uber Pool',
-			price: 1.05,
-			eta: '4:25pm',
-			service: 'Uber',
-			icon: 'refresh',
-		},
-		{
-			type: 'Uber X',
-			price: 50.0,
-			eta: '4:30pm',
-			service: 'Uber',
-			icon: 'refresh',
-		}
-	]
-	return list;
 }
 
 const styles = StyleSheet.create({
