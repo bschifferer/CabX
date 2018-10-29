@@ -84,7 +84,7 @@ export default class App extends React.Component {
           avatar={item.ride_hailing_service == "uber" ? 'https://banner2.kisspng.com/20180715/fje/kisspng-computer-icons-user-clip-art-uber-logo-transparent-5b4b0088e1dc35.0486796815316419929251.jpg' : 'http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c525.png'}  
     			badge={{ value: "$" + item.estimated_cost_cents_min + '-' + item.estimated_cost_cents_max, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
     			title={ item.display_name }
-    			subtitle={ "Estimated time:" + Math.floor(item.estimated_duration_seconds / 60) + ' minutes'}
+    			subtitle={ "Estimated time: " + Math.floor(item.estimated_duration_seconds / 60) + ' minutes'}
     			hideChevron
     			/>
     		))
