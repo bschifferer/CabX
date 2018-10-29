@@ -2,7 +2,6 @@ var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 var jsonfile = require('jsonfile');
 
 
-
 var xhr = new XMLHttpRequest();
 var url = "http://localhost:3000/findRides";
 
@@ -15,8 +14,8 @@ xhr.open("POST", url, true);
 xhr.setRequestHeader('Content-Type', 'application/json');
 xhr.send(JSON.stringify({
 
-    "to": "Columbia University, New York, NY",
-    "from": "MoMA, West 53rd Street, New York, NY"
+   "to": "Manhattan College, Manhattan College Parkway, Bronx, NY",
+  "from": "SEPHORA, Columbus Circle, New York, NY"
 
 }));
 xhr.onload = function() {
@@ -24,14 +23,12 @@ xhr.onload = function() {
   var json = JSON.stringify(this.responseText);
 
   /* write retrieved ride share information to json file */
-  jsonfile.writeFile('test1.json', data, function (err) {
+  jsonfile.writeFile('test2.json', data, function (err) {
   if (err) console.error(err)
 })
 
-
   console.log(data);
 }
-
 
 
 
