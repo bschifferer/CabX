@@ -2,13 +2,12 @@ const request = require('request');
 
 const PRE_URL_LYFT = 'https://api.lyft.com/v1/cost?';
 
-module.exports = {
-  getLyftPrices: async function(fromLat, fromLong, toLat, toLong) {
-    let response = await lyftPrices(fromLat, fromLong, toLat, toLong);
-    processedResponses = processLyftResponseBody(
-        JSON.parse(response).cost_estimates);
-    return processedResponses;
-  },
+exports.getLyftPrices = async function(fromLat, fromLong, toLat, toLong) {
+  let response = await module.exports.lyftPrices(fromLat, fromLong,
+      toLat, toLong);
+  processedResponses = module.exports.processLyftResponseBody(
+      JSON.parse(response).cost_estimates);
+  return processedResponses;
 };
 
 /**
@@ -20,7 +19,7 @@ module.exports = {
  * @param {integer} toLong - Longitude value of from destination
  * @return {jsonObject} fromLat - Response body from Lyft
  */
-function lyftPrices(fromLat, fromLong, toLat, toLong) {
+exports.lyftPrices = function(fromLat, fromLong, toLat, toLong) {
   var options = {
     url: PRE_URL_LYFT + 'start_lat=' + fromLat + '&start_lng=' +
       fromLong + '&end_lat=' + toLat + '&end_lng=' + toLong,
@@ -35,28 +34,30 @@ function lyftPrices(fromLat, fromLong, toLat, toLong) {
       resolve(body);
     });
   });
-}
+};
 
 /**
  * Process the response body of a ride offer search with Lyft
  * @param {string} jsonResponsesBody - jsonObject - part of Lyft response
  * @return {jsonObject} jsonProcessedResponses - Processed responses as JSON
  */
-function processLyftResponseBody(jsonResponsesBody) {
+exports.processLyftResponseBody = function(jsonResponsesBody) {
   jsonProcessedResponses = [];
   for (let i=0; i<jsonResponsesBody.length; i++) {
-    jsonProcessedResponses[i] = getRelevantInformationFromLyftResponse(
-        jsonResponsesBody[i]);
+    jsonProcessedResponses[i] =
+      module.exports.getRelevantInformationFromLyftResponse(
+          jsonResponsesBody[i]
+      );
   }
   return jsonProcessedResponses;
-}
+};
 
 /**
  * Process a single search result and extract only relevant information
  * @param {jsonObject} jsonResponseBody -  single search result
  * @return {jsonObject} jsonProcessedResponseBody - single processed response
  */
-function getRelevantInformationFromLyftResponse(jsonResponseBody) {
+exports.getRelevantInformationFromLyftResponse = function(jsonResponseBody) {
   let jsonProcessedResponseBody = {
     ride_hailing_service: 'lyft',
     display_name: jsonResponseBody.display_name,
@@ -66,4 +67,4 @@ function getRelevantInformationFromLyftResponse(jsonResponseBody) {
     estimated_cost_cents_max: jsonResponseBody.estimated_cost_cents_max,
   };
   return jsonProcessedResponseBody;
-}
+};

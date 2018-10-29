@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.75% </span>
+        <span class="strong">31.58% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>3/16</span>
+        <span class='fraction'>6/19</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">18.75% </span>
+        <span class="strong">31.58% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>3/16</span>
+        <span class='fraction'>6/19</span>
       </div>
     </div>
   </div>
@@ -112,28 +112,15 @@
 67
 68
 69
-70</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+70
+71</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -144,11 +131,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,6 +149,21 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,7 +172,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,13 +187,12 @@
 &nbsp;
 const PRE_URL_LYFT = 'https://api.lyft.com/v1/cost?';
 &nbsp;
-module.exports = {
-  getLyftPrices: <span class="fstat-no" title="function not covered" >as</span>ync function(fromLat, fromLong, toLat, toLong) {
-    let response = <span class="cstat-no" title="statement not covered" >await lyftPrices(fromLat, fromLong, toLat, toLong);</span>
-<span class="cstat-no" title="statement not covered" >    processedResponses = processLyftResponseBody(</span>
-        JSON.parse(response).cost_estimates);
-<span class="cstat-no" title="statement not covered" >    return processedResponses;</span>
-  },
+exports.getLyftPrices = <span class="fstat-no" title="function not covered" >as</span>ync function(fromLat, fromLong, toLat, toLong) {
+  let response = <span class="cstat-no" title="statement not covered" >await module.exports.lyftPrices(fromLat, fromLong,</span>
+      toLat, toLong);
+<span class="cstat-no" title="statement not covered" >  processedResponses = module.exports.processLyftResponseBody(</span>
+      JSON.parse(response).cost_estimates);
+<span class="cstat-no" title="statement not covered" >  return processedResponses;</span>
 };
 &nbsp;
 /**
@@ -203,7 +204,7 @@ module.exports = {
  * @param {integer} toLong - Longitude value of from destination
  * @return {jsonObject} fromLat - Response body from Lyft
  */
-function <span class="fstat-no" title="function not covered" >lyftPrices(</span>fromLat, fromLong, toLat, toLong) {
+exports.lyftPrices = <span class="fstat-no" title="function not covered" >fu</span>nction(fromLat, fromLong, toLat, toLong) {
   var options = <span class="cstat-no" title="statement not covered" >{</span>
     url: PRE_URL_LYFT + 'start_lat=' + fromLat + '&amp;start_lng=' +
       fromLong + '&amp;end_lat=' + toLat + '&amp;end_lng=' + toLong,
@@ -218,28 +219,30 @@ function <span class="fstat-no" title="function not covered" >lyftPrices(</span>
 <span class="cstat-no" title="statement not covered" >      resolve(body);</span>
     });
   });
-}
+};
 &nbsp;
 /**
  * Process the response body of a ride offer search with Lyft
  * @param {string} jsonResponsesBody - jsonObject - part of Lyft response
  * @return {jsonObject} jsonProcessedResponses - Processed responses as JSON
  */
-function <span class="fstat-no" title="function not covered" >processLyftResponseBody(</span>jsonResponsesBody) {
+exports.processLyftResponseBody = <span class="fstat-no" title="function not covered" >fu</span>nction(jsonResponsesBody) {
 <span class="cstat-no" title="statement not covered" >  jsonProcessedResponses = [];</span>
 <span class="cstat-no" title="statement not covered" >  for (let i=0; i&lt;jsonResponsesBody.length; i++) {</span>
-<span class="cstat-no" title="statement not covered" >    jsonProcessedResponses[i] = getRelevantInformationFromLyftResponse(</span>
-        jsonResponsesBody[i]);
+<span class="cstat-no" title="statement not covered" >    jsonProcessedResponses[i] =</span>
+      module.exports.getRelevantInformationFromLyftResponse(
+          jsonResponsesBody[i]
+      );
   }
 <span class="cstat-no" title="statement not covered" >  return jsonProcessedResponses;</span>
-}
+};
 &nbsp;
 /**
  * Process a single search result and extract only relevant information
  * @param {jsonObject} jsonResponseBody -  single search result
  * @return {jsonObject} jsonProcessedResponseBody - single processed response
  */
-function <span class="fstat-no" title="function not covered" >getRelevantInformationFromLyftResponse(</span>jsonResponseBody) {
+exports.getRelevantInformationFromLyftResponse = <span class="fstat-no" title="function not covered" >fu</span>nction(jsonResponseBody) {
   let jsonProcessedResponseBody = <span class="cstat-no" title="statement not covered" >{</span>
     ride_hailing_service: 'lyft',
     display_name: jsonResponseBody.display_name,
@@ -249,14 +252,14 @@ function <span class="fstat-no" title="function not covered" >getRelevantInforma
     estimated_cost_cents_max: jsonResponseBody.estimated_cost_cents_max,
   };
 <span class="cstat-no" title="statement not covered" >  return jsonProcessedResponseBody;</span>
-}
+};
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 29 2018 12:10:33 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 29 2018 13:02:44 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>
