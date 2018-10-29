@@ -3,7 +3,7 @@ const request = require('request');
 const PRE_URL_UBER = 'https://api.uber.com/v1.2/estimates/price?';
 
 module.exports = {
-  getUberPrices: async function (fromLat, fromLong, toLat, toLong) {
+  getUberPrices: async function(fromLat, fromLong, toLat, toLong) {
     let response = await uberPrices(fromLat, fromLong, toLat, toLong);
     processedResponses = processUberResponseBody(JSON.parse(response).prices);
     return processedResponses;
@@ -11,8 +11,13 @@ module.exports = {
 };
 
 /**
- * Returns addresses based on a input address (string) with Lat and Loing.
- * @param {string} sAddress - Keyword for the address
+ * Returns the ride sharing offers from Uber based on From/To destination in
+ * lat and long format
+ * @param {integer} fromLat - Latitude value of from destination
+ * @param {integer} fromLong - Longitude value of from destination
+ * @param {integer} toLat - Latitude value of from destination
+ * @param {integer} toLong - Longitude value of from destination
+ * @return {jsonObject} fromLat - Response body from Uber
  */
 function uberPrices(fromLat, fromLong, toLat, toLong) {
   var options = {
@@ -22,26 +27,26 @@ function uberPrices(fromLat, fromLong, toLat, toLong) {
       'User-Agent': 'request',
       'Authorization': 'Token cds-RMpAWPazEskuTK1gWxP7EAl_vyvBmT4jjKnY',
       'Accept-Language': 'en_US',
-      'Content-Type': 'application/json'
-    }
-  }
-  return new Promise(function (resolve, reject) {
-    request.get(options, function (error, response, body) {
+      'Content-Type': 'application/json',
+    },
+  };
+  return new Promise(function(resolve, reject) {
+    request.get(options, function(error, response, body) {
       resolve(body);
     });
   });
 }
 
 /**
- * Process the response body of a geocoding search with Bing
- * @param {string} jsonResponsesBody - jsonObject - part of Bing response
- * @return {jsonObject} jsonProcessedResponses
+ * Process the response body of a ride offer search with Uber
+ * @param {string} jsonResponsesBody - jsonObject - part of Uber response
+ * @return {jsonObject} jsonProcessedResponses - Processed responses as JSON
  */
 function processUberResponseBody(jsonResponsesBody) {
   jsonProcessedResponses = [];
   for (let i=0; i<jsonResponsesBody.length; i++) {
     jsonProcessedResponses[i] = getRelevantInformationFromUberResponse(
-      jsonResponsesBody[i]);
+        jsonResponsesBody[i]);
   }
   return jsonProcessedResponses;
 }
@@ -58,7 +63,7 @@ function getRelevantInformationFromUberResponse(jsonResponseBody) {
     estimated_duration_seconds: jsonResponseBody.duration,
     estimated_distance_miles: jsonResponseBody.distance,
     estimated_cost_cents_min: jsonResponseBody.low_estimate*100,
-    estimated_cost_cents_max: jsonResponseBody.high_estimate*100
+    estimated_cost_cents_max: jsonResponseBody.high_estimate*100,
   };
   return jsonProcessedResponseBody;
 }

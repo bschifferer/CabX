@@ -2,234 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d72ac20-1617-49f5-9f8b-fa7e18115517" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintrc.js" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintrc.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/getLyft.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getLyft.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/getRides.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/getUber.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getUber.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/base.css" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/base.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov.info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/escodegen" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.bin/esgenerate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/amdefine/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/amdefine/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/amdefine/amdefine.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/amdefine/intercept.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/amdefine/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/LICENSE.BSD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/LICENSE.source-map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/bin/escodegen.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/bin/esgenerate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/escodegen.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/.bin/esparse" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/.bin/esvalidate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/ChangeLog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/LICENSE.BSD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/bin/esparse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/bin/esvalidate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/esprima.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/esprima/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/.editorconfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/.jshintrc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/LICENSE.BSD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/estraverse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/gulpfile.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/estraverse/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/.npmignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/CHANGELOG.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/Makefile.dryice.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/assert-shim.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/mini-require.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/prefix-source-map.jsm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/prefix-utils.jsm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/suffix-browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/suffix-source-map.jsm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/suffix-utils.jsm" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/test-prefix.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/build/test-suffix.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/array-set.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/base64-vlq.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/base64.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/basic-source-map-consumer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/binary-search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/indexed-source-map-consumer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/mapping-list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/source-map-consumer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/source-map-generator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/source-node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/lib/source-map/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/run-tests.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-api.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-array-set.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-base64-vlq.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-base64.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-binary-search.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-dog-fooding.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-source-map-consumer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-source-map-generator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-source-node.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/test-util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/node_modules/source-map/test/source-map/util.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/escodegen/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/CHANGELOG.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/CHANGELOG.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/assets/base.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/assets/sort-arrow-sprite.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/assets/sorter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/assets/vendor/prettify.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/assets/vendor/prettify.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/collector.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/check-coverage.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/lib/command/check-coverage.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/common/run-with-cover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/cover.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/lib/command/cover.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/help.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/lib/command/help.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/instrument.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/lib/command/instrument.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/report.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/lib/command/report.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/command/test.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/hook.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/instrumenter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/object-utils.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/register-plugins.js" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/lib/register-plugins.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/clover.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/cobertura.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/common/defaults.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/html.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/json-summary.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/json.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/lcov.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/lcovonly.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/none.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/teamcity.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/templates/foot.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/templates/head.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/text-lcov.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/text-summary.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/report/text.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/reporter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/store/fslookup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/store/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/store/memory.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/store/tmp.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/util/file-matcher.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/util/file-writer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/util/insertion-text.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/util/tree-summarizer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/util/writer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/lib/util/yui-load-hook.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/.bin/esparse" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/.bin/esvalidate" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/ChangeLog" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/LICENSE.BSD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/bin/esparse.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/bin/esvalidate.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/esprima.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/esprima/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/glob/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/glob/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/glob/common.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/glob/glob.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/glob/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/glob/sync.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/has-flag/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/has-flag/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/has-flag/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/has-flag/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/.travis.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/LICENSE" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/example/async.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/example/sync.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/lib/async.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/lib/caller.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/lib/core.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/lib/core.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/lib/node-modules-paths.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/lib/sync.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/readme.markdown" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/core.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/dotdot.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/dotdot/abc/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/dotdot/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/faulty_basedir.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/filter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/filter_sync.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/mock.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/mock_sync.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/module_dir.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/module_dir/xmodules/aaa/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/module_dir/ymodules/aaa/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/module_dir/zmodules/bbb/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/module_dir/zmodules/bbb/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/node_path.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/node_path/x/aaa/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/node_path/x/ccc/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/node_path/y/bbb/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/node_path/y/ccc/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/nonstring.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/pathfilter.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/pathfilter/deep_ref/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/pathfilter/deep_ref/node_modules/deep/alt.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/pathfilter/deep_ref/node_modules/deep/deeper/ref.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/pathfilter/deep_ref/node_modules/deep/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/pathfilter/deep_ref/node_modules/deep/ref.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/precedence.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/precedence/aaa.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/precedence/aaa/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/precedence/aaa/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/precedence/bbb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/precedence/bbb/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/bar/node_modules/foo/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/baz/doom.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/baz/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/baz/quux.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/biz/node_modules/garply/lib/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/biz/node_modules/garply/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/biz/node_modules/grux/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/biz/node_modules/tiv/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/cup.coffee" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/foo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/incorrect_main/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/incorrect_main/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/mug.coffee" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/mug.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/other_path/lib/other-lib.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/other_path/root.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/punycode/node_modules/punycode/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/quux/foo/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/without_basedir/main.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver/without_basedir/node_modules/mymodule.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/resolver_sync.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/subdirs.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/subdirs/node_modules/a/b/c/x.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/resolve/test/subdirs/node_modules/a/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/supports-color/browser.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/supports-color/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/supports-color/license" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/supports-color/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/node_modules/supports-color/readme.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/istanbul/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/istanbul/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -257,19 +32,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="2119" />
+          <entry key="js" value="2546" />
           <entry key="json" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="30" />
-          <entry key="JavaScript" value="2119" />
+          <entry key="JavaScript" value="2546" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="11" />
+          <entry key="js" value="12" />
           <entry key="json" value="1" />
           <entry key="yml" value="1" />
         </counts>
@@ -277,7 +52,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="11" />
+          <entry key="JavaScript" value="12" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -317,7 +92,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="291">
+            <state relative-caret-position="737">
               <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
             </state>
           </provider>
@@ -326,8 +101,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/getLyft.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+            <state relative-caret-position="400">
+              <caret line="53" selection-start-line="53" selection-end-line="57" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -335,17 +110,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/src/getUber.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="63">
-              <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/test/sample_test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="8" selection-end-column="3" />
+            <state relative-caret-position="419">
+              <caret line="57" column="3" selection-start-line="57" selection-start-column="3" selection-end-line="57" selection-end-column="3" />
             </state>
           </provider>
         </entry>
@@ -383,6 +149,7 @@
         <option value="$PROJECT_DIR$/backend/src/getFindRides.js" />
         <option value="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" />
         <option value="$PROJECT_DIR$/backend/src/getLyft.js" />
+        <option value="$PROJECT_DIR$/backend/src/getRides.js" />
         <option value="$PROJECT_DIR$/backend/src/getUber.js" />
       </list>
     </option>
@@ -454,10 +221,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="731" />
-    <option name="y" value="30" />
+    <option name="x" value="671" />
+    <option name="y" value="24" />
     <option name="width" value="1064" />
-    <option name="height" value="812" />
+    <option name="height" value="810" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -533,18 +300,18 @@
       <option name="presentableId" value="Default" />
       <updated>1540052107950</updated>
       <workItem from="1540052110318" duration="524000" />
-      <workItem from="1540315317998" duration="3827000" />
+      <workItem from="1540315317998" duration="4574000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12016000" />
+    <option name="totallyTimeSpent" value="12763000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="731" y="30" width="1064" height="812" extended-state="0" />
+    <frame x="671" y="24" width="1064" height="810" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24945927" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.24928091" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -587,6 +354,15 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/getLatLongFromAddress.js" />
+    <entry file="file://$PROJECT_DIR$/backend/src/sample_file.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/backend/test/sample_test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -594,19 +370,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/test/getUber_test.js">
+    <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/sample_file.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
+        <state relative-caret-position="737">
+          <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
         </state>
       </provider>
     </entry>
@@ -624,24 +391,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
+    <entry file="file://$PROJECT_DIR$/backend/src/getRides.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="52" column="46" lean-forward="true" selection-start-line="52" selection-start-column="46" selection-end-line="52" selection-end-column="46" />
+        <state relative-caret-position="-274">
+          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/test/getUber_test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/getLyft.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="39" selection-start-line="16" selection-start-column="39" selection-end-line="16" selection-end-column="39" />
+        <state relative-caret-position="400">
+          <caret line="53" selection-start-line="53" selection-end-line="57" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/src/getUber.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="29" column="20" lean-forward="true" selection-start-line="29" selection-start-column="20" selection-end-line="29" selection-end-column="20" />
+        <state relative-caret-position="419">
+          <caret line="57" column="3" selection-start-line="57" selection-start-column="3" selection-end-line="57" selection-end-column="3" />
         </state>
       </provider>
     </entry>
