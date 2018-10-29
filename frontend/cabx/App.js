@@ -8,12 +8,45 @@ export default class App extends React.Component {
     super(props);
     this.state = {
       toAddress:'', 
-      fromAddress:''
+      fromAddress:'',
+      buttonPress: false,
+      data: [],
     };
+    this.resolveAddress = this.resolveAddress.bind(this);
   }
+
+  resolveAddress(fromAddress, toAddress) {
+    fetch('http://ec2-18-215-158-47.compute-1.amazonaws.com:3000/findRides/', {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "from": fromAddress,
+        "to": toAddress
+      }),
+    }).then((response) => response.json())
+      .then((responseJson) => {
+        this.setState({ data: responseJson, buttonPress: false })
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }
+
   render() {
-	data = getRideData();
-  console.log(this.state.fromAddress);
+	  console.log("beginning")
+    console.log(this.state.fromAddress)
+    console.log(this.state.toAddress)
+    console.log(this.state.buttonPress)
+
+    if (this.state.buttonPress) {
+      this.resolveAddress(this.state.toAddress, this.state.fromAddress)
+    } else {
+      data = getRideData()  
+    }
+    console.log(this.state.data)
+    
     return (
       <View style={styles.container}>
         <SearchBar
@@ -33,22 +66,24 @@ export default class App extends React.Component {
         <Button
           title="Find me a car!"
           onPress={(state) => {
-            resolveAddress(this.state.toAddress, this.state.fromAddress)
+            // data = resolveAddress(this.state.toAddress, this.state.fromAddress)
+            this.setState({ buttonPress: true});
           }}
         />
 
-		{
-			data.map((item, index) => (
-			<ListItem
-			key={index}
-			leftIcon={ {name: item.icon }}
-			badge={{ value: "$" + item.price, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
-			title={item.type}
-			subtitle={item.eta}
-			hideChevron
-			/>
-		))
-		}
+
+    		{
+    			this.state.data.map((item, index) => (
+    			<ListItem
+    			key={index}
+    			// leftIcon={ {name: item.icon }}
+    			badge={{ value: "$" + item.estimated_cost_cents_min + '-' + item.estimated_cost_cents_max, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
+    			title={item.display_name}
+    			subtitle={item.estimated_duration_seconds}
+    			hideChevron
+    			/>
+    		))
+    		}
 
       </View>
     );
@@ -57,26 +92,7 @@ export default class App extends React.Component {
 
 
 
-function resolveAddress(fromAddress, toAddress) {
-	fetch('http://ec2-18-215-158-47.compute-1.amazonaws.com:3000/findRides/', {
-    method: 'POST',
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      "from": fromAddress,
-      "to": toAddress
-    }),
-  }).then((response) => response.json())
-    .then((responseJson) => {
-      console.log(responseJson)
-    })
-    .catch((error) => {
-      console.error(error)
-    })
 
-  // console.log("origin:", address);
-}
 
 function resolveOrigin(address) {
   this.setState({fromAddress: address});
@@ -89,11 +105,13 @@ function resolveDestination(address) {
 function getRideData() {
 	const list = [
 		{
-			type: 'Uber Pool',
-			price: 2.0,
-			eta: '4:25pm',
-			service: 'Uber',
-			icon: 'refresh',
+			display_name: 'Uber Pool',
+			estimated_cost_cents_max: 2.0,
+			estimated_cost_cents_min: '4:25pm',
+      estimated_distance_miles: 0,
+      estimated_duration_seconds: 0,
+			ride_hailing_service: 'Uber',
+			// icon: 'refresh',
 		},
 		{
 			type: 'Uber X',
