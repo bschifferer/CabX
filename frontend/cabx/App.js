@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { SearchBar, ListItem } from 'react-native-elements';
+import { Card, SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default class App extends React.Component {
@@ -48,6 +48,8 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <SearchBar
+		containerStyle={searchBar}
+		lightTheme
         showLoading
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
@@ -55,6 +57,8 @@ export default class App extends React.Component {
         onChangeText={(fromAddress) => this.setState({fromAddress})} />
         
 		    <SearchBar
+		containerStyle={searchBar}
+		lightTheme
         showLoading
         platform="ios"
         cancelIcon={{ type: 'font-awesome', name: 'chevron-left' }}
@@ -70,11 +74,14 @@ export default class App extends React.Component {
         />
 
 
+		<Card> 
     		{
     			this.state.data.map((item, index) => (
     			<ListItem
     			key={index}
     			// leftIcon={ {name: item.ride_hailing_service }}
+					roundAvatar
+					avatar={'https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg'}
     			badge={{ value: "$" + item.estimated_cost_cents_min + '-' + item.estimated_cost_cents_max, textStyle: { color: 'orange' }, containerStyle: { marginTop: -20 } }}
     			title={ item.ride_hailing_service + ' ' + item.display_name }
     			subtitle={ "Estimated time:" + Math.floor(item.estimated_duration_seconds / 60) + ' minutes'}
@@ -82,7 +89,7 @@ export default class App extends React.Component {
     			/>
     		))
     		}
-
+		</Card>
       </View>
     );
   }
@@ -96,6 +103,8 @@ function resolveDestination(address) {
 	console.log("destination:", address);
 }
 
+let primaryColor = '#015385';
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -104,3 +113,6 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
 });
+
+const searchBar = {
+};
