@@ -6,7 +6,7 @@ var rideFinder = require('./src/getFindRides.js');
 
 app.use(bodyParser.json());
 
-app.post('/findRides/', async function (req, res) {
+app.post('/findRides/', async function(req, res) {
   sAddressFrom = req.body.from;
   sAddressTo = req.body.to;
   response = await rideFinder.getFindRides(sAddressFrom, sAddressTo);
