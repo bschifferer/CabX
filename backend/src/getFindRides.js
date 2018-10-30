@@ -27,10 +27,12 @@ exports.findRides = async function(sAddressFrom, sAddressTo) {
     res['error'] = 'An error occured by processing the to address';
     return (res);
   }
-  if (jsonToResults.processedResponse.jsonProcessedResponses.length == 0) {
+  if (jsonToResults.processedResponse.jsonProcessedResponses == 0) {
     res['error'] = 'To address was not found!';
     return (res);
   }
+
+  console.log(jsonToResults.processedResponse.jsonProcessedResponses);
 
   fromLat = jsonFromResults.processedResponse.jsonProcessedResponses[0].lat;
   fromLong = jsonFromResults.processedResponse.jsonProcessedResponses[0].long;

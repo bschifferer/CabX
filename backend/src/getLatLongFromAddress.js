@@ -100,13 +100,17 @@ exports.getRelevantInformationFromLatLongResponse = function(jsonResponseBody) {
     console.error('does not include all required fields');
     res['error'] = 'Response does not include all required fields';
   } else {
-    res['response'] = {
-      name: jsonResponseBody.name,
-      confidence: jsonResponseBody.confidence,
-      lat: jsonResponseBody.geocodePoints[0].coordinates[0],
-      long: jsonResponseBody.geocodePoints[0].coordinates[1],
-      address: jsonResponseBody.address,
-    };
+    if (jsonResponseBody.confidence == 'Low') {
+      res['error'] = 'Confidence is too low';
+    } else {
+      res['response'] = {
+        name: jsonResponseBody.name,
+        confidence: jsonResponseBody.confidence,
+        lat: jsonResponseBody.geocodePoints[0].coordinates[0],
+        long: jsonResponseBody.geocodePoints[0].coordinates[1],
+        address: jsonResponseBody.address,
+      };
+    }
   }
   return (res);
 };
