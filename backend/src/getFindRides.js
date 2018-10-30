@@ -45,7 +45,19 @@ async function findRides(sAddressFrom, sAddressTo) {
 
   jsonUber = await uber.getUberPrices(fromLat, fromLong, toLat, toLong);
   jsonLyft = await lyft.getLyftPrices(fromLat, fromLong, toLat, toLong);
-
-  response = jsonUber.concat(jsonLyft);
-  return (response);
+  if (
+    !(jsonUber.hasOwnProperty('error')) &&
+    !(jsonLyft.hasOwnProperty('error'))) {
+    res = jsonUber['processedResponse'].concat(jsonLyft['processedResponse']);
+    return (res);
+  }
+  if (!(jsonUber.hasOwnProperty('error'))) {
+    res = jsonUber['processedResponse'];
+    return (res);
+  }
+  if (!(jsonLyft.hasOwnProperty('error'))) {
+    res = jsonLyft['processedResponse'];
+    return (res);
+  }
+  return (res);
 }

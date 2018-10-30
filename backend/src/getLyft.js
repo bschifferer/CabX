@@ -3,11 +3,15 @@ const request = require('request');
 const PRE_URL_LYFT = 'https://api.lyft.com/v1/cost?';
 
 exports.getLyftPrices = async function(fromLat, fromLong, toLat, toLong) {
-  let response = await module.exports.lyftPrices(fromLat, fromLong,
-      toLat, toLong);
-  processedResponses = module.exports.processLyftResponseBody(
-      JSON.parse(response).cost_estimates);
-  return processedResponses;
+  let res = {};
+  res['response'] = await module.exports.lyftPrices(fromLat, fromLong,
+      toLat, toLong).catch((err) => {
+    console.error(err);
+    res['error'] = err;
+  });
+  res['processedResponse'] = module.exports.processLyftResponseBody(
+      JSON.parse(res['response']).cost_estimates);
+  return res;
 };
 
 /**
@@ -42,12 +46,15 @@ exports.lyftPrices = function(fromLat, fromLong, toLat, toLong) {
  * @return {jsonObject} jsonProcessedResponses - Processed responses as JSON
  */
 exports.processLyftResponseBody = function(jsonResponsesBody) {
-  jsonProcessedResponses = [];
+  let jsonProcessedResponses = [];
+  let j = 0;
   for (let i=0; i<jsonResponsesBody.length; i++) {
-    jsonProcessedResponses[i] =
-      module.exports.getRelevantInformationFromLyftResponse(
-          jsonResponsesBody[i]
-      );
+    let res = module.exports.getRelevantInformationFromLyftResponse(
+      jsonResponsesBody[i]);
+    if (!res.hasOwnProperty('error')) {
+      jsonProcessedResponses[j] = res['response'];
+      j = j+1;
+    }
   }
   return jsonProcessedResponses;
 };
@@ -58,13 +65,26 @@ exports.processLyftResponseBody = function(jsonResponsesBody) {
  * @return {jsonObject} jsonProcessedResponseBody - single processed response
  */
 exports.getRelevantInformationFromLyftResponse = function(jsonResponseBody) {
-  let jsonProcessedResponseBody = {
-    ride_hailing_service: 'lyft',
-    display_name: jsonResponseBody.display_name,
-    estimated_duration_seconds: jsonResponseBody.estimated_duration_seconds,
-    estimated_distance_miles: jsonResponseBody.estimated_distance_miles,
-    estimated_cost_cents_min: jsonResponseBody.estimated_cost_cents_min,
-    estimated_cost_cents_max: jsonResponseBody.estimated_cost_cents_max,
-  };
-  return jsonProcessedResponseBody;
+  let res = {};
+  if (
+    !jsonResponseBody.hasOwnProperty('display_name') ||
+    !jsonResponseBody.hasOwnProperty('estimated_duration_seconds') ||
+    !jsonResponseBody.hasOwnProperty('estimated_distance_miles') ||
+    !jsonResponseBody.hasOwnProperty('estimated_cost_cents_min') ||
+    !jsonResponseBody.hasOwnProperty('estimated_cost_cents_max')
+  ) {
+    console.error(jsonResponseBody);
+    console.error('does not include all required fields');
+    res['error'] = 'Response does not include all required fields';
+  } else {
+    res['response'] = {
+      ride_hailing_service: 'lyft',
+      display_name: jsonResponseBody.display_name,
+      estimated_duration_seconds: jsonResponseBody.estimated_duration_seconds,
+      estimated_distance_miles: jsonResponseBody.estimated_distance_miles,
+      estimated_cost_cents_min: jsonResponseBody.estimated_cost_cents_min / 100,
+      estimated_cost_cents_max: jsonResponseBody.estimated_cost_cents_max / 100,
+    };
+  }
+  return (res);
 };

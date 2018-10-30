@@ -4,21 +4,17 @@
     <list default="true" id="1d72ac20-1617-49f5-9f8b-fa7e18115517" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/src/getFindRides.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getFindRides.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/getLyft.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getLyft.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/getUber.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/getUber.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/test/getLatLongFromAddress_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/test/getLatLongFromAddress_test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/test/getLyft_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/test/getLyft_test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/backend/test/getUber_test.js" beforeDir="false" afterPath="$PROJECT_DIR$/backend/test/getUber_test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/coverage.raw.json" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/coverage.raw.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getFindRides.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getFindRides.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getLatLongFromAddress.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getLatLongFromAddress.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getLyft.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getLyft.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getUber.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/getUber.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/backend/src/sample_file.js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/frontend/src/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/getLatLongFromAddress.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/getLatLongFromAddress.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/getLyft.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/getLyft.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/getUber.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/getUber.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov-report/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/coverage/lcov-report/sample_file.js.html" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov-report/sample_file.js.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/coverage/lcov.info" beforeDir="false" afterPath="$PROJECT_DIR$/coverage/lcov.info" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -47,19 +43,19 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="js" value="5522" />
+          <entry key="js" value="6176" />
           <entry key="json" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JSON" value="30" />
-          <entry key="JavaScript" value="5522" />
+          <entry key="JavaScript" value="6176" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="js" value="23" />
+          <entry key="js" value="24" />
           <entry key="json" value="1" />
           <entry key="yml" value="1" />
         </counts>
@@ -67,7 +63,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="JSON" value="1" />
-          <entry key="JavaScript" value="23" />
+          <entry key="JavaScript" value="24" />
           <entry key="YAML" value="1" />
         </counts>
       </usages-collector>
@@ -75,29 +71,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/test/sample_test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/src/getFindRides.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="326">
-              <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
+            <state relative-caret-position="551">
+              <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -105,8 +83,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
+            <state relative-caret-position="195">
+              <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -114,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/getLyft.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="47" column="21" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="21" />
+            <state relative-caret-position="180">
+              <caret line="12" column="32" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -123,32 +101,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/src/getUber.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="579">
-              <caret line="61" column="77" lean-forward="true" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
+            <state relative-caret-position="210">
+              <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/backend/test/getUber_test.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="524">
-              <caret line="112" column="26" lean-forward="true" selection-start-line="111" selection-start-column="6" selection-end-line="112" selection-end-column="26" />
-              <folding>
-                <element signature="e#100#227#0" />
-                <element signature="e#170#221#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/backend/test/getLatLongFromAddress_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1469">
-              <caret line="131" column="11" lean-forward="true" selection-start-line="131" selection-start-column="11" selection-end-line="131" selection-end-column="11" />
+            <state relative-caret-position="300">
+              <caret line="61" column="40" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="40" />
               <folding>
-                <element signature="e#1884#2388#0" />
+                <element signature="e#259#857#0" />
+                <element signature="e#2429#3427#0" />
                 <element signature="e#7275#8051#0" />
                 <element signature="e#9192#11111#0" />
                 <element signature="e#13554#16910#0" />
@@ -159,13 +125,30 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/backend/test/getUber_test.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="71" selection-start-line="71" selection-end-line="71" />
+              <folding>
+                <element signature="e#241#2853#0" />
+                <element signature="e#2539#3220#0" />
+                <element signature="e#5028#5751#0" />
+                <element signature="e#5799#6453#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/backend/test/getLyft_test.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="57" selection-start-line="57" selection-end-line="57" />
+            <state relative-caret-position="180">
+              <caret line="192" column="5" lean-forward="true" selection-start-line="150" selection-end-line="192" selection-end-column="5" />
               <folding>
-                <element signature="e#164#1828#0" />
                 <element signature="e#1898#2554#0" />
+                <element signature="e#2895#5507#0" />
+                <element signature="e#5714#7524#0" />
+                <element signature="e#6521#7244#0" />
               </folding>
             </state>
           </provider>
@@ -191,14 +174,14 @@
         <option value="$PROJECT_DIR$/backend/getLatLongFromAddress.js" />
         <option value="$PROJECT_DIR$/backend/test/sample_test.js" />
         <option value="$PROJECT_DIR$/backend/src/getRides.js" />
+        <option value="$PROJECT_DIR$/backend/server.js" />
+        <option value="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" />
+        <option value="$PROJECT_DIR$/backend/test/getLatLongFromAddress_test.js" />
         <option value="$PROJECT_DIR$/backend/test/getLyft_test.js" />
+        <option value="$PROJECT_DIR$/backend/test/getUber_test.js" />
         <option value="$PROJECT_DIR$/backend/src/getLyft.js" />
         <option value="$PROJECT_DIR$/backend/src/getUber.js" />
-        <option value="$PROJECT_DIR$/backend/server.js" />
         <option value="$PROJECT_DIR$/backend/src/getFindRides.js" />
-        <option value="$PROJECT_DIR$/backend/test/getUber_test.js" />
-        <option value="$PROJECT_DIR$/backend/test/getLatLongFromAddress_test.js" />
-        <option value="$PROJECT_DIR$/backend/src/getLatLongFromAddress.js" />
       </list>
     </option>
   </component>
@@ -348,12 +331,12 @@
       <option name="presentableId" value="Default" />
       <updated>1540052107950</updated>
       <workItem from="1540052110318" duration="524000" />
-      <workItem from="1540315317998" duration="22592000" />
+      <workItem from="1540315317998" duration="26552000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30781000" />
+    <option name="totallyTimeSpent" value="34741000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -388,8 +371,8 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49860725" visible="true" weight="0.24928091" />
-      <window_info id="Structure" order="1" sideWeight="0.5013928" side_tool="true" visible="true" weight="0.24928091" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49860725" visible="true" weight="0.18335684" />
+      <window_info id="Structure" order="1" sideWeight="0.5013928" side_tool="true" weight="0.24928091" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -447,17 +430,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/test/getLyft_test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="57" selection-start-line="57" selection-end-line="57" />
-          <folding>
-            <element signature="e#164#1828#0" />
-            <element signature="e#1898#2554#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/backend/test/sample_test.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -472,56 +444,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/getLyft.js">
+    <entry file="file://$PROJECT_DIR$/backend/test/getLyft_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="47" column="21" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/getUber.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="579">
-          <caret line="61" column="77" lean-forward="true" selection-start-line="61" selection-start-column="77" selection-end-line="61" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/test/getUber_test.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="112" column="26" lean-forward="true" selection-start-line="111" selection-start-column="6" selection-end-line="112" selection-end-column="26" />
+        <state relative-caret-position="180">
+          <caret line="192" column="5" lean-forward="true" selection-start-line="150" selection-end-line="192" selection-end-column="5" />
           <folding>
-            <element signature="e#100#227#0" />
-            <element signature="e#170#221#0" />
+            <element signature="e#1898#2554#0" />
+            <element signature="e#2895#5507#0" />
+            <element signature="e#5714#7524#0" />
+            <element signature="e#6521#7244#0" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/getFindRides.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="34" column="3" lean-forward="true" selection-start-line="34" selection-start-column="3" selection-end-line="34" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="3" selection-start-line="28" selection-start-column="3" selection-end-line="28" selection-end-column="3" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/backend/test/getLatLongFromAddress_test.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1469">
-          <caret line="131" column="11" lean-forward="true" selection-start-line="131" selection-start-column="11" selection-end-line="131" selection-end-column="11" />
+        <state relative-caret-position="300">
+          <caret line="61" column="40" lean-forward="true" selection-start-line="61" selection-start-column="6" selection-end-line="61" selection-end-column="40" />
           <folding>
-            <element signature="e#1884#2388#0" />
+            <element signature="e#259#857#0" />
+            <element signature="e#2429#3427#0" />
             <element signature="e#7275#8051#0" />
             <element signature="e#9192#11111#0" />
             <element signature="e#13554#16910#0" />
             <element signature="e#15279#16343#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/test/getUber_test.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="e#241#2853#0" />
+            <element signature="e#2539#3220#0" />
+            <element signature="e#5028#5751#0" />
+            <element signature="e#5799#6453#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/getLyft.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="32" selection-start-line="12" selection-start-column="17" selection-end-line="12" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/getLatLongFromAddress.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="9" lean-forward="true" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/getUber.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="12" selection-start-line="14" selection-start-column="12" selection-end-line="14" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/backend/src/getFindRides.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="551">
+          <caret line="61" column="13" selection-start-line="61" selection-start-column="13" selection-end-line="61" selection-end-column="13" />
         </state>
       </provider>
     </entry>

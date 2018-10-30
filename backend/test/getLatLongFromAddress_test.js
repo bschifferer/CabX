@@ -484,7 +484,5 @@ describe('getLatLongFromAddress.js', function() {
 
 
   });
-
-
 });
 

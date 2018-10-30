@@ -4,11 +4,15 @@ const PRE_URL_UBER = 'https://api.uber.com/v1.2/estimates/price?';
 
 
 exports.getUberPrices = async function(fromLat, fromLong, toLat, toLong) {
-  let response = await module.exports.uberPrices(fromLat, fromLong,
-      toLat, toLong);
-  processedResponses = module.exports.processUberResponseBody(
-      JSON.parse(response).prices);
-  return processedResponses;
+  let res = {};
+  res['response'] = await module.exports.uberPrices(fromLat, fromLong,
+      toLat, toLong).catch((err) => {
+    console.error(err);
+    res['error'] = err;
+  });
+  res['processedResponse'] = module.exports.processUberResponseBody(
+      JSON.parse(res['response']).prices);
+  return res;
 };
 
 /**
@@ -44,12 +48,16 @@ exports.uberPrices = function(fromLat, fromLong, toLat, toLong) {
  * @return {jsonObject} jsonProcessedResponses - Processed responses as JSON
  */
 exports.processUberResponseBody = function(jsonResponsesBody) {
+  let jsonProcessedResponses = [];
+  let j = 0;
   jsonProcessedResponses = [];
   for (let i=0; i<jsonResponsesBody.length; i++) {
-    jsonProcessedResponses[i] =
-      module.exports.getRelevantInformationFromUberResponse(
-          jsonResponsesBody[i]
-      );
+    let res = module.exports.getRelevantInformationFromUberResponse(
+      jsonResponsesBody[i]);
+    if (!res.hasOwnProperty('error')) {
+      jsonProcessedResponses[j] = res['response'];
+      j = j+1;
+    }
   }
   return jsonProcessedResponses;
 };
@@ -60,13 +68,26 @@ exports.processUberResponseBody = function(jsonResponsesBody) {
  * @return {jsonObject} jsonProcessedResponseBody - single processed response
  */
 exports.getRelevantInformationFromUberResponse = function(jsonResponseBody) {
-  let jsonProcessedResponseBody = {
+  let res = {};
+  if (
+    !jsonResponseBody.hasOwnProperty('display_name') ||
+    !jsonResponseBody.hasOwnProperty('duration') ||
+    !jsonResponseBody.hasOwnProperty('distance') ||
+    !jsonResponseBody.hasOwnProperty('low_estimate') ||
+    !jsonResponseBody.hasOwnProperty('high_estimate')
+  ) {
+    console.error(jsonResponseBody);
+    console.error('does not include all required fields');
+    res['error'] = 'Response does not include all required fields';
+  } else {
+    res['response'] = {
     ride_hailing_service: 'uber',
     display_name: jsonResponseBody.display_name,
     estimated_duration_seconds: jsonResponseBody.duration,
     estimated_distance_miles: jsonResponseBody.distance,
-    estimated_cost_cents_min: jsonResponseBody.low_estimate*100,
-    estimated_cost_cents_max: jsonResponseBody.high_estimate*100,
-  };
-  return jsonProcessedResponseBody;
+    estimated_cost_cents_min: jsonResponseBody.low_estimate,
+    estimated_cost_cents_max: jsonResponseBody.high_estimate,
+    };
+  }
+  return (res);
 };
