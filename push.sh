@@ -6,7 +6,8 @@ setup_git() {
 }
 
 commit_website_files() {
-  git checkout gh-pages
+  git checkout coverage_reports
+  mkdir -p "coverage_reports" 
   if [ -z "$TRAVIS_BUILD_NUMBER" ]
     then
     TRAVIS_BUILD_NUMBER="temp"
@@ -19,7 +20,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
-  git push --quiet --set-upstream origin gh-pages
+  git push --quiet --set-upstream origin coverage_reports 
 }
 
 setup_git
