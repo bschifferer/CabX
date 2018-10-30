@@ -6,7 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
-  git checkout coverage_reports
+  git checkout -b coverage_reports
   mkdir -p "coverage_reports" 
   if [ -z "$TRAVIS_BUILD_NUMBER" ]
     then
