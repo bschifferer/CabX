@@ -1,7 +1,14 @@
 language: node_js
 node_js:
- - "node"
+- node
 script:
-  - npm run coverage
+- npm run coverage
 after_script:
-  - ./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info
+- "./node_modules/.bin/codeclimate-test-reporter < ./coverage/lcov.info"
+- "npm run test > report_unittest.txt"
+- "npm run eslint > report_enslint.txt"
+- "npm run coverage > report_coverage.txt" 
+- "./push.sh" 
+env:
+  global:
+    secure: PqaOKq0cD9hz1kM22+VDVFpqgqQVDuMJJWZb3JxGMStcOzOiPN/V3KYhgTjznCc9H+YN+pUTp4sRDmN/J4Ck02C1LefiIOTE02Ff9v1iXCk6Niz2FJhiGGzvbn2eQrz32JPzpriCBy11kAXrTIXqOYVsmuroMT2NtAEKBMt4o/kexMd9A4iX6ipEuDodukBWS1+0glho+djXC9f3gDQwLPuwv6RwmdsyUl+f4Sn7J2KdgXDS8kan2PVNEeadBXLAlEAcltWOpkkuCQP9d79Rq3qREU7URb/YuTGlD0qZubeuJWyl1aeHtzy0cx3sMi5PSsB4vFMKFclj0R/fl4e+09FSbQEfyTeWyp7zel5ZaavVfBrnf3ZLO++C53AncFMi4yaSgECkkVGqDKC2HjCAV69KWmnhMaiNzjlyNkGPM9Sw9YuSGYpApgGyS7VT3nFX0vIOhOLha7PnRehhTvMymVpmUAe06xcTVLEpzRwlOYhzsK/zlMkoqpi3RiveaWGV4TFNu3Hgye1ROMnRMtsgsLZRemn9f4xWkIH0Fri1v3S3dRBT6+doyEdB9SDZwaVSCGCyA5te6sHim4Tn0Uhhn6BCdvahbsbXbjhNK/6sUMkPgNQ+vv5lGmntd5b6hIndAqlpAeMyUlHcAlPkCBnUAEj3w6t8YY/oscPdykNuhiI=
