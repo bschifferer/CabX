@@ -18,7 +18,7 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add origin https://53f21ca7837c0f1bdd16374cca8e9c77aafe3090@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
+  git remote add origin https:/${GH_TOKEN}/@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
   git push --quiet --set-upstream origin gh-pages 
 }
 
