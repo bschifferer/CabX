@@ -16,13 +16,32 @@ module.exports = {
  * @return {string} jsonArray - containing all found rides from-to with infos
  */
 async function findRides(sAddressFrom, sAddressTo) {
-  jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);
-  jsonToResults = await latLong.getRequestLatLongFromAddress(sAddressTo);
+  let res = {};
 
-  fromLat = jsonFromResults[0].lat;
-  fromLong = jsonFromResults[0].long;
-  toLat = jsonToResults[0].lat;
-  toLong = jsonToResults[0].long;
+  jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);
+  if (jsonFromResults.hasOwnProperty('error')) {
+    res['error'] = 'An error occured by processing the from address';
+    return (res);
+  }
+  if (jsonFromResults['processedResponse']['jsonProcessedResponses'].length == 0) {
+    res['error'] = 'From address was not found!';
+    return (res);
+  }
+
+  jsonToResults = await latLong.getRequestLatLongFromAddress(sAddressTo);
+  if (jsonToResults.hasOwnProperty('error')) {
+    res['error'] = 'An error occured by processing the to address';
+    return (res);
+  }
+  if (jsonToResults['processedResponse']['jsonProcessedResponses'].length == 0) {
+    res['error'] = 'To address was not found!';
+    return (res);
+  }
+
+  fromLat = jsonFromResults['processedResponse']['jsonProcessedResponses'][0].lat;
+  fromLong = jsonFromResults['processedResponse']['jsonProcessedResponses'][0].long;
+  toLat = jsonToResults['processedResponse']['jsonProcessedResponses'][0].lat;
+  toLong = jsonToResults['processedResponse']['jsonProcessedResponses'][0].long;
 
   jsonUber = await uber.getUberPrices(fromLat, fromLong, toLat, toLong);
   jsonLyft = await lyft.getLyftPrices(fromLat, fromLong, toLat, toLong);

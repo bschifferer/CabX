@@ -5,20 +5,24 @@ const POST_URL = '?o=json&key=';
 const BING_KEY = 'AjpMdmorYvx_955ltPZVK1BNYpGA0Dl' +
   '8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f';
 
-module.exports = {
-  getRequestLatLongFromAddress: async function(sAddress) {
-    let response = await requestLatLongFromAddress(sAddress);
-    processedResponse = processBingLatLongResponse(response);
-    return (processedResponse);
-  },
-};
+exports.getRequestLatLongFromAddress = async function(sAddress) {
+    let res = {};
+    res['response'] = await module.exports.requestLatLongFromAddress(sAddress)
+      .catch((err) => {
+        console.error(err);
+        res['error'] = err;
+      });
+    res['processedResponse'] = module.exports.processBingLatLongResponse(res['response']);
+    return (res);
+  };
+
 
 /**
  * Returns addresses based on a input address (string) with Lat and Loing.
  * @param {string} sAddress - Keyword for the address
  * @return {string} jsonObject - Response body from Bing
  */
-function requestLatLongFromAddress(sAddress) {
+exports.requestLatLongFromAddress = function(sAddress) {
   return new Promise(function(resolve, reject) {
     request(PRE_URL + encodeURIComponent(sAddress) + POST_URL + BING_KEY,
         {json: true}, (err, res, body) => {
@@ -28,51 +32,75 @@ function requestLatLongFromAddress(sAddress) {
           resolve(body);
         });
   });
-}
+};
 
 /**
  * Process the response of a geocoding search with Bing
  * @param {jsonObject} jsonResponses - jsonObject of the response from bing
  * @return {jsonArray} jsonProcessedResponses - processed json array with
  */
-function processBingLatLongResponse(jsonResponses) {
-  if (!jsonResponses.hasOwnProperty('resourceSets')) {
-    return console.log('No resourceSets included in response');
+exports.processBingLatLongResponse = function(jsonResponses) {
+  let res = {};
+  if (
+    !(jsonResponses.hasOwnProperty('resourceSets')) ||
+    !(jsonResponses.resourceSets[0].hasOwnProperty('resources'))
+  ) {
+    console.error(jsonResponses);
+    console.error('does not include all required fields');
+    res['error'] = 'Response does not include all required fields';
+  } else {
+    let jsonResponsesBody = jsonResponses.resourceSets[0].resources;
+    res['jsonProcessedResponses'] = module.exports.processBingResponseBody(
+      jsonResponsesBody);
   }
-  if (!(jsonResponses.resourceSets)[0].hasOwnProperty('resources')) {
-    return console.log('No resources included in response');
-  }
-  let jsonResponsesBody = jsonResponses.resourceSets[0].resources;
-  let jsonProcessedResponses = processBingResponseBody(jsonResponsesBody);
-  return (jsonProcessedResponses);
-}
+  return (res);
+};
 
 /**
  * Process the response body of a geocoding search with Bing
  * @param {string} jsonResponsesBody - jsonObject - part of Bing response
  * @return {jsonObject} jsonProcessedResponses
  */
-function processBingResponseBody(jsonResponsesBody) {
-  jsonProcessedResponses = [];
+exports.processBingResponseBody = function(jsonResponsesBody) {
+  let jsonProcessedResponses = [];
+  let j = 0;
   for (let i=0; i<jsonResponsesBody.length; i++) {
-    jsonProcessedResponses[i] = getRelevantInformationFromLatLongResponse(
+    let res = module.exports.getRelevantInformationFromLatLongResponse(
         jsonResponsesBody[i]);
+    if (!res.hasOwnProperty('error')) {
+      jsonProcessedResponses[j] = res['response'];
+      j = j+1;
+    }
   }
   return jsonProcessedResponses;
-}
+};
 
 /**
  * Process a single search result and extract only relevant information
  * @param {jsonObject} jsonResponseBody -  single search result
  * @return {jsonObject} jsonProcessedResponseBody - single processed response
  */
-function getRelevantInformationFromLatLongResponse(jsonResponseBody) {
-  let jsonProcessedResponseBody = {
-    name: jsonResponseBody.name,
-    confidence: jsonResponseBody.confidence,
-    lat: jsonResponseBody.geocodePoints[0].coordinates[0],
-    long: jsonResponseBody.geocodePoints[0].coordinates[1],
-    address: jsonResponseBody.address,
-  };
-  return (jsonProcessedResponseBody);
-}
+exports.getRelevantInformationFromLatLongResponse = function(jsonResponseBody) {
+  let res = {};
+  if (
+    !jsonResponseBody.hasOwnProperty('name') ||
+    !jsonResponseBody.hasOwnProperty('confidence') ||
+    !jsonResponseBody.hasOwnProperty('geocodePoints') ||
+    !jsonResponseBody.hasOwnProperty('address') ||
+    !jsonResponseBody.geocodePoints[0].hasOwnProperty('coordinates') ||
+    !(jsonResponseBody.geocodePoints[0].coordinates.length == 2)
+  ) {
+    console.error(jsonResponseBody);
+    console.error('does not include all required fields');
+    res['error'] = 'Response does not include all required fields';
+  } else {
+    res['response'] = {
+      name: jsonResponseBody.name,
+      confidence: jsonResponseBody.confidence,
+      lat: jsonResponseBody.geocodePoints[0].coordinates[0],
+      long: jsonResponseBody.geocodePoints[0].coordinates[1],
+      address: jsonResponseBody.address,
+    };
+  }
+  return (res);
+};

@@ -61,7 +61,6 @@ describe('getUber.js', function() {
     });
   });
 
-
   describe('processUberResponseBody()', function() {
     it('Processed jsonArray is not as expected', function() {
       input = [

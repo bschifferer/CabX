@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">13.79% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/16</span>
+        <span class='fraction'>4/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/0</span>
+        <span class='fraction'>0/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">13.79% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/16</span>
+        <span class='fraction'>4/29</span>
       </div>
     </div>
   </div>
@@ -75,7 +75,26 @@
 30
 31
 32
-33</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -94,7 +113,26 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -125,13 +163,32 @@ module.exports = {
  * @return {string} jsonArray - containing all found rides from-to with infos
  */
 async function <span class="fstat-no" title="function not covered" >findRides(</span>sAddressFrom, sAddressTo) {
-<span class="cstat-no" title="statement not covered" >  jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);</span>
-<span class="cstat-no" title="statement not covered" >  jsonToResults = await latLong.getRequestLatLongFromAddress(sAddressTo);</span>
+  let res = <span class="cstat-no" title="statement not covered" >{};</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  fromLat = jsonFromResults[0].lat;</span>
-<span class="cstat-no" title="statement not covered" >  fromLong = jsonFromResults[0].long;</span>
-<span class="cstat-no" title="statement not covered" >  toLat = jsonToResults[0].lat;</span>
-<span class="cstat-no" title="statement not covered" >  toLong = jsonToResults[0].long;</span>
+<span class="cstat-no" title="statement not covered" >  jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);</span>
+<span class="cstat-no" title="statement not covered" >  if (jsonFromResults.hasOwnProperty('error')) {</span>
+<span class="cstat-no" title="statement not covered" >    res['error'] = 'An error occured by processing the from address';</span>
+<span class="cstat-no" title="statement not covered" >    return (res);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (jsonFromResults['processedResponse']['jsonProcessedResponses'].length == 0) {</span>
+<span class="cstat-no" title="statement not covered" >    res['error'] = 'From address was not found!';</span>
+<span class="cstat-no" title="statement not covered" >    return (res);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  jsonToResults = await latLong.getRequestLatLongFromAddress(sAddressTo);</span>
+<span class="cstat-no" title="statement not covered" >  if (jsonToResults.hasOwnProperty('error')) {</span>
+<span class="cstat-no" title="statement not covered" >    res['error'] = 'An error occured by processing the to address';</span>
+<span class="cstat-no" title="statement not covered" >    return (res);</span>
+  }
+<span class="cstat-no" title="statement not covered" >  if (jsonToResults['processedResponse']['jsonProcessedResponses'].length == 0) {</span>
+<span class="cstat-no" title="statement not covered" >    res['error'] = 'To address was not found!';</span>
+<span class="cstat-no" title="statement not covered" >    return (res);</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  fromLat = jsonFromResults['processedResponse']['jsonProcessedResponses'][0].lat;</span>
+<span class="cstat-no" title="statement not covered" >  fromLong = jsonFromResults['processedResponse']['jsonProcessedResponses'][0].long;</span>
+<span class="cstat-no" title="statement not covered" >  toLat = jsonToResults['processedResponse']['jsonProcessedResponses'][0].lat;</span>
+<span class="cstat-no" title="statement not covered" >  toLong = jsonToResults['processedResponse']['jsonProcessedResponses'][0].long;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  jsonUber = await uber.getUberPrices(fromLat, fromLong, toLat, toLong);</span>
 <span class="cstat-no" title="statement not covered" >  jsonLyft = await lyft.getLyftPrices(fromLat, fromLong, toLat, toLong);</span>
@@ -145,7 +202,7 @@ async function <span class="fstat-no" title="function not covered" >findRides(</
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 29 2018 14:37:48 GMT-0400 (Eastern Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 29 2018 20:07:14 GMT-0400 (Eastern Daylight Time)
 </div>
 </div>
 <script src="../../prettify.js"></script>
