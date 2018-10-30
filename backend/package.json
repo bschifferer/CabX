@@ -6,6 +6,10 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "chai-as-promised": "^7.1.1"
   }
 }

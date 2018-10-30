@@ -10,25 +10,29 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha frontend/src/*.js backend/src/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha frontend/test/*.js backend/test/*.js",
     "install": "npm install --save-dev pre-commit"
   },
   "dependencies": {
     "@expo/vector-icons": "^8.0.0",
     "expo": "^30.0.1",
+    "package.json": "^2.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-elements": "^0.19.1",
     "react-navigation": "^2.18.2"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
     "codeclimate-test-reporter": "^0.5.1",
     "eslint": "^5.8.0",
     "eslint-config-google": "^0.11.0",
-    "istanbul": "^0.4.5",
+    "istanbul": "^1.1.0-alpha.1",
     "metro-react-native-babel-preset": "^0.48.1",
     "mocha": "^5.2.0",
-    "pre-commit": "^1.2.2"
+    "nock": "^10.0.1",
+    "pre-commit": "^1.2.2",
+    "superagent": "^4.0.0-beta.5"
   },
   "pre-commit": [
     "test",
