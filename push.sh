@@ -16,6 +16,9 @@ commit_website_files() {
   mkdir -p reports/${TRAVIS_BUILD_NUMBER}
   mkdir -p reports/${TRAVIS_BUILD_NUMBER}/coverage
   cp -r coverage/* reports/${TRAVIS_BUILD_NUMBER}/coverage/
+  cp report_unittest.txt reports/${TRAVIS_BUILD_NUMBER}/
+  cp report_enslint.txt reports/${TRAVIS_BUILD_NUMBER}/
+  cp report_coverage.txt reports/${TRAVIS_BUILD_NUMBER}/
   git add -- ./reports
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
