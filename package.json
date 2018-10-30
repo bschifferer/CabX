@@ -2,6 +2,7 @@
   "name": "empty-project-template",
   "main": "node_modules/expo/AppEntry.js",
   "private": true,
+  "proxy": "http://localhost:3000",
   "scripts": {
     "test": "node_modules/mocha/bin/mocha ./backend/test frontend/test",
     "eslint": "node_modules/eslint/bin/eslint.js backend/src frontend/src",
@@ -13,17 +14,21 @@
     "install": "npm install --save-dev pre-commit"
   },
   "dependencies": {
+    "@expo/vector-icons": "^8.0.0",
     "expo": "^30.0.1",
+    "package.json": "^2.0.1",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
-    "react-navigation": "^2.18.0"
+    "react-native-elements": "^0.19.1",
+    "react-navigation": "^2.18.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "codeclimate-test-reporter": "^0.5.1",
-    "eslint": "^5.7.0",
+    "eslint": "^5.8.0",
     "eslint-config-google": "^0.11.0",
     "istanbul": "^1.1.0-alpha.1",
+    "metro-react-native-babel-preset": "^0.48.1",
     "mocha": "^5.2.0",
     "nock": "^10.0.1",
     "pre-commit": "^1.2.2",
