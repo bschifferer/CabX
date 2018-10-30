@@ -10,8 +10,10 @@ exports.getUberPrices = async function(fromLat, fromLong, toLat, toLong) {
     console.error(err);
     res['error'] = err;
   });
-  res['processedResponse'] = module.exports.processUberResponseBody(
-      JSON.parse(res['response']).prices);
+  if (!res.hasOwnProperty('error')) {
+    res['processedResponse'] = module.exports.processUberResponseBody(
+        JSON.parse(res['response']).prices);
+  }
   return res;
 };
 
@@ -36,7 +38,13 @@ exports.uberPrices = function(fromLat, fromLong, toLat, toLong) {
     },
   };
   return new Promise(function(resolve, reject) {
-    request.get(options, function(error, response, body) {
+    request.get(options, function(err, res, body) {
+      if (err) {
+        reject(err);
+      }
+      if (res.statusCode != 200) {
+        reject(res.statusCode);
+      }
       resolve(body);
     });
   });
@@ -53,7 +61,7 @@ exports.processUberResponseBody = function(jsonResponsesBody) {
   jsonProcessedResponses = [];
   for (let i=0; i<jsonResponsesBody.length; i++) {
     let res = module.exports.getRelevantInformationFromUberResponse(
-      jsonResponsesBody[i]);
+        jsonResponsesBody[i]);
     if (!res.hasOwnProperty('error')) {
       jsonProcessedResponses[j] = res['response'];
       j = j+1;
@@ -81,12 +89,12 @@ exports.getRelevantInformationFromUberResponse = function(jsonResponseBody) {
     res['error'] = 'Response does not include all required fields';
   } else {
     res['response'] = {
-    ride_hailing_service: 'uber',
-    display_name: jsonResponseBody.display_name,
-    estimated_duration_seconds: jsonResponseBody.duration,
-    estimated_distance_miles: jsonResponseBody.distance,
-    estimated_cost_cents_min: jsonResponseBody.low_estimate,
-    estimated_cost_cents_max: jsonResponseBody.high_estimate,
+      ride_hailing_service: 'uber',
+      display_name: jsonResponseBody.display_name,
+      estimated_duration_seconds: jsonResponseBody.duration,
+      estimated_distance_miles: jsonResponseBody.distance,
+      estimated_cost_cents_min: jsonResponseBody.low_estimate,
+      estimated_cost_cents_max: jsonResponseBody.high_estimate,
     };
   }
   return (res);

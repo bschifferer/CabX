@@ -2,6 +2,9 @@ var assert = require('assert');
 var nock = require('nock');
 var expect = require('chai').expect;
 var latLong = require('../src/getLatLongFromAddress.js');
+var chai = require('chai');
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
 
 describe('getLatLongFromAddress.js', function() {
   describe('requestLatLongFromAddress() success', function() {
@@ -45,6 +48,10 @@ describe('getLatLongFromAddress.js', function() {
       expect(responseBack.hasOwnProperty("resourceSets")).to.equal(true);
       expect(responseBack.resourceSets[0].hasOwnProperty("resources")).to.equal(true);
     });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
   });
 
   describe('requestLatLongFromAddress() error', function() {
@@ -58,8 +65,11 @@ describe('getLatLongFromAddress.js', function() {
 
     it('500 response code', async function() {
       sAddress = "Empire State Building";
-      let responseBack = await latLong.requestLatLongFromAddress(sAddress);
-      assert.deepEqual(responseBack,{});
+      expect(latLong.requestLatLongFromAddress(sAddress)).to.be.rejectedWith(500);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
     });
   });
 

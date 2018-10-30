@@ -9,8 +9,10 @@ exports.getLyftPrices = async function(fromLat, fromLong, toLat, toLong) {
     console.error(err);
     res['error'] = err;
   });
-  res['processedResponse'] = module.exports.processLyftResponseBody(
-      JSON.parse(res['response']).cost_estimates);
+  if (!res.hasOwnProperty('error')) {
+    res['processedResponse'] = module.exports.processLyftResponseBody(
+        JSON.parse(res['response']).cost_estimates);
+  }
   return res;
 };
 
@@ -34,7 +36,13 @@ exports.lyftPrices = function(fromLat, fromLong, toLat, toLong) {
     },
   };
   return new Promise(function(resolve, reject) {
-    request.get(options, function(error, response, body) {
+    request.get(options, function(err, res, body) {
+      if (err) {
+        reject(err);
+      }
+      if (res.statusCode != 200) {
+        reject(res.statusCode);
+      }
       resolve(body);
     });
   });
@@ -50,7 +58,7 @@ exports.processLyftResponseBody = function(jsonResponsesBody) {
   let j = 0;
   for (let i=0; i<jsonResponsesBody.length; i++) {
     let res = module.exports.getRelevantInformationFromLyftResponse(
-      jsonResponsesBody[i]);
+        jsonResponsesBody[i]);
     if (!res.hasOwnProperty('error')) {
       jsonProcessedResponses[j] = res['response'];
       j = j+1;

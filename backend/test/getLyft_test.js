@@ -2,6 +2,9 @@ var assert = require('assert');
 var lyft = require('../src/getLyft.js');
 var expect = require('chai').expect;
 var nock = require('nock');
+var chai = require('chai');
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
 
 describe('getLyft.js', function() {
   describe('getRelevantInformationFromLyftResponse()', function() {
@@ -169,6 +172,10 @@ describe('getLyft.js', function() {
       let responseBack = await lyft.lyftPrices(fromLat, fromLong, toLat, toLong);
       expect(JSON.parse(responseBack).hasOwnProperty("cost_estimates")).to.equal(true);
     });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
   });
 
   describe('lyftPrices() error', function() {
@@ -187,8 +194,11 @@ describe('getLyft.js', function() {
       fromLong = -73.9636535644531;
       toLat = 40.7483711242676;
       toLong = -73.9846420288086;
-      let responseBack = await lyft.lyftPrices(fromLat, fromLong, toLat, toLong);
-      assert.deepEqual(JSON.parse(responseBack),{});
+      expect(lyft.lyftPrices(fromLat, fromLong, toLat, toLong)).to.be.rejectedWith(500);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
     });
   });
 

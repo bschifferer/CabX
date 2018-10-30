@@ -2,20 +2,14 @@ var latLong = require('./getLatLongFromAddress.js');
 var lyft = require('./getLyft.js');
 var uber = require('./getUber.js');
 
-module.exports = {
-  getFindRides: async function(sAddressFrom, sAddressTo) {
-    let response = await findRides(sAddressFrom, sAddressTo);
-    return response;
-  },
-};
-
 /**
  * Returns all rides based on from address (string) and to address (string)
  * @param {string} sAddressFrom - Keyword for the from address
  * @param {string} sAddressTo - Keyword for the to address
- * @return {string} jsonArray - containing all found rides from-to with infos
+ * @return {string} jsonArray - containing all found rides from-to with infos or
+ * error msg
  */
-async function findRides(sAddressFrom, sAddressTo) {
+exports.findRides = async function(sAddressFrom, sAddressTo) {
   let res = {};
 
   jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);
@@ -23,7 +17,7 @@ async function findRides(sAddressFrom, sAddressTo) {
     res['error'] = 'An error occured by processing the from address';
     return (res);
   }
-  if (jsonFromResults['processedResponse']['jsonProcessedResponses'].length == 0) {
+  if (jsonFromResults.processedResponse.jsonProcessedResponses.length == 0) {
     res['error'] = 'From address was not found!';
     return (res);
   }
@@ -33,15 +27,15 @@ async function findRides(sAddressFrom, sAddressTo) {
     res['error'] = 'An error occured by processing the to address';
     return (res);
   }
-  if (jsonToResults['processedResponse']['jsonProcessedResponses'].length == 0) {
+  if (jsonToResults.processedResponse.jsonProcessedResponses.length == 0) {
     res['error'] = 'To address was not found!';
     return (res);
   }
 
-  fromLat = jsonFromResults['processedResponse']['jsonProcessedResponses'][0].lat;
-  fromLong = jsonFromResults['processedResponse']['jsonProcessedResponses'][0].long;
-  toLat = jsonToResults['processedResponse']['jsonProcessedResponses'][0].lat;
-  toLong = jsonToResults['processedResponse']['jsonProcessedResponses'][0].long;
+  fromLat = jsonFromResults.processedResponse.jsonProcessedResponses[0].lat;
+  fromLong = jsonFromResults.processedResponse.jsonProcessedResponses[0].long;
+  toLat = jsonToResults.processedResponse.jsonProcessedResponses[0].lat;
+  toLong = jsonToResults.processedResponse.jsonProcessedResponses[0].long;
 
   jsonUber = await uber.getUberPrices(fromLat, fromLong, toLat, toLong);
   jsonLyft = await lyft.getLyftPrices(fromLat, fromLong, toLat, toLong);
@@ -60,4 +54,4 @@ async function findRides(sAddressFrom, sAddressTo) {
     return (res);
   }
   return (res);
-}
+};

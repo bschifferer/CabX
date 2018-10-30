@@ -1,7 +1,10 @@
 var assert = require('assert');
 var nock = require('nock');
+var chai = require('chai');
 var expect = require('chai').expect;
 var uber = require('../src/getUber.js');
+var chaiAsPromised = require("chai-as-promised");
+chai.use(chaiAsPromised);
 
 describe('getUber.js', function() {
   describe('getRelevantInformationFromUberResponse()', function() {
@@ -173,6 +176,10 @@ describe('getUber.js', function() {
       let responseBack = await uber.uberPrices(fromLat, fromLong, toLat, toLong);
       expect(JSON.parse(responseBack).hasOwnProperty("prices")).to.equal(true);
     });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
   });
 
   describe('uberPrices() error', function() {
@@ -185,14 +192,16 @@ describe('getUber.js', function() {
         .reply(500, uberResponse);
     });
 
-
     it('500 response code', async function() {
       fromLat = 40.8081588745117;
       fromLong = -73.9636535644531;
       toLat = 40.7483711242676;
       toLong = -73.9846420288086;
-      let responseBack = await uber.uberPrices(fromLat, fromLong, toLat, toLong);
-      assert.deepEqual(JSON.parse(responseBack),{});
+      expect(uber.uberPrices(fromLat, fromLong, toLat, toLong)).to.be.rejectedWith(500);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
     });
   });
 

@@ -6,15 +6,18 @@ const BING_KEY = 'AjpMdmorYvx_955ltPZVK1BNYpGA0Dl' +
   '8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f';
 
 exports.getRequestLatLongFromAddress = async function(sAddress) {
-    let res = {};
-    res['response'] = await module.exports.requestLatLongFromAddress(sAddress)
+  let res = {};
+  res['response'] = await module.exports.requestLatLongFromAddress(sAddress)
       .catch((err) => {
         console.error(err);
         res['error'] = err;
       });
-    res['processedResponse'] = module.exports.processBingLatLongResponse(res['response']);
-    return (res);
-  };
+  if (!res.hasOwnProperty('error')) {
+    res['processedResponse'] =
+      module.exports.processBingLatLongResponse(res['response']);
+  }
+  return (res);
+};
 
 
 /**
@@ -28,6 +31,9 @@ exports.requestLatLongFromAddress = function(sAddress) {
         {json: true}, (err, res, body) => {
           if (err) {
             reject(err);
+          }
+          if (res.statusCode != 200) {
+            reject(res.statusCode);
           }
           resolve(body);
         });
@@ -51,7 +57,7 @@ exports.processBingLatLongResponse = function(jsonResponses) {
   } else {
     let jsonResponsesBody = jsonResponses.resourceSets[0].resources;
     res['jsonProcessedResponses'] = module.exports.processBingResponseBody(
-      jsonResponsesBody);
+        jsonResponsesBody);
   }
   return (res);
 };

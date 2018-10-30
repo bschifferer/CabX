@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.post('/findRides/', async function(req, res) {
   sAddressFrom = req.body.from;
   sAddressTo = req.body.to;
-  response = await rideFinder.getFindRides(sAddressFrom, sAddressTo);
+  response = await rideFinder.findRides(sAddressFrom, sAddressTo);
   res.send(response);
 })
 
