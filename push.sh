@@ -7,12 +7,18 @@ setup_git() {
 
 commit_website_files() {
   git checkout gh-pages
-  git add . *.html
+  if [ -z "$TRAVIS_BUILD_NUMBER" ]
+    then
+    TRAVIS_BUILD_NUMBER="temp"
+  fi
+  mkdir coverage_reports/$TRAVIS_BUILD_NUMBER
+  cp -r coverage/* coverage_reports/$TRAVIS_BUILD_NUMBER/
+  git add coverage_reports/.
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
 upload_files() {
-  #git remote add origin-pages https://53f21ca7837c0f1bdd16374cca8e9c77aafe3090@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
+  git remote add origin https://53f21ca7837c0f1bdd16374cca8e9c77aafe3090@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
   git push --quiet --set-upstream origin gh-pages 
 }
 
