@@ -8,14 +8,15 @@ setup_git() {
 commit_website_files() {
   git pull origin coverage_reports
   git checkout -b coverage_reports
-  mkdir -p "coverage_reports" 
+  mkdir -p "reports" 
   if [ -z "$TRAVIS_BUILD_NUMBER" ]
     then
     TRAVIS_BUILD_NUMBER="temp"
   fi
-  mkdir coverage_reports/$TRAVIS_BUILD_NUMBER
-  cp -r coverage/* coverage_reports/$TRAVIS_BUILD_NUMBER/
-  git add -- ./coverage_reports
+  mkdir -p reports/${TRAVIS_BUILD_NUMBER}
+  mkdir -p reports/${TRAVIS_BUILD_NUMBER}/coverage
+  cp -r coverage/* reports/${TRAVIS_BUILD_NUMBER}/coverage/
+  git add -- ./reports
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
 
