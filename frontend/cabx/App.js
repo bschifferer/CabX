@@ -80,7 +80,6 @@ export default class App extends React.Component {
 		if (this.state.buttonPress) {
 			this.resolveAddress(this.state.toAddress, this.state.fromAddress)
 		} 
-		console.log(this.state.data);
 		return (
 			<View style={styles.container}>
 				<Container>
@@ -116,6 +115,7 @@ export default class App extends React.Component {
 						<List contentContainerStyle={{ marginTop: 100}}>
 						<FlatList
 						data = { this.getSortedData() }
+						extraData={this.state}
 						keyExtractor={item => item.display_name + item.estimated_duration_seconds}
 						renderItem = {({ item }) => (
 							<ListItem
