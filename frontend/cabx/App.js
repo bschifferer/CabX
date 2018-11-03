@@ -22,8 +22,8 @@ export default class App extends React.Component {
 			buttonPress: false,
 			data: [],
 			sortBy: price,
-			previousToAddresses: ['dummy'],
-			previousFromAddresses: ['values'],
+			previousToAddresses: [],
+			previousFromAddresses: [],
 		};
 		this.resolveAddress = this.resolveAddress.bind(this);
 		this.swapAddress = this.swapAddress.bind(this);
@@ -38,7 +38,10 @@ export default class App extends React.Component {
 		AsyncStorage.getItem('previousToAddresses').then( 
 			value => { 
 				if (this._isMounted) {	
-					this.setState({ previousToAddresses: JSON.parse(value) })
+					var parsedValue = JSON.parse(value);
+					if (parsedValue) {
+						this.setState({ previousToAddresses: parsedValue })
+					}
 				}
 			}
 		)
@@ -46,7 +49,10 @@ export default class App extends React.Component {
 		AsyncStorage.getItem('previousFromAddresses').then( 
 			value => { 
 				if (this._isMounted) {	
-					this.setState({ previousFromAddresses: JSON.parse(value) })
+					parsedValue = JSON.parse(value);
+					if (parsedValue) {
+						this.setState({ previousFromAddresses: parsedValue })
+					}
 				}
 			}	
 		)
@@ -131,6 +137,7 @@ export default class App extends React.Component {
 			this.resolveAddress(this.state.toAddress, this.state.fromAddress)
 		} 
 
+		console.log(this.state.previousFromAddresses);
 		return (
 			<View style={styles.container}>
 				<Container>
@@ -139,7 +146,7 @@ export default class App extends React.Component {
 							<View style={{ flex: 1, paddingLeft: 10}}>
 								<Content>
 									<Item>
-										<Input placeholder="Choose starting point..." value={this.state.toAddress} onChangeText={(fromAddress) => this.setState({fromAddress})}/>
+										<Input placeholder="Choose starting point..." value={this.state.fromAddress} onChangeText={(fromAddress) => this.setState({fromAddress})}/>
 										<Picker
 											mode="dropdown"
 											iosIcon={<Icon name="ios-arrow-down-outline" />}
@@ -149,7 +156,7 @@ export default class App extends React.Component {
 										</Picker>
 									</Item>
 									<Item style={{ borderColor: 'transparent' }}>
-										<Input placeholder="Choose destination..." value={this.state.fromAddress} onChangeText={(toAddress) => { this.setState({toAddress}) }}/>
+										<Input placeholder="Choose destination..." value={this.state.toAddress} onChangeText={(toAddress) => { this.setState({toAddress}) }}/>
 										<Picker
 											mode="dropdown"
 											iosIcon={<Icon name="ios-arrow-down-outline" />}
