@@ -1,13 +1,16 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList } from 'react-native';
+import { StyleSheet, Text, View, FlatList, AsyncStorage } from 'react-native';
 import { Card, SearchBar, ListItem, List } from 'react-native-elements';
-import { Container, Content, Tabs, Tab, TabHeading, Item, Input, Header, Title, Button, Icon, Left, Right, Body } from "native-base";
+import { Container, Content, Tabs, Tab, TabHeading, Picker, Item, Input, Header, Title, Button, Icon, Left, Right, Body } from "native-base";
+import PropTypes from 'prop-types';
 
 const uberIcon = 'https://banner2.kisspng.com/20180715/fje/kisspng-computer-icons-user-clip-art-uber-logo-transparent-5b4b0088e1dc35.0486796815316419929251.jpg';
 const lyftIcon = 'http://assets.stickpng.com/thumbs/580b57fcd9996e24bc43c525.png';
 
 const price = 0;
 const time = 1;
+
+const userId = '8ba790f3-5acd-4a08-bc6a-97a36c124f29';
 
 export default class App extends React.Component {
 
@@ -19,11 +22,59 @@ export default class App extends React.Component {
 			buttonPress: false,
 			data: [],
 			sortBy: price,
+			previousToAddresses: ['dummy'],
+			previousFromAddresses: ['values'],
 		};
 		this.resolveAddress = this.resolveAddress.bind(this);
 		this.swapAddress = this.swapAddress.bind(this);
 		this.changeTab = this.changeTab.bind(this);
 		this.getSortedData = this.getSortedData.bind(this);
+		this.saveToAddress = this.saveToAddress.bind(this);
+	}
+
+	componentDidMount(){	
+		this._isMounted = true;
+
+		AsyncStorage.getItem('previousToAddresses').then( 
+			value => { 
+				if (this._isMounted) {	
+					this.setState({ previousToAddresses: JSON.parse(value) })
+				}
+			}
+		)
+
+		AsyncStorage.getItem('previousFromAddresses').then( 
+			value => { 
+				if (this._isMounted) {	
+					this.setState({ previousFromAddresses: JSON.parse(value) })
+				}
+			}	
+		)
+	}
+
+	componentWillUnmount(){
+		this._isMounted = false;
+	}
+
+	saveToAddress(toAddress) {
+		var tempToAddresses = this.state.previousToAddresses;
+		tempToAddresses.unshift(toAddress);
+		if (tempToAddresses.length > 5) {
+			tempToAddresses.pop();
+		}
+		AsyncStorage.setItem('previousToAddresses', JSON.stringify(tempToAddresses));
+		this.setState({ previousToAddresses: tempToAddresses });
+	}
+
+
+	saveFromAddress(fromAddress) {
+		var tempFromAddresses = this.state.previousFromAddresses;
+		tempFromAddresses.unshift(fromAddress);
+		if (tempFromAddresses.length > 5) {
+			tempFromAddresses.pop();
+		}
+		AsyncStorage.setItem('previousFromAddresses', JSON.stringify(tempFromAddresses));
+		this.setState({ previousFromAddresses: tempFromAddresses });
 	}
 
 	resolveAddress(fromAddress, toAddress) {
@@ -64,7 +115,6 @@ export default class App extends React.Component {
 		} else {
 			data = this.state.data;	
 		}
-		console.log(data);
 		return data;
 	}
 
@@ -80,6 +130,7 @@ export default class App extends React.Component {
 		if (this.state.buttonPress) {
 			this.resolveAddress(this.state.toAddress, this.state.fromAddress)
 		} 
+
 		return (
 			<View style={styles.container}>
 				<Container>
@@ -88,10 +139,24 @@ export default class App extends React.Component {
 							<View style={{ flex: 1, paddingLeft: 10}}>
 								<Content>
 									<Item>
-										<Input placeholder="Choose starting point..." value={this.state.fromAddress} onChangeText={(fromAddress) => this.setState({fromAddress})}/>
+										<Input placeholder="Choose starting point..." value={this.state.toAddress} onChangeText={(fromAddress) => this.setState({fromAddress})}/>
+										<Picker
+											mode="dropdown"
+											iosIcon={<Icon name="ios-arrow-down-outline" />}
+											onValueChange={ value => { this.setState({ toAddress: value }) }}
+										>
+											{this.state.previousToAddresses.map((item, index) => { return (<Picker.Item label={item} key={index} value={item}/>) })}                
+										</Picker>
 									</Item>
 									<Item style={{ borderColor: 'transparent' }}>
-										<Input placeholder="Choose destination..." value={this.state.toAddress} onChangeText={(toAddress) => this.setState({toAddress})}/>
+										<Input placeholder="Choose destination..." value={this.state.fromAddress} onChangeText={(toAddress) => { this.setState({toAddress}) }}/>
+										<Picker
+											mode="dropdown"
+											iosIcon={<Icon name="ios-arrow-down-outline" />}
+											onValueChange={ value => { this.setState({ fromAddress: value }) }}
+										>
+											{this.state.previousFromAddresses.map((item, index) => { return (<Picker.Item label={item} key={index} value={item}/>) })}                
+										</Picker>
 									</Item>
 								</Content>
 							</View>
@@ -99,7 +164,11 @@ export default class App extends React.Component {
 								<Button transparent onPress={() => {this.swapAddress()}}>
 									<Icon name="swap" />
 								</Button>
-								<Button transparent onPress={(state) => { this.setState({ buttonPress: true })}}> 
+								<Button transparent onPress={(state) => { 
+									this.saveToAddress(this.state.toAddress);
+									this.saveFromAddress(this.state.fromAddress);
+									this.setState({ buttonPress: true }) 
+								}}>
 									<Icon name="search" />
 								</Button>
 							</View>
@@ -151,3 +220,10 @@ const styles = StyleSheet.create({
 	},
 });
 
+App.propTypes = {
+	_isMounted: PropTypes.bool.isRequired
+}
+
+App.defaultProps = {
+	_isMounted: false
+}
