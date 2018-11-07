@@ -1,0 +1,128 @@
+
+> empty-project-template@ coverage /home/travis/build/bazile-clyde/CabX
+> istanbul cover ./node_modules/.bin/_mocha frontend/test/*.js backend/test/*.js
+
+
+
+  Array
+    #indexOf()
+      ✓ should return -1 when the value is not present
+
+  getFindRides.js
+    findRides() error for from address
+      ✓ 500 response code from bing
+    findRides() cannot find from address
+      ✓ empty response from bing
+    findRides() error for to address
+      ✓ 500 response code from bing
+    findRides() cannot find to address
+      ✓ empty response to bing
+    findRides() - standard sucess
+[ { name: 'Empire State Building, NY',
+    confidence: 'High',
+    lat: 40.7484359741211,
+    long: -73.9858093261719,
+    address:
+     { adminDistrict: 'NY',
+       countryRegion: 'United States',
+       formattedAddress: 'Empire State Building, NY',
+       locality: 'New York' } } ]
+[ { ride_hailing_service: 'uber',
+    display_name: 'Black SUV',
+    estimated_duration_seconds: 1920,
+    estimated_distance_miles: 6.88,
+    estimated_cost_cents_min: 61,
+    estimated_cost_cents_max: 76 },
+  { ride_hailing_service: 'uber',
+    display_name: 'Black SUV 2',
+    estimated_duration_seconds: 2000,
+    estimated_distance_miles: 10,
+    estimated_cost_cents_min: 70,
+    estimated_cost_cents_max: 80 },
+  { ride_hailing_service: 'lyft',
+    display_name: 'Lyft Service',
+    estimated_duration_seconds: 1920,
+    estimated_distance_miles: 6.88,
+    estimated_cost_cents_min: 61,
+    estimated_cost_cents_max: 76 },
+  { ride_hailing_service: 'lyft',
+    display_name: 'Lyft Service 2',
+    estimated_duration_seconds: 2000,
+    estimated_distance_miles: 10,
+    estimated_cost_cents_min: 80,
+    estimated_cost_cents_max: 100 } ]
+      ✓ find lyft and uber
+
+  getLatLongFromAddress.js
+    requestLatLongFromAddress() success
+      ✓ 200 response code
+    requestLatLongFromAddress() error
+      ✓ 500 response code
+    getRelevantInformationFromLatLongResponse()
+      ✓ success
+      ✓ missing name
+      ✓ missing confidence
+      ✓ missing geocodePoints
+      ✓ missing address
+      ✓ missing coordinates
+      ✓ only one coordinate
+    processBingResponseBody()
+      ✓ success standard case
+      ✓ success empty input
+      ✓ error one wrong, one correct
+      ✓ error two wrong
+    processBingLatLongResponse()
+      ✓ success standard case
+      ✓ error missing resourceSets
+      ✓ error missing resources
+
+  getLyft.js
+    getRelevantInformationFromLyftResponse()
+      ✓ success - standard case
+      ✓ error - missing display_name
+      ✓ error - missing estimated_distance_miles
+      ✓ error - missing estimated_cost_cents_max
+      ✓ error - missing estimated_cost_cents_min
+      ✓ error - missing estimated_duration_seconds
+    processLyftResponseBody()
+      ✓ success - standard case
+      ✓ success empty input
+      ✓ error one wrong, one correct
+      ✓ error two wrong
+    lyftPrices() success
+      ✓ 200 response code
+    lyftPrices() error
+      ✓ 500 response code
+
+  getUber.js
+    getRelevantInformationFromUberResponse()
+      ✓ success - standard case
+      ✓ error - missing display_name
+      ✓ error - missing distance
+      ✓ error - missing high_estimate
+      ✓ error - missing low_estimate
+      ✓ error - missing duration
+    processUberResponseBody()
+      ✓ success - standard case
+      ✓ success empty input
+      ✓ error one wrong, one correct
+      ✓ error two wrong
+    uberPrices() success
+      ✓ 200 response code
+    uberPrices() error
+      ✓ 500 response code
+
+  Array
+    #indexOf()
+      ✓ should return -1 when the value is not present
+
+
+  47 passing (109ms)
+
+
+=============================== Coverage summary ===============================
+Statements   : 90.45% ( 142/157 )
+Branches     : 83.82% ( 57/68 )
+Functions    : 91.3% ( 21/23 )
+Lines        : 90.45% ( 142/157 )
+================================================================================
