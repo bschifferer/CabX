@@ -1,0 +1,17 @@
+
+> empty-project-template@ coverage /home/travis/build/bazile-clyde/CabX
+> istanbul cover ./node_modules/.bin/_mocha frontend/src/*.js backend/src/*.js
+
+hello!
+hello!
+
+
+  0 passing (1ms)
+
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 6/6 )
+Branches     : 100% ( 0/0 )
+Functions    : 100% ( 2/2 )
+Lines        : 100% ( 6/6 )
+================================================================================
