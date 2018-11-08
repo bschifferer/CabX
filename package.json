@@ -10,7 +10,8 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
-    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha frontend/test/*.js backend/test/*.js",
+    "coverage": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha frontend/test/*.js backend/test/*.js && ./node_modules/.bin/istanbul check-coverage --statements 70 --functions 70 --lines 70",
+    "coverage_nocheck": "./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha frontend/test/*.js backend/test/*.js",
     "install": "npm install --save-dev pre-commit"
   },
   "dependencies": {
