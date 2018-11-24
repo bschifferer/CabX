@@ -237,7 +237,10 @@ describe('getFindRides.js', function() {
     it('find lyft and uber', async function() {
       sAddressFrom = "Empire State Building";
       sAddressTo = "Empire State Building_2";
-      expectedResponse = [ { ride_hailing_service: 'uber',
+      expectedResponse = {
+        fromName: 'Empire State Building, NY',
+        toName: 'Empire State Building, NY',
+        res: [{ ride_hailing_service: 'uber',
         display_name: 'Black SUV',
         estimated_duration_seconds: 1920,
         estimated_distance_miles: 6.88,
@@ -261,6 +264,7 @@ describe('getFindRides.js', function() {
           estimated_distance_miles: 10,
           estimated_cost_cents_min: 80,
           estimated_cost_cents_max: 100 } ]
+        }
       let responseBack = await rideFinder.findRides(sAddressFrom, sAddressTo);
       console.log(responseBack);
       assert.deepEqual(responseBack, expectedResponse);

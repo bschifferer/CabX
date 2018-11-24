@@ -1,7 +1,7 @@
 var MongoClient = require('mongodb').MongoClient;
 var ObjectID = require('mongodb').ObjectID;
 
-var uri = "mongodb+srv://cabxuser:B0M9wK83NbqUdokJ@cluster0-ounxj.mongodb.net/";
+var uri = "mongodb+srv://cabxuser:<PW>@cluster0-ounxj.mongodb.net/";
 
 exports.createUser = async function(sUsername, sEmail) {
   if (sUsername=='') {
