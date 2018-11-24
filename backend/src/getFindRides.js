@@ -31,13 +31,13 @@ exports.findRides = async function(sAddressFrom, sAddressTo) {
     res['error'] = 'To address was not found!';
     return (res);
   }
-
-  console.log(jsonToResults.processedResponse.jsonProcessedResponses);
-
+  
   fromLat = jsonFromResults.processedResponse.jsonProcessedResponses[0].lat;
   fromLong = jsonFromResults.processedResponse.jsonProcessedResponses[0].long;
+  fromName = jsonFromResults.processedResponse.jsonProcessedResponses[0].name;
   toLat = jsonToResults.processedResponse.jsonProcessedResponses[0].lat;
   toLong = jsonToResults.processedResponse.jsonProcessedResponses[0].long;
+  toName = jsonToResults.processedResponse.jsonProcessedResponses[0].name;
 
   jsonUber = await uber.getUberPrices(fromLat, fromLong, toLat, toLong);
   jsonLyft = await lyft.getLyftPrices(fromLat, fromLong, toLat, toLong);
@@ -45,15 +45,11 @@ exports.findRides = async function(sAddressFrom, sAddressTo) {
     !(jsonUber.hasOwnProperty('error')) &&
     !(jsonLyft.hasOwnProperty('error'))) {
     res = jsonUber['processedResponse'].concat(jsonLyft['processedResponse']);
-    return (res);
-  }
-  if (!(jsonUber.hasOwnProperty('error'))) {
+  } else if (!(jsonUber.hasOwnProperty('error'))) {
     res = jsonUber['processedResponse'];
-    return (res);
-  }
-  if (!(jsonLyft.hasOwnProperty('error'))) {
+  } else if (!(jsonLyft.hasOwnProperty('error'))) {
     res = jsonLyft['processedResponse'];
-    return (res);
   }
+  res = {res: res, fromName: fromName, toName: toName};
   return (res);
 };
