@@ -27,6 +27,12 @@ app.post('/createUser/', async function(req, res) {
   res.send(response);
 })
 
+app.post('/getUserIdByName/', async function(req, res) {
+  sUsername = req.body.username;
+  response = await users.getUserIdByName(sUsername);
+  res.send(response);
+})
+
 app.post('/getFromSearchHistoryByUser/', async function(req, res) {
   userid = req.body.userid;
   maxResults = req.body.maxresults;

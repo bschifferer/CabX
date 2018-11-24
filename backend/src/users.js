@@ -49,7 +49,7 @@ exports.insertUser = async function(sUsername, sEmail) {
 };
 
 exports.doesUserAlreadyExist = async function(sUsername) {
-  response = await module.exports.getUserByName(sUsername).then(
+  response = await module.exports.findUserByName(sUsername).then(
     function(res) {
       return res.toArray()
     }
@@ -61,8 +61,17 @@ exports.doesUserAlreadyExist = async function(sUsername) {
   }
 };
 
+exports.getUserIdByName = async function(sUsername) {
+  response = await module.exports.findUserByName(sUsername).then(
+    function(res) {
+      return res.toArray()
+    }
+  );
+  return(response[0]['_id']);
+};
+
 exports.doesEmailAlreadyExist = async function(sEmail) {
-  response = await module.exports.getUserByEmail(sEmail).then(
+  response = await module.exports.findUserByEmail(sEmail).then(
     function(res) {
       return res.toArray()
     }
@@ -108,7 +117,7 @@ exports.findToSearchHistoryByUserId = function(userid, maxResults) {
   });
 };
 
-exports.getUserByName = function(sUsername) {
+exports.findUserByName = function(sUsername) {
   return new Promise(function(resolve, reject) {
     MongoClient.connect(uri, function(err, client) {
      resolve(client.db("cabx").collection("users").find({username: sUsername}));
@@ -116,7 +125,7 @@ exports.getUserByName = function(sUsername) {
   });
 };
 
-exports.getUserByEmail = function(sEmail) {
+exports.findUserByEmail = function(sEmail) {
   return new Promise(function(resolve, reject) {
     MongoClient.connect(uri, function(err, client) {
      resolve(client.db("cabx").collection("users").find({email: sEmail}));
