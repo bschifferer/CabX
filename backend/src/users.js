@@ -4,18 +4,21 @@ var ObjectID = require('mongodb').ObjectID;
 var uri = "mongodb+srv://cabxuser:<PW>@cluster0-ounxj.mongodb.net/";
 
 exports.createUser = async function(sUsername, sEmail) {
+  res = {};
   if (sUsername=='') {
-    return('error empty')
+    res['error'] = 'Username is empty';
+    return(res)
   }
-
   userExists = await module.exports.doesUserAlreadyExist(sUsername);
   if (userExists) {
-    return('error user');
+    res['error'] = 'Username is already in use';
+    return(res)
   }
-  if (sEmail=='') {
+  if (sEmail!='') {
     eMailExsts = await module.exports.doesEmailAlreadyExist(sEmail);
     if (eMailExsts) {
-      return('error email');
+      res['error'] = 'Email is already in use';
+      return(res)
     }
   }
   responseInsert = await module.exports.insertUser(sUsername, sEmail).then(
@@ -24,7 +27,8 @@ exports.createUser = async function(sUsername, sEmail) {
     }
   );
   userId  = responseInsert['ops'][0]['_id']
-  return(userId);
+  res['userid'] = userId
+  return(res);
 };
 
 exports.insertSearchHistory = function(userid, fromName, toName) {
@@ -38,12 +42,12 @@ exports.insertSearchHistory = function(userid, fromName, toName) {
 exports.insertUser = async function(sUsername, sEmail) {
   return new Promise(function(resolve, reject) {
     MongoClient.connect(uri, function(err, client) {
-     a = client.db("cabx").collection("users").insertOne({username: sUsername, email: sEmail}).then(
-    function(err, docsInserted) {
-      return(err);
+     res = client.db("cabx").collection("users").insertOne({username: sUsername, email: sEmail}).then(
+    function(docsInserted) {
+      return(docsInserted);
     }
     );
-     resolve(a);
+     resolve(res);
     });
   });
 };
@@ -62,12 +66,14 @@ exports.doesUserAlreadyExist = async function(sUsername) {
 };
 
 exports.getUserIdByName = async function(sUsername) {
+  res = {};
   response = await module.exports.findUserByName(sUsername).then(
     function(res) {
       return res.toArray()
     }
   );
-  return(response[0]['_id']);
+  res['userid'] = response[0]['_id'];
+  return (res);
 };
 
 exports.doesEmailAlreadyExist = async function(sEmail) {
@@ -84,6 +90,11 @@ exports.doesEmailAlreadyExist = async function(sEmail) {
 };
 
 exports.getFromSearchHistoryByUserId = async function(userid, maxResults) {
+  response = {};
+  if (!ObjectID.isValid(userid)) {
+    response['error'] = 'UserId is not a valid ObjectID';
+    return (response);
+  } 
   response = await module.exports.findFromSearchHistoryByUserId(userid, maxResults).then(
     function(res) {
       return res
@@ -101,6 +112,11 @@ exports.findFromSearchHistoryByUserId = function(userid, maxResults) {
 };
 
 exports.getToSearchHistoryByUserId = async function(userid, maxResults) {
+  response = {};
+  if (!ObjectID.isValid(userid)) {
+    response['error'] = 'UserId is not a valid ObjectID';
+    return (response);
+  }
   response = await module.exports.findToSearchHistoryByUserId(userid, maxResults).then(
     function(res) {
       return res
@@ -132,12 +148,3 @@ exports.findUserByEmail = function(sEmail) {
     });
   });
 };
-
-exports.test_createUser = async function(s1, s2) {
-  response = await module.exports.createUser(s1, s2);
-  console.log(response);
-
-}
-
-//module.exports.test_createUser('benny12345689ab', 'benny');
-
