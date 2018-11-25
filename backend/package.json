@@ -10,6 +10,7 @@
     "express": "^4.16.4"
   },
   "devDependencies": {
-    "chai-as-promised": "^7.1.1"
+    "chai-as-promised": "^7.1.1",
+    "mongo-mock": "^3.3.2"
   }
 }

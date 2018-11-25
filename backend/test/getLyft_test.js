@@ -202,5 +202,63 @@ describe('getLyft.js', function() {
     });
   });
 
+  describe('lyftPrices() success delayed', function() {
+    beforeEach(function() {
+      var lyftResponse = {
+        cost_estimates:[],
+      };
+
+      // Mock the TMDB configuration request response
+      nock('https://api.lyft.com')
+        .get('/v1/cost?start_lat=40.8081588745117&start_lng=-73.9636535644531&end_lat=40.7483711242676&end_lng=-73.9846420288086')
+        .socketDelay(1499)
+        .reply(200, lyftResponse);
+    });
+
+
+    it('200 response code', async function() {
+      fromLat = 40.8081588745117;
+      fromLong = -73.9636535644531;
+      toLat = 40.7483711242676;
+      toLong = -73.9846420288086;
+      let responseBack = await lyft.lyftPrices(fromLat, fromLong, toLat, toLong);
+      expect(JSON.parse(responseBack).hasOwnProperty("cost_estimates")).to.equal(true);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
+  describe('lyftPrices() success timeout', function() {
+    beforeEach(function() {
+      var lyftResponse = {
+        cost_estimates:[],
+      };
+
+      // Mock the TMDB configuration request response
+      nock('https://api.lyft.com')
+        .get('/v1/cost?start_lat=40.8081588745117&start_lng=-73.9636535644531&end_lat=40.7483711242676&end_lng=-73.9846420288086')
+        .socketDelay(1501)
+        .reply(200, lyftResponse);
+    });
+
+
+    it('200 response code', async function() {
+      res = {};
+      fromLat = 40.8081588745117;
+      fromLong = -73.9636535644531;
+      toLat = 40.7483711242676;
+      toLong = -73.9846420288086;
+      let responseBack = await lyft.lyftPrices(fromLat, fromLong, toLat, toLong).catch((err) => {
+        res['error'] = err;
+      });
+      expect(res['error'].code, 'ESOCKETTIMEDOUT');
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
 });
 

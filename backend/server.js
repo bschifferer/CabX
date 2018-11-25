@@ -4,6 +4,9 @@ var app = express();
 var bodyParser = require('body-parser');
 var rideFinder = require('./src/getFindRides.js');
 var users = require('./src/users.js');
+var mongoClient = require('mongodb').MongoClient;
+
+var uri = 'mongodb+srv://cabxuser:abc@cluster0-ounxj.mongodb.net/';
 
 app.use(bodyParser.json());
 
@@ -28,7 +31,7 @@ app.post('/findRides/', async function(req, res) {
   toName = response.toName;
   if (req.body.hasOwnProperty('userid') && !(res.hasOwnProperty('error'))) {
   	userid = req.body.userid;
-  	users.insertSearchHistory(userid, fromName, toName);
+  	users.insertSearchHistory(userid, fromName, toName, mongoClient, uri);
   }
   res.send(response.res);
 })
@@ -49,7 +52,7 @@ app.post('/createUser/', async function(req, res) {
   	sEmail = req.body.email;
   }
   sUsername = req.body.username;
-  response = await users.createUser(sUsername, sEmail);
+  response = await users.createUser(sUsername, sEmail, mongoClient, uri);
   res.send(response);
 })
 
@@ -64,7 +67,7 @@ app.post('/getUserIdByName/', async function(req, res) {
     return (res.send(response));
   }
   sUsername = req.body.username;
-  response = await users.getUserIdByName(sUsername);
+  response = await users.getUserIdByName(sUsername, mongoClient, uri);
   res.send(response);
 })
 
@@ -84,7 +87,7 @@ app.post('/getFromSearchHistoryByUser/', async function(req, res) {
   }
   userid = req.body.userid;
   maxResults = req.body.maxresults;
-  response = await users.getFromSearchHistoryByUserId(userid, maxResults);
+  response = await users.getFromSearchHistoryByUserId(userid, maxResults, mongoClient, uri);
   res.send(response);
 })
 
@@ -104,7 +107,7 @@ app.post('/getToSearchHistoryByUser/', async function(req, res) {
   }
   userid = req.body.userid;
   maxResults = req.body.maxresults;
-  response = await users.getToSearchHistoryByUserId(userid, maxResults);
+  response = await users.getToSearchHistoryByUserId(userid, maxResults, mongoClient, uri);
   res.send(response);
 })
 
