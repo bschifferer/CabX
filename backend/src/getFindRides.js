@@ -15,24 +15,20 @@ exports.findRides = async function(sAddressFrom, sAddressTo) {
   jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);
   if (jsonFromResults.hasOwnProperty('error')) {
     res['error'] = 'An error occured by processing the from address';
-    res = {res: res};
     return (res);
   }
   if (jsonFromResults.processedResponse.jsonProcessedResponses.length == 0) {
     res['error'] = 'From address was not found!';
-    res = {res: res};
     return (res);
   }
 
   jsonToResults = await latLong.getRequestLatLongFromAddress(sAddressTo);
   if (jsonToResults.hasOwnProperty('error')) {
     res['error'] = 'An error occured by processing the to address';
-    res = {res: res};
     return (res);
   }
   if (jsonToResults.processedResponse.jsonProcessedResponses == 0) {
     res['error'] = 'To address was not found!';
-    res = {res: res};
     return (res);
   }
 
