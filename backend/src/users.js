@@ -49,17 +49,17 @@ exports.createUser = async function(sUsername, sEmail, mongoClient, uri) {
 };
 
 exports.insertSearchHistory = function(
-userid, fromName, toName, mongoClient, uri) {
+    userid, fromName, toName, mongoClient, uri) {
   mongoClient.connect(uri, function(err, client) {
     if (err) {
       return (err);
     } else {
-       if (objectID.isValid(userid)) {
+      if (objectID.isValid(userid)) {
         client.db(DB).collection(COLLECTION_SEARCHHISTORY).insertOne(
-             {userid: objectID(userid), fromName: fromName, toName: toName}
+            {userid: objectID(userid), fromName: fromName, toName: toName}
         );
       };
-     }
+    }
   });
 };
 
@@ -85,7 +85,7 @@ exports.insertUser = async function(sUsername, sEmail, mongoClient, uri) {
 exports.doesUserAlreadyExist = async function(sUsername, mongoClient, uri) {
   res = {};
   res['res'] = await module.exports.findUserByName(
-    sUsername, mongoClient, uri).then(
+      sUsername, mongoClient, uri).then(
       function(response) {
         return (response.toArray());
       }
@@ -106,7 +106,7 @@ exports.doesUserAlreadyExist = async function(sUsername, mongoClient, uri) {
 exports.getUserIdByName = async function(sUsername, mongoClient, uri) {
   res = {};
   res['res'] = await module.exports.findUserByName(
-    sUsername, mongoClient, uri).then(
+      sUsername, mongoClient, uri).then(
       function(res) {
         return (res.toArray());
       }
@@ -146,74 +146,74 @@ exports.doesEmailAlreadyExist = async function(sEmail, mongoClient, uri) {
 };
 
 exports.getFromSearchHistoryByUserId = async function(
-  userid, maxResults, mongoClient, uri) {
-    res = {};
-    if (!objectID.isValid(userid)) {
-      res['error'] = 'UserId is not a valid ObjectID';
-      return (res);
-    }
-    res['res'] = await module.exports.findFromSearchHistoryByUserId(
-        userid, maxResults, mongoClient, uri).then(
-        function(response) {
-          return (response);
-        }
-    ).catch((err) => {
-      res['error'] = err;
-    });
-    if (res.hasOwnProperty('error')) {
-      res['error'] = 'An internal error occured';
-      return (res);
-    }
-    return (res.res);
+    userid, maxResults, mongoClient, uri) {
+  res = {};
+  if (!objectID.isValid(userid)) {
+    res['error'] = 'UserId is not a valid ObjectID';
+    return (res);
+  }
+  res['res'] = await module.exports.findFromSearchHistoryByUserId(
+      userid, maxResults, mongoClient, uri).then(
+      function(response) {
+        return (response);
+      }
+  ).catch((err) => {
+    res['error'] = err;
+  });
+  if (res.hasOwnProperty('error')) {
+    res['error'] = 'An internal error occured';
+    return (res);
+  }
+  return (res.res);
 };
 
 exports.findFromSearchHistoryByUserId = function(
-  userid, maxResults, mongoClient, uri) {
-    return new Promise(function(resolve, reject) {
-      mongoClient.connect(uri, function(err, client) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(client.db(DB).collection(COLLECTION_SEARCHHISTORY).distinct(
-              'fromName', {userid: objectID(userid)}));
-        }
-      });
+    userid, maxResults, mongoClient, uri) {
+  return new Promise(function(resolve, reject) {
+    mongoClient.connect(uri, function(err, client) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(client.db(DB).collection(COLLECTION_SEARCHHISTORY).distinct(
+            'fromName', {userid: objectID(userid)}));
+      }
     });
+  });
 };
 
 exports.getToSearchHistoryByUserId = async function(
-  userid, maxResults, mongoClient, uri) {
-    res = {};
-    if (!objectID.isValid(userid)) {
-      res['error'] = 'UserId is not a valid ObjectID';
-      return (res);
-    }
-    res['res'] = await module.exports.findToSearchHistoryByUserId(
-        userid, maxResults).then(function(response) {
-      return (response);
-    }
-    ).catch((err) => {
-      res['error'] = err;
-    });
-    if (res.hasOwnProperty('error')) {
-      res['error'] = 'An internal error occured';
-      return (res);
-    };
-    return (res.res);
+    userid, maxResults, mongoClient, uri) {
+  res = {};
+  if (!objectID.isValid(userid)) {
+    res['error'] = 'UserId is not a valid ObjectID';
+    return (res);
+  }
+  res['res'] = await module.exports.findToSearchHistoryByUserId(
+      userid, maxResults).then(function(response) {
+    return (response);
+  }
+  ).catch((err) => {
+    res['error'] = err;
+  });
+  if (res.hasOwnProperty('error')) {
+    res['error'] = 'An internal error occured';
+    return (res);
+  };
+  return (res.res);
 };
 
 exports.findToSearchHistoryByUserId = function(
-  userid, maxResults, mongoClient, uri) {
-    return new Promise(function(resolve, reject) {
-      mongoClient.connect(uri, function(err, client) {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(client.db(DB).collection(COLLECTION_SEARCHHISTORY).distinct(
-              'toName', {userid: objectID(userid)}));
-        }
-      });
+    userid, maxResults, mongoClient, uri) {
+  return new Promise(function(resolve, reject) {
+    mongoClient.connect(uri, function(err, client) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(client.db(DB).collection(COLLECTION_SEARCHHISTORY).distinct(
+            'toName', {userid: objectID(userid)}));
+      }
     });
+  });
 };
 
 exports.findUserByName = function(sUsername, mongoClient, uri) {

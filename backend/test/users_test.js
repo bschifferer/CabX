@@ -182,6 +182,7 @@ describe('users.js', function() {
     assert.equal(res1.res2, true);
   });
 
+  /* Too slow
   it('insertSearchHistory - success', async function() {
     var res1 = {};
     res1['res'] = await users.insertSearchHistory('5bf99f06c8c5841bf3d008c6', 'abc', 'dfg', mongoClient, uri);
@@ -205,6 +206,7 @@ describe('users.js', function() {
     assert.equal(blFrom, true);
     assert.equal(blTo, true);
   });
+  */
 
   it('createUser - success', async function() {
     var res1 = {};
