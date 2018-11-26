@@ -1,133 +1,82 @@
-import React, {Component} from 'react';
-import { FlatList, ActivityIndicator, Button, View, Text, TextInput } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import React, { Component } from 'react';
+import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import MapView from 'react-native-maps';
 
-class Address extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      toAddress:'',
-      fromAddress:''
-    };
+export default class testCoords extends Component {
+  state = {
+    mapRegion: null,
+    lastLat: null,
+    lastLong: null,
+  }
+
+  componentDidMount() {
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+      // Create the object to update this.state.mapRegion through the onRegionChange function
+      let region = {
+        latitude:       position.coords.latitude,
+        longitude:      position.coords.longitude,
+        latitudeDelta:  0.00922*1.5,
+        longitudeDelta: 0.00421*1.5
+      }
+      this.onRegionChange(region, region.latitude, region.longitude);
+    });
+  }
+
+  onRegionChange(region, lastLat, lastLong) {
+    this.setState({
+      mapRegion: region,
+      // If there are no new values set use the the current ones
+      lastLat: lastLat || this.state.lastLat,
+      lastLong: lastLong || this.state.lastLong
+    });
+  }
+
+  componentWillUnmount() {
+    navigator.geolocation.clearWatch(this.watchID);
+  }
+
+  onMapPress(e) {
+    console.log(e.nativeEvent.coordinate.longitude);
+    let region = {
+      latitude:       e.nativeEvent.coordinate.latitude,
+      longitude:      e.nativeEvent.coordinate.longitude,
+      latitudeDelta:  0.00922*1.5,
+      longitudeDelta: 0.00421*1.5
+    }
+    this.onRegionChange(region, region.latitude, region.longitude);
   }
 
   render() {
     return (
-      <View style={{
-        flex: 1,
-        padding: 10,
-        alignItems: 'center',
-        justifyContent: 'space-evenly'
-      }}>
-        <TextInput
-          style={{height: 40, fontSize: 20}}
-          placeholder="To address"
-          onChangeText={(toAddress) => this.setState({toAddress})}
-        />
-        <TextInput
-          style={{height: 40, fontSize: 20}}
-          placeholder="From address"
-          onChangeText={(fromAddress) => this.setState({fromAddress})}
-        />
-
-        <Text style={{padding: 10, fontSize: 30}}>
-          {this.state.toAddress}
-        </Text>
-
-        <Button
-          title="Find me a car!"
-          onPress={(state) => {
-            this.props.navigation.navigate('Details', {
-              toAddress: this.state.toAddress,
-              fromAddress: this.state.fromAddress
-            });
-          }}
-        />
+      <View style={{flex: 1}}>
+        <MapView
+          style={styles.map}
+          region={this.state.mapRegion}
+          showsUserLocation={true}
+          followUserLocation={true}
+          onRegionChange={this.onRegionChange.bind(this)}
+          onPress={this.onMapPress.bind(this)}>
+          <MapView.Marker
+            coordinate={{
+              latitude: (this.state.lastLat + 0.00050) || -36.82339,
+              longitude: (this.state.lastLong + 0.00050) || -73.03569,
+            }}>
+            <View>
+              <Text style={{color: '#000'}}>
+                { this.state.lastLong } / { this.state.lastLat }
+              </Text>
+            </View>
+          </MapView.Marker>
+        </MapView>
       </View>
     );
   }
 }
 
-class ListView extends Component {
-  constructor(props){
-    super(props);
-    this.state ={ isLoading: true}
+const styles = StyleSheet.create({
+  map: {
+    ...StyleSheet.absoluteFillObject,
   }
+});
 
-  componentDidMount(){
-    return fetch('http://160.39.142.46:3000/uber')
-      .then((response) => response.json())
-      .then((responseJson) => {
-
-        this.setState({
-          isLoading: false,
-          dataSource: responseJson,
-        }, function(){
-			console.log(this.state.dataSource);
-        });
-
-      })
-      .catch((error) =>{
-        console.error(error);
-      });
-  }
-
-  render(){
-    const { params } = this.props.navigation.state;
-    const toAddress = params ? params.toAddress : null;
-    const fromAddress = params ? params.fromAddress : null;
-
-    if(this.state.isLoading){
-      return(
-        <View style={{flex: 1, padding: 20}}>
-          <ActivityIndicator/>
-        </View>
-      )
-    }
-
-    return(
-      <View style={{flex: 1, paddingTop:20}}>
-		{"Hello!"}
-      </View>
-    );
-  }
-}
-
-//   render() {
-//     const { params } = this.props.navigation.state;
-//     const toAddress = params ? params.toAddress : null;
-//     const fromAddress = params ? params.fromAddress : null;
-
-//     return (
-//       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-//         <Text>toAddress: {JSON.stringify(toAddress)}</Text>
-//         <Text>fromAddress: {JSON.stringify(fromAddress)}</Text>
-//         <Button
-//           title="Go back"
-//           onPress={() => this.props.navigation.goBack()}
-//         />
-//       </View>
-
-//     );
-//   }
-// }
-
-const RootStack = createStackNavigator(
-  {
-    Home: {
-      screen: Address,
-    },
-    Details: {
-      screen: ListView,
-    },
-  },
-  {
-    initialRouteName: 'Home',
-  }
-);
-
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
-  }
-}
+AppRegistry.registerComponent('testCoords', () => testCoords);
