@@ -6,6 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
+  rm -r coverage/*
   git pull origin coverage_reports
   git checkout -b coverage_reports
   mkdir -p "reports" 
