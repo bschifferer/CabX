@@ -2,16 +2,25 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Container } from "native-base";
 import PropTypes from 'prop-types';
+import { Stitch, AnonymousCredential } from 'mongodb-stitch-react-native-sdk';
 
 import CabXHeader from './components/CabXHeader';
 import CabXTabs from './components/CabXTabs';
 import CabXList from './components/CabXList';
+import LoginPage from './components/LoginPage.js';
 
 export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
-		this.state = { data: [] };
+		this.state = { 
+			data: [], 
+			isLoggedIn: false,
+		};
+	}
+
+	loginHandler = () => {
+		this.setState({ isLoggedIn: true });
 	}
 
 	searchHandler = (start, destination) => {
@@ -44,15 +53,25 @@ export default class App extends React.Component {
 	}
 
 	render() {
-		return (
-			<View style={styles.container}>
+		const isLoggedIn = this.state.isLoggedIn;
+		let display;
+		if (isLoggedIn) {
+			display = (<View style={styles.container}>
 				<Container>
 					<CabXHeader onSearch={this.searchHandler} />
 					<CabXTabs onChangeTab={this.tabHandler} />
 					<CabXList data={this.state.data} />
-			  </Container>
-		  </View>
-  );
+				</Container>
+			</View>);
+		} else {
+			display = <LoginPage login={this.loginHandler} />;
+		}
+		
+		return (
+		<View style={styles.container}>
+			{ display }
+		</View>
+		);
   }
 }
 
