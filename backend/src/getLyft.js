@@ -28,7 +28,7 @@ exports.getLyftPrices = async function(fromLat, fromLong, toLat, toLong) {
 exports.lyftPrices = function(fromLat, fromLong, toLat, toLong) {
   var options = {
     url: PRE_URL_LYFT + 'start_lat=' + fromLat + '&start_lng=' +
-      fromLong + '&end_lat=' + toLat + '&end_lng=' + toLong,
+      fromLong + '&end_lat=' + toLat + '&end_lng=' + toLong, timeout: 1500,
     headers: {
       'Authorization': 'bearer sG1iQES+ARRImYkpZAQZ7PnTJEBv8e' +
         '7tRHG6E1AZWCtOr7aYO64C6BUhHbTav3p7JiMwA84pIYOCvYHQo+POUMfAI' +
@@ -39,11 +39,11 @@ exports.lyftPrices = function(fromLat, fromLong, toLat, toLong) {
     request.get(options, function(err, res, body) {
       if (err) {
         reject(err);
-      }
-      if (res.statusCode != 200) {
+      } else if (res.statusCode != 200) {
         reject(res.statusCode);
+      } else {
+        resolve(body);
       }
-      resolve(body);
     });
   });
 };

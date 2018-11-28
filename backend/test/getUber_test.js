@@ -205,4 +205,64 @@ describe('getUber.js', function() {
     });
   });
 
+  describe('uberPrices() success delayed', function() {
+    beforeEach(function() {
+      var uberResponse = {
+        prices:[],
+      };
+
+      // Mock the TMDB configuration request response
+      nock('https://api.uber.com')
+        .get('/v1.2/estimates/price?start_latitude=40.8081588745117&start_longitude=-73.9636535644531&end_latitude=40.7483711242676&end_longitude=-73.9846420288086')
+        .socketDelay(1499)
+        .reply(200, uberResponse);
+    });
+
+
+    it('200 response code', async function() {
+      fromLat = 40.8081588745117;
+      fromLong = -73.9636535644531;
+      toLat = 40.7483711242676;
+      toLong = -73.9846420288086;
+      let responseBack = await uber.uberPrices(fromLat, fromLong, toLat, toLong);
+      expect(JSON.parse(responseBack).hasOwnProperty("prices")).to.equal(true);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
+  describe('uberPrices() success timeout', function() {
+    beforeEach(function() {
+      var uberResponse = {
+        prices:[],
+      };
+
+      // Mock the TMDB configuration request response
+      nock('https://api.uber.com')
+        .get('/v1.2/estimates/price?start_latitude=40.8081588745117&start_longitude=-73.9636535644531&end_latitude=40.7483711242676&end_longitude=-73.9846420288086')
+        .socketDelay(1501)
+        .reply(200, uberResponse);
+    });
+
+
+    it('200 response code', async function() {
+      res = {};
+      fromLat = 40.8081588745117;
+      fromLong = -73.9636535644531;
+      toLat = 40.7483711242676;
+      toLong = -73.9846420288086;
+      let responseBack = await uber.uberPrices(fromLat, fromLong, toLat, toLong).catch((err) => {
+        res['error'] = err;
+      });
+      expect(res['error'].code, 'ESOCKETTIMEDOUT');
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
+
 });
