@@ -24,7 +24,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add master https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
-  git push --quiet 
+  git push --quiet --set-upstream master 
 }
 
 setup_git
