@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
-import { Stitch, AnonymousCredential } from 'mongodb-stitch-react-native-sdk';
+import { Stitch, UserPasswordCredential } from 'mongodb-stitch-react-native-sdk';
 import { Icon, Left, Right, Body, Title, Container, Button, Header, Content, Form, Item, Input, Label } from 'native-base';
+
 
 export default class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
+			client: undefined,
+			currentUserId: undefined,
 			signUpPage: false,
 			loginFailure: false,
 			createAccountFailure: false,
@@ -18,14 +21,29 @@ export default class LoginPage extends React.Component {
 	}
 
 	componentDidMount() {
+		this._loadClient();
 	}
 
-	verifyLogin = () => {
-		if ( this.state.username == "admin" && this.state.password == "password") {
+	_loadClient = () => {
+		Stitch.initializeDefaultAppClient('cabxbackend-nddiu').then(client => {
+			this.setState({ client });
+
+			if(client.auth.isLoggedIn) {
+				this.setState({ currentUserId: client.auth.user.id })
+			}
+		});
+	}
+
+	_onPressLogin = () => {
+		this.state.client.auth.loginWithCredential(new UserPasswordCredential(this.state.username, this.state.password)).then(user => {
+			console.log(`Successfully logged in as user ${user.id}`);
+			this.setState({ currentUserId: user.id })
 			this.props.login();
-		} else {
+		}).catch(err => {
+			console.log(`Failed to log in anonymously: ${err}`);
+			this.setState({ currentUserId: undefined })
 			this.setState({ loginFailure: true });	
-		}
+		});
 	}
 
 	toggleSignUpPage = () => {
@@ -68,10 +86,10 @@ export default class LoginPage extends React.Component {
 						</Form>
 						{ this.state.signUpPage ?
 							<Button full bordered rounded dark style={{ margin: 20 }} 
-								onPress={ () => { this.setState({ createAccountFailure: this.state.confirmPassword != this.state.password}) }}>
+								onPress={ () => { this.setState({ createAccountFailure: (this.state.confirmPassword != this.state.password) }) }}>
 								<Text>{ "Create Account" }</Text>
 							</Button>
-						: 	<Button full bordered rounded dark style={{ margin: 20 }} onPress={ this.verifyLogin }>
+						: 	<Button full bordered rounded dark style={{ margin: 20 }} onPress={ this._onPressLogin }>
 								<Text>{ "Login" }</Text>
 							</Button> }
 						{ this.state.signUpPage ? 
