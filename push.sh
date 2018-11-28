@@ -6,6 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
+  git checkout master
   mkdir -p "reports" 
   if [ -z "$TRAVIS_BUILD_NUMBER" ]
     then
