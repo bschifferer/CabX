@@ -74,7 +74,25 @@ describe('getLyft.js', function() {
   });
 
   describe('processLyftResponseBody()', function() {
-    it('success - standard case', function() {
+    it('success - standard case - loop1', function() {
+      input = [{display_name: 'Lyft Service',
+        estimated_distance_miles: 6.88,
+        estimated_cost_cents_max: 7600,
+        estimated_cost_cents_min: 6100,
+        estimated_duration_seconds: 1920},
+        ];
+      let expectedResponse = {};
+      expectedResponse = [{ride_hailing_service: 'lyft',
+        display_name: 'Lyft Service',
+        estimated_duration_seconds: 1920,
+        estimated_distance_miles: 6.88,
+        estimated_cost_cents_min: 61,
+        estimated_cost_cents_max: 76}];
+      let output = lyft.processLyftResponseBody(input)
+      assert.deepEqual(output, expectedResponse);
+    });
+
+    it('success - standard case - loop2', function() {
       input = [{display_name: 'Lyft Service',
         estimated_distance_miles: 6.88,
         estimated_cost_cents_max: 7600,
@@ -103,7 +121,47 @@ describe('getLyft.js', function() {
       assert.deepEqual(output, expectedResponse);
     });
 
-    it('success empty input', function() {
+    it('success - standard case - loop3', function() {
+      input = [{display_name: 'Lyft Service',
+        estimated_distance_miles: 6.88,
+        estimated_cost_cents_max: 7600,
+        estimated_cost_cents_min: 6100,
+        estimated_duration_seconds: 1920},
+        {display_name: 'Lyft Service 2',
+          estimated_distance_miles: 10,
+          estimated_cost_cents_max: 10000,
+          estimated_cost_cents_min: 8000,
+          estimated_duration_seconds: 2000},
+        {display_name: 'Lyft Service 3',
+          estimated_distance_miles: 10,
+          estimated_cost_cents_max: 10000,
+          estimated_cost_cents_min: 8000,
+          estimated_duration_seconds: 2000}
+        ];
+      let expectedResponse = {};
+      expectedResponse = [{ride_hailing_service: 'lyft',
+        display_name: 'Lyft Service',
+        estimated_duration_seconds: 1920,
+        estimated_distance_miles: 6.88,
+        estimated_cost_cents_min: 61,
+        estimated_cost_cents_max: 76},
+        {ride_hailing_service: 'lyft',
+          display_name: 'Lyft Service 2',
+          estimated_duration_seconds: 2000,
+          estimated_distance_miles: 10,
+          estimated_cost_cents_min: 80,
+          estimated_cost_cents_max: 100},
+        {ride_hailing_service: 'lyft',
+          display_name: 'Lyft Service 3',
+          estimated_duration_seconds: 2000,
+          estimated_distance_miles: 10,
+          estimated_cost_cents_min: 80,
+          estimated_cost_cents_max: 100}];
+      let output = lyft.processLyftResponseBody(input)
+      assert.deepEqual(output, expectedResponse);
+    });
+
+    it('success empty input - loop0', function() {
       input = [];
       let expectedResponse = {};
       expectedResponse = [];

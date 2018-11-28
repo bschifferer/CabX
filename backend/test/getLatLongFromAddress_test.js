@@ -374,7 +374,40 @@ describe('getLatLongFromAddress.js', function() {
   });
 
   describe('processBingResponseBody()', function() {
-    it('success standard case', async function() {
+    it('success standard case - loop1', async function() {
+      input = [{
+        name: 'Empire State Building 1',
+        confidence: 'High 1',
+        geocodePoints: [{
+          coordinates: [90.7484359741211, -90.9858093261719 ],
+        }],
+        address: {
+          adminDistrict: 'NY 1',
+          countryRegion: 'United States 1',
+          formattedAddress: 'Empire State Building, NY 1',
+          locality: 'New York 1' }
+      },
+      ];
+      expectedResponse =
+          [{
+            name: 'Empire State Building 1',
+            confidence: 'High 1',
+            lat: 90.7484359741211,
+            long: -90.9858093261719,
+            address:
+              {
+                adminDistrict: 'NY 1',
+                countryRegion: 'United States 1',
+                formattedAddress: 'Empire State Building, NY 1',
+                locality: 'New York 1'
+              },
+          },
+          ];
+      let responseBack = latLong.processBingResponseBody(input);
+      assert.deepEqual(responseBack, expectedResponse);
+    });
+
+    it('success standard case - loop2', async function() {
       input = [{
         name: 'Empire State Building 1',
         confidence: 'High 1',
@@ -431,7 +464,90 @@ describe('getLatLongFromAddress.js', function() {
       assert.deepEqual(responseBack, expectedResponse);
     });
 
-    it('success empty input', async function() {
+
+      it('success standard case - loop2', async function() {
+      input = [{
+        name: 'Empire State Building 1',
+        confidence: 'High 1',
+        geocodePoints: [{
+          coordinates: [90.7484359741211, -90.9858093261719 ],
+        }],
+        address: {
+          adminDistrict: 'NY 1',
+          countryRegion: 'United States 1',
+          formattedAddress: 'Empire State Building, NY 1',
+          locality: 'New York 1' }
+      },{
+          name: 'Empire State Building 2',
+          confidence: 'High 2',
+          geocodePoints: [{
+            coordinates: [40.7484359741211, -73.9858093261719 ],
+          }],
+          address: {
+            adminDistrict: 'NY 2',
+            countryRegion: 'United States 2',
+            formattedAddress: 'Empire State Building, NY 2',
+            locality: 'New York 2' }
+            },
+        {
+          name: 'Empire State Building 2',
+          confidence: 'High 2',
+          geocodePoints: [{
+            coordinates: [40.7484359741211, -73.9858093261719 ],
+          }],
+          address: {
+            adminDistrict: 'NY 2',
+            countryRegion: 'United States 2',
+            formattedAddress: 'Empire State Building, NY 2',
+            locality: 'New York 2' }
+            },
+      ];
+      expectedResponse =
+          [{
+            name: 'Empire State Building 1',
+            confidence: 'High 1',
+            lat: 90.7484359741211,
+            long: -90.9858093261719,
+            address:
+              {
+                adminDistrict: 'NY 1',
+                countryRegion: 'United States 1',
+                formattedAddress: 'Empire State Building, NY 1',
+                locality: 'New York 1'
+              },
+          },
+            {
+              name: 'Empire State Building 2',
+              confidence: 'High 2',
+              lat: 40.7484359741211,
+              long: -73.9858093261719,
+              address:
+                {
+                  adminDistrict: 'NY 2',
+                  countryRegion: 'United States 2',
+                  formattedAddress: 'Empire State Building, NY 2',
+                  locality: 'New York 2'
+                },
+            },
+            {
+              name: 'Empire State Building 2',
+              confidence: 'High 2',
+              lat: 40.7484359741211,
+              long: -73.9858093261719,
+              address:
+                {
+                  adminDistrict: 'NY 2',
+                  countryRegion: 'United States 2',
+                  formattedAddress: 'Empire State Building, NY 2',
+                  locality: 'New York 2'
+                },
+            },
+          ];
+      let responseBack = latLong.processBingResponseBody(input);
+      assert.deepEqual(responseBack, expectedResponse);
+    });
+
+    it('success empty input - loop0', async function() {
       input = [];
       expectedResponse = [];
       let responseBack = latLong.processBingResponseBody(input);
