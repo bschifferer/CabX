@@ -6,7 +6,7 @@ setup_git() {
 }
 
 commit_website_files() {
-  if [[$TRAVIS_PULL_REQUEST_BRANCH == ""]]
+  if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]
      then
      git checkout $TRAVIS_BRANCH
      else
@@ -28,7 +28,7 @@ commit_website_files() {
 }
 
 upload_files() {
-  if [[$TRAVIS_PULL_REQUEST_BRANCH == ""]]
+  if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]
      then
      git remote add $TRAVIS_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1c
      git push --quiet --set-upstream $TRAVIS_BRANCH
