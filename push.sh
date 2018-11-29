@@ -30,10 +30,10 @@ commit_website_files() {
 upload_files() {
   if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]
      then
-     git remote add $TRAVIS_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1c
+     git remote add $TRAVIS_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
      git push --quiet --set-upstream $TRAVIS_BRANCH
      else
-     git remote add $TRAVIS_PULL_REQUEST_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1c
+     git remote add $TRAVIS_PULL_REQUEST_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
      git push --quiet --set-upstream $TRAVIS_PULL_REQUEST_BRANCH
   fi
 }
