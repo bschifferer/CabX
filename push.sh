@@ -24,7 +24,7 @@ commit_website_files() {
   cp report_enslint.txt reports/${TRAVIS_BUILD_NUMBER}/report_enslint.txt
   cp report_coverage.txt reports/${TRAVIS_BUILD_NUMBER}/report_coverage.txt
   git add -- ./reports
-  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [ci skip] skip travis [skip travis-ci]"
+  git commit -n --message "Travis build: $TRAVIS_BUILD_NUMBER [ci skip] skip travis [skip travis-ci]"
 }
 
 upload_files() {
