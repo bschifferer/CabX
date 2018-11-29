@@ -1,0 +1,39 @@
+
+> empty-project-template@ eslint /home/travis/build/bazile-clyde/CabX
+> node_modules/eslint/bin/eslint.js backend/src frontend/src
+
+
+/home/travis/build/bazile-clyde/CabX/backend/src/sample_ififelse.js
+   1:52  error    Identifier 'unused_var' is not in camel case      camelcase
+   1:64  error    Identifier 'unused_var_2' is not in camel case    camelcase
+   2:1   error    Unexpected tab character                          no-tabs
+   2:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+   2:6   warning  'z' is assigned a value but never used            no-unused-vars
+   3:1   error    Unexpected tab character                          no-tabs
+   3:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+   3:2   error    Expected space(s) after "if"                      keyword-spacing
+   3:12  warning  Empty block statement                             no-empty
+   4:1   error    Unexpected tab character                          no-tabs
+   4:1   error    Trailing spaces not allowed                       no-trailing-spaces
+   5:1   error    Unexpected tab character                          no-tabs
+   5:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+   5:21  warning  Empty block statement                             no-empty
+   5:22  error    Trailing spaces not allowed                       no-trailing-spaces
+   6:1   error    Unexpected tab character                          no-tabs
+   6:1   error    Trailing spaces not allowed                       no-trailing-spaces
+   7:1   error    Unexpected tab character                          no-tabs
+   7:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+   8:1   error    Unexpected tab character                          no-tabs
+   8:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+   9:1   error    Unexpected tab character                          no-tabs
+   9:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+  10:1   error    Unexpected tab character                          no-tabs
+  10:1   error    Expected indentation of 2 spaces but found 1 tab  indent
+  10:2   error    Expected space(s) after "return"                  keyword-spacing
+  10:11  error    Missing semicolon                                 semi
+  11:2   error    Newline required at end of file but not found     eol-last
+  11:2   error    Missing semicolon                                 semi
+
+✖ 29 problems (26 errors, 3 warnings)
+  15 errors and 0 warnings potentially fixable with the `--fix` option.
+
