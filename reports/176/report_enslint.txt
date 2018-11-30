@@ -1,0 +1,23 @@
+
+> empty-project-template@ eslint /home/travis/build/bazile-clyde/CabX
+> node_modules/eslint/bin/eslint.js backend/src frontend/src
+
+
+/home/travis/build/bazile-clyde/CabX/backend/src/sample_error.js
+   1:48  error  Identifier 'unused_var' is not in camel case    camelcase
+   1:60  error  Identifier 'unused_var_2' is not in camel case  camelcase
+   2:14  error  'z' was used before it was defined              no-use-before-define
+   6:2   error  Expected space(s) after "if"                    keyword-spacing
+   6:12  error  Empty block statement                           no-empty
+   7:1   error  Trailing spaces not allowed                     no-trailing-spaces
+   8:21  error  Empty block statement                           no-empty
+   8:22  error  Trailing spaces not allowed                     no-trailing-spaces
+   9:1   error  Trailing spaces not allowed                     no-trailing-spaces
+  12:2   error  Expected space(s) after "return"                keyword-spacing
+  12:11  error  Missing semicolon                               semi
+  13:2   error  Newline required at end of file but not found   eol-last
+  13:2   error  Missing semicolon                               semi
+
+✖ 13 problems (13 errors, 0 warnings)
+  8 errors and 0 warnings potentially fixable with the `--fix` option.
+
