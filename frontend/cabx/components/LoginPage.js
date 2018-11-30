@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, Text, View } from 'react-native';
-import { Stitch, UserPasswordCredential } from 'mongodb-stitch-react-native-sdk';
 import { Icon, Left, Right, Body, Title, Container, Button, Header, Content, Form, Item, Input, Label } from 'native-base';
 
 
@@ -9,8 +8,6 @@ export default class LoginPage extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state={
-			client: undefined,
-			currentUserId: undefined,
 			signUpPage: false,
 			loginFailure: false,
 			createAccountFailure: false,
@@ -20,35 +17,17 @@ export default class LoginPage extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		this._loadClient();
-	}
-
-	_loadClient = () => {
-		Stitch.initializeDefaultAppClient('cabxbackend-nddiu').then(client => {
-			this.setState({ client });
-
-			if(client.auth.isLoggedIn) {
-				this.setState({ currentUserId: client.auth.user.id })
-			}
-		});
-	}
-
-	_onPressLogin = () => {
-		this.state.client.auth.loginWithCredential(new UserPasswordCredential(this.state.username, this.state.password)).then(user => {
-			console.log(`Successfully logged in as user ${user.id}`);
-			this.setState({ currentUserId: user.id })
-			this.props.login();
-		}).catch(err => {
-			console.log(`Failed to log in anonymously: ${err}`);
-			this.setState({ currentUserId: undefined })
-			this.setState({ loginFailure: true });	
-		});
-	}
-
 	toggleSignUpPage = () => {
 		let signUpPage = this.state.signUpPage;
 		this.setState({ signUpPage: !signUpPage, createAccountFailure: false, loginFailure: false });	
+	}
+
+	login = async (username, password) => {
+		const res = await this.props.login(username, password);
+		console.log(res.message);
+		if (res.error) {
+			this.setState({ loginFailure: true });
+		}
 	}
 
 	render() {
@@ -89,7 +68,7 @@ export default class LoginPage extends React.Component {
 								onPress={ () => { this.setState({ createAccountFailure: (this.state.confirmPassword != this.state.password) }) }}>
 								<Text>{ "Create Account" }</Text>
 							</Button>
-						: 	<Button full bordered rounded dark style={{ margin: 20 }} onPress={ this._onPressLogin }>
+						: 	<Button full bordered rounded dark style={{ margin: 20 }} onPress={ () => this.login(this.state.username, this.state.password) }>
 								<Text>{ "Login" }</Text>
 							</Button> }
 						{ this.state.signUpPage ? 
@@ -110,6 +89,6 @@ LoginPage.propTypes = {
 }
 
 LoginPage.defaultProps = {
-	login: () => {}
+	login: () => {},
 }
 
