@@ -18,6 +18,7 @@ class Example extends Component {
     super(props);
 
     // AirBnB's Office, and Apple Park
+    // arbitary start and end destinations because breaks otherwise
     this.state = {
       coordinates: [
         {
@@ -48,8 +49,8 @@ coordinates: [
           longitude: position.coords.longitude,
         },
         {
-          latitude: 40.7250796,
-          longitude: -73.99906169999997,
+          latitude: this.props.latDestination,//40.7250796,
+          longitude: this.props.longDestination,//-73.99906169999997,
         },
       ],
       error: null,
