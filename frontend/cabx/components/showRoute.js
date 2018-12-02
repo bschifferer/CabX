@@ -25,24 +25,65 @@ class Example extends Component {
           longitude: -122.0054812,
         },
         {
-          latitude: 37.771707,
-          longitude: -122.4053769,
+          latitude: 40.7250796,
+          longitude: -73.99906169999997,
         },
       ],
+      error: null,
     };
 
     this.mapView = null;
   }
 
-  onMapPress = (e) => {
+
+
+// map current location to Apple Store, SoHo
+   componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+coordinates: [
+        {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        },
+        {
+          latitude: 40.7250796,
+          longitude: -73.99906169999997,
+        },
+      ],
+      error: null,
+        });
+      },
+      (error) => this.setState({ coordinates: [
+        {
+          latitude: 37.3317876,
+          longitude: -122.0054812,
+        },
+        {
+          latitude: 37.771707,
+          longitude: -122.4053769,
+        },
+      ],
+      error: error.message,}),
+      { enableHighAccuracy: false, timeout: 20000, maximumAge: 1000 },
+    );
+  }
+
+
+
+
+  /*onMapPress = (e) => {
     this.setState({
       coordinates: [
         ...this.state.coordinates,
         e.nativeEvent.coordinate,
       ],
     });
-  }
-
+  }*/
+    
+    
+/* should probably have a conditional render where if there is only start position vs when there is both a start and end position */
   render() {
     return (
       <MapView
@@ -54,7 +95,7 @@ class Example extends Component {
         }}
         style={StyleSheet.absoluteFill}
         ref={c => this.mapView = c}
-        onPress={this.onMapPress}
+        /*onPress={this.onMapPress}*/
       >
         {this.state.coordinates.map((coordinate, index) =>
           <MapView.Marker key={`coordinate_${index}`} coordinate={coordinate} />
