@@ -6,6 +6,12 @@ setup_git() {
 }
 
 commit_website_files() {
+  if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]
+     then
+     git checkout $TRAVIS_BRANCH
+     else
+     git checkout $TRAVIS_PULL_REQUEST_BRANCH
+  fi 
   mkdir -p "reports" 
   if [ -z "$TRAVIS_BUILD_NUMBER" ]
     then
@@ -22,8 +28,14 @@ commit_website_files() {
 }
 
 upload_files() {
-  git remote add origin-pages https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
-  git push --quiet 
+  if [ -z "$TRAVIS_PULL_REQUEST_BRANCH" ]
+     then
+     git remote add $TRAVIS_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
+     git push --quiet --set-upstream $TRAVIS_BRANCH
+     else
+     git remote add $TRAVIS_PULL_REQUEST_BRANCH https://${GH_TOKEN}@github.com/bazile-clyde/CabX.git > /dev/null 2>&1
+     git push --quiet --set-upstream $TRAVIS_PULL_REQUEST_BRANCH
+  fi
 }
 
 setup_git

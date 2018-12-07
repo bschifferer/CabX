@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, AsyncStorage } from 'react-native';
-import { Header, Content, Item, Picker, Button, Icon, Input } from 'native-base';
+import { Drawer, Left, Body, Right, Title, Header, Content, Item, Picker, Button, Icon, Input } from 'native-base';
 import PropTypes from 'prop-types';
 
 export default class CabXHeader extends Component {
@@ -11,6 +11,7 @@ export default class CabXHeader extends Component {
             start: '',
             startHistory: [],
             destinationHistory: [],
+			showSideBar: false,
         };
     }
 
@@ -49,6 +50,17 @@ export default class CabXHeader extends Component {
     render() {
         return (
             <View>
+				<Header>
+					<Left />
+					<Body>
+						<Title>CabX</Title>
+					</Body>
+					<Right>
+						<Button transparent onPress={ this.props.logout }>
+							<Icon name='person' />
+						</Button>
+					</Right>
+				</Header>
 				<Header hasTabs searchBar rounded span>
 					<View style={{ flex: 1, paddingLeft: 10}}>
 						<Content>
@@ -102,9 +114,11 @@ export default class CabXHeader extends Component {
 CabXHeader.propTypes = {
     _isMounted: PropTypes.bool.isRequired,
     onSearch: PropTypes.func.isRequired,
+	logout: PropTypes.func.isRequired,
 }
 
 CabXHeader.defaultProps = {
     _isMounted: false,
     onSearch: () => {},
+	logout: () => {},
 }

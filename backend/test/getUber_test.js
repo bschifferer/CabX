@@ -74,7 +74,26 @@ describe('getUber.js', function() {
   });
 
   describe('processUberResponseBody()', function() {
-    it('success - standard case', function() {
+    it('success - standard case - loop1', function() {
+      input = [{display_name: 'Black SUV',
+        distance: 6.88,
+        high_estimate: 76,
+        low_estimate: 61,
+        duration: 1920}
+      ];
+      let expectedResponse = {};
+      expectedResponse = [{ride_hailing_service: 'uber',
+        display_name: 'Black SUV',
+        estimated_duration_seconds: 1920,
+        estimated_distance_miles: 6.88,
+        estimated_cost_cents_min: 61,
+        estimated_cost_cents_max: 76}
+      ];
+      let output = uber.processUberResponseBody(input)
+      assert.deepEqual(output, expectedResponse);
+    });
+
+    it('success - standard case - loop2', function() {
       input = [{display_name: 'Black SUV',
         distance: 6.88,
         high_estimate: 76,
@@ -104,7 +123,48 @@ describe('getUber.js', function() {
       assert.deepEqual(output, expectedResponse);
     });
 
-    it('success empty input', function() {
+        it('success - standard case - loop3', function() {
+      input = [{display_name: 'Black SUV',
+        distance: 6.88,
+        high_estimate: 76,
+        low_estimate: 61,
+        duration: 1920},
+        {display_name: 'Black SUV 2',
+          distance: 10,
+          high_estimate: 80,
+          low_estimate: 70,
+          duration: 2000},
+        {display_name: 'Black SUV 3',
+          distance: 10,
+          high_estimate: 80,
+          low_estimate: 70,
+          duration: 2000}
+      ];
+      let expectedResponse = {};
+      expectedResponse = [{ride_hailing_service: 'uber',
+        display_name: 'Black SUV',
+        estimated_duration_seconds: 1920,
+        estimated_distance_miles: 6.88,
+        estimated_cost_cents_min: 61,
+        estimated_cost_cents_max: 76},
+        {ride_hailing_service: 'uber',
+          display_name: 'Black SUV 2',
+          estimated_duration_seconds: 2000,
+          estimated_distance_miles: 10,
+          estimated_cost_cents_min: 70,
+          estimated_cost_cents_max: 80},
+        {ride_hailing_service: 'uber',
+          display_name: 'Black SUV 3',
+          estimated_duration_seconds: 2000,
+          estimated_distance_miles: 10,
+          estimated_cost_cents_min: 70,
+          estimated_cost_cents_max: 80}
+      ];
+      let output = uber.processUberResponseBody(input)
+      assert.deepEqual(output, expectedResponse);
+    });
+
+    it('success empty input - loop0', function() {
       input = [];
       let expectedResponse = {};
       expectedResponse = [];
@@ -204,5 +264,65 @@ describe('getUber.js', function() {
       nock.cleanAll();
     });
   });
+
+  describe('uberPrices() success delayed', function() {
+    beforeEach(function() {
+      var uberResponse = {
+        prices:[],
+      };
+
+      // Mock the TMDB configuration request response
+      nock('https://api.uber.com')
+        .get('/v1.2/estimates/price?start_latitude=40.8081588745117&start_longitude=-73.9636535644531&end_latitude=40.7483711242676&end_longitude=-73.9846420288086')
+        .socketDelay(1499)
+        .reply(200, uberResponse);
+    });
+
+
+    it('200 response code', async function() {
+      fromLat = 40.8081588745117;
+      fromLong = -73.9636535644531;
+      toLat = 40.7483711242676;
+      toLong = -73.9846420288086;
+      let responseBack = await uber.uberPrices(fromLat, fromLong, toLat, toLong);
+      expect(JSON.parse(responseBack).hasOwnProperty("prices")).to.equal(true);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
+  describe('uberPrices() success timeout', function() {
+    beforeEach(function() {
+      var uberResponse = {
+        prices:[],
+      };
+
+      // Mock the TMDB configuration request response
+      nock('https://api.uber.com')
+        .get('/v1.2/estimates/price?start_latitude=40.8081588745117&start_longitude=-73.9636535644531&end_latitude=40.7483711242676&end_longitude=-73.9846420288086')
+        .socketDelay(1501)
+        .reply(200, uberResponse);
+    });
+
+
+    it('200 response code', async function() {
+      res = {};
+      fromLat = 40.8081588745117;
+      fromLong = -73.9636535644531;
+      toLat = 40.7483711242676;
+      toLong = -73.9846420288086;
+      let responseBack = await uber.uberPrices(fromLat, fromLong, toLat, toLong).catch((err) => {
+        res['error'] = err;
+      });
+      expect(res['error'].code, 'ESOCKETTIMEDOUT');
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
 
 });

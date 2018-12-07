@@ -30,6 +30,7 @@ exports.uberPrices = function(fromLat, fromLong, toLat, toLong) {
   var options = {
     url: PRE_URL_UBER + 'start_latitude=' + fromLat + '&start_longitude=' +
       fromLong + '&end_latitude=' + toLat + '&end_longitude=' + toLong,
+    timeout: 1500,
     headers: {
       'User-Agent': 'request',
       'Authorization': 'Token cds-RMpAWPazEskuTK1gWxP7EAl_vyvBmT4jjKnY',
@@ -41,14 +42,15 @@ exports.uberPrices = function(fromLat, fromLong, toLat, toLong) {
     request.get(options, function(err, res, body) {
       if (err) {
         reject(err);
-      }
-      if (res.statusCode != 200) {
+      } else if (res.statusCode != 200) {
         reject(res.statusCode);
+      } else {
+        resolve(body);
       }
-      resolve(body);
     });
   });
 };
+
 
 /**
  * Process the response body of a ride offer search with Uber
