@@ -17,17 +17,16 @@ class Example extends Component {
   constructor(props) {
     super(props);
 
-    // AirBnB's Office, and Apple Park
     // arbitary start and end destinations because breaks otherwise
     this.state = {
       coordinates: [
         {
-          latitude: 37.3317876,
-          longitude: -122.0054812,
+          latitude: 0.0,//37.3317876,
+          longitude: 0.0,//-122.0054812,
         },
         {
-          latitude: 40.7250796,
-          longitude: -73.99906169999997,
+          latitude: 0.0,//40.7250796,
+          longitude: 0.0,//-73.99906169999997,
         },
       ],
       error: null,
