@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Dimensions, StyleSheet } from 'react-native';
 import MapView from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-
+import GetLocation from './getLocation';
 const { width, height } = Dimensions.get('window');
 const ASPECT_RATIO = width / height;
 const LATITUDE = 37.771707;
@@ -38,7 +38,7 @@ class Example extends Component {
 
 
 
-// map current location to Apple Store, SoHo
+// map get current location of the device using geolocation
    componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -86,7 +86,11 @@ coordinates: [
     
 /* should probably have a conditional render where if there is only start position vs when there is both a start and end position */
   render() {
-    return (
+  	if(this.props.latDestination == null || this.props.longDestination == null){
+
+  		display = (<GetLocation />);
+  	} else {
+    display =  (
       <MapView
         initialRegion={{
           latitude: LATITUDE,
@@ -104,6 +108,7 @@ coordinates: [
         {(this.state.coordinates.length >= 2) && (
           <MapViewDirections
             origin={this.state.coordinates[0]}
+            mode={'driving'}
             waypoints={ (this.state.coordinates.length > 2) ? this.state.coordinates.slice(1, -1): null}
             destination={this.state.coordinates[this.state.coordinates.length-1]}
             apikey={GOOGLE_MAPS_APIKEY}
@@ -129,6 +134,8 @@ coordinates: [
         )}
       </MapView>
     );
+	}
+	return (display);
   }
 }
 

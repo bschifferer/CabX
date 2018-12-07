@@ -62,11 +62,7 @@ export default class testCoords extends Component {
               latitude: (this.state.lastLat + 0.00050) || -36.82339,
               longitude: (this.state.lastLong + 0.00050) || -73.03569,
             }}>
-            <View>
-              <Text style={{color: '#000'}}>
-                { this.state.lastLong } / { this.state.lastLat }
-              </Text>
-            </View>
+
           </MapView.Marker>
         </MapView>
       </View>
