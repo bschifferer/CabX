@@ -50,16 +50,23 @@ export default class App extends React.Component {
 	}
 
 	_onPressCreateAccount = (username, password) => {
-		console.log(this.state.client.auth.getProviderClient);
-		console.log(UserPasswordAuthProviderClient.factory);
-		console.log(Stitch.UserPasswordAuthProviderClient);
-		console.log(this.state.client.auth.getProviderClient(UserPasswordAuthProviderClient.factory));
 		return this.state.client.auth.getProviderClient(UserPasswordAuthProviderClient.factory).registerWithEmail(username, password)
 		.then(() => {
 			const msg = 'Successfully sent account confirmation email!';
 			return { message: msg }
 		}).catch(err => {
 			const msg = "Error registering new user - contact administrator";
+			return { message: msg, error : true }
+		});
+	}
+
+	_onPressResetPW = (username) => {
+		return this.state.client.auth.getProviderClient(UserPasswordAuthProviderClient.factory).sendResetPasswordEmail(username)
+		.then(() => {
+			const msg = 'Successfully sent reset PW email!';
+			return { message: msg }
+		}).catch(err => {
+			const msg = "Error reset PW - contact administrator";
 			return { message: msg, error : true }
 		});
 	}
@@ -116,7 +123,7 @@ export default class App extends React.Component {
 				</Container>
 			);
 		} else {
-			display = <LoginPage login={this._onPressLogin} createAccount={this._onPressCreateAccount} />;
+			display = <LoginPage login={this._onPressLogin} createAccount={this._onPressCreateAccount} resetPW={this._onPressResetPW} />;
 		}
 		
 		return (
