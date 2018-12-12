@@ -30,6 +30,14 @@ export default class LoginPage extends React.Component {
 		}
 	}
 
+	createAccount = async (username, password, confirmPassword) => {
+		const res = await this.props.createAccount(username, password);
+		console.log(res.message);
+		if (res.error) {
+			this.setState({ createAccountFailure: true });
+		}
+	}
+
 	render() {
 			let loginFailure = this.state.loginFailure && !this.state.signUpPage;
 			let createAccountFailure = this.state.createAccountFailure && this.state.signUpPage;
@@ -58,14 +66,14 @@ export default class LoginPage extends React.Component {
 							{ this.state.signUpPage && 
 								<Item floatingLabel error={ createAccountFailure }>
 									<Label>Confirm Password</Label>
-									<Input secureTextEntry onChangeText={(text) => { this.setState({ password: text })}}/>
+									<Input secureTextEntry onChangeText={(text) => { this.setState({ confirmPassword: text })}}/>
 									{ (loginFailure || createAccountFailure) && <Icon name='close-circle' /> }
 								</Item>
 							}
 						</Form>
 						{ this.state.signUpPage ?
 							<Button full bordered rounded dark style={{ margin: 20 }} 
-								onPress={ () => { this.setState({ createAccountFailure: (this.state.confirmPassword != this.state.password) }) }}>
+								onPress={ () => { this.createAccount(this.state.username, this.state.password, this.state.confirmPassword) }}>
 								<Text>{ "Create Account" }</Text>
 							</Button>
 						: 	<Button full bordered rounded dark style={{ margin: 20 }} onPress={ () => this.login(this.state.username, this.state.password) }>

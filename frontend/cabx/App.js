@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Container } from "native-base";
 import PropTypes from 'prop-types';
-import { Stitch, UserPasswordCredential } from 'mongodb-stitch-react-native-sdk';
+import { Stitch, UserPasswordCredential, UserPasswordAuthProviderClient, AuthProviderClientFactory, ServiceClientFactory, NamedAuthProviderClientFactory} from 'mongodb-stitch-react-native-sdk';
 
 import CabXHeader from './components/CabXHeader';
 import CabXTabs from './components/CabXTabs';
@@ -45,6 +45,21 @@ export default class App extends React.Component {
 		}).catch(err => {
 			const msg = `Failed to log in anonymously: ${err}`;
 			this.setState({ currentUserId: undefined })
+			return { message: msg, error : true }
+		});
+	}
+
+	_onPressCreateAccount = (username, password) => {
+		console.log(this.state.client.auth.getProviderClient);
+		console.log(UserPasswordAuthProviderClient.factory);
+		console.log(Stitch.UserPasswordAuthProviderClient);
+		console.log(this.state.client.auth.getProviderClient(UserPasswordAuthProviderClient.factory));
+		return this.state.client.auth.getProviderClient(UserPasswordAuthProviderClient.factory).registerWithEmail(username, password)
+		.then(() => {
+			const msg = 'Successfully sent account confirmation email!';
+			return { message: msg }
+		}).catch(err => {
+			const msg = "Error registering new user - contact administrator";
 			return { message: msg, error : true }
 		});
 	}
@@ -101,7 +116,7 @@ export default class App extends React.Component {
 				</Container>
 			);
 		} else {
-			display = <LoginPage login={this._onPressLogin} />;
+			display = <LoginPage login={this._onPressLogin} createAccount={this._onPressCreateAccount} />;
 		}
 		
 		return (
