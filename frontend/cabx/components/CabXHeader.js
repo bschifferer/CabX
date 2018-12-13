@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, AsyncStorage } from 'react-native';
 import { Drawer, Left, Body, Right, Title, Header, Content, Item, Picker, Button, Icon, Input } from 'native-base';
 import PropTypes from 'prop-types';
+import AutoSuggest from 'react-native-autosuggest'
 
 export default class CabXHeader extends Component {
     constructor(props) {
@@ -65,7 +66,7 @@ export default class CabXHeader extends Component {
 					<View style={{ flex: 1, paddingLeft: 10}}>
 						<Content>
 							<Item>
-								<Input placeholder="Choose starting point..." value={this.state.start} onChangeText={(start) => this.setState({start})}/>
+								<Input onFocus={this.props.toggleSuggestion} onEndEditing={() => this.props.toggleSuggestion()} placeholder="Choose starting point..." value={this.state.start} onChangeText={(start) => {this.setState({start}); this.props.suggestion(start)}}/>
 								<Picker
 									mode="dropdown"
 									iosIcon={<Icon name="ios-arrow-down-outline" />}

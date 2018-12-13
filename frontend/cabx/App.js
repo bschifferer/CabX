@@ -8,17 +8,20 @@ import CabXHeader from './components/CabXHeader';
 import CabXTabs from './components/CabXTabs';
 import CabXList from './components/CabXList';
 import LoginPage from './components/LoginPage.js';
+import CabXSuggestion from './components/CabXSuggestion';
 
 export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = { 
-			data: [], 
+			data: [],
+			dataSuggestion: [], 
 			isLoggedIn: false,
 			logout: false,
 			client: undefined,
 			currentUserId: undefined,
+			suggestionList: false,
 		};
 	}
 
@@ -79,6 +82,35 @@ export default class App extends React.Component {
 			})
 	}
 
+	toggleSuggestion = () => {
+		let suggestionList = this.state.suggestionList;
+		setTimeout(() => {
+      		this.setState({ suggestionList: !suggestionList, dataSuggestion: []});	
+    	}, 200);
+	}
+
+	suggestion = (address) => {
+		if(address.length >= 5) {
+			fetch('http://ec2-18-215-158-47.compute-1.amazonaws.com:3000/suggestion/', {
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					"suggestion": address,
+				}),
+			}).then((response) => response.json())
+				.then((responseJson) => {
+					this.setState({ dataSuggestion: responseJson })
+				})
+				.catch((error) => {
+					console.error(error)
+				})
+		} else {
+			this.setState({ dataSuggestion: [] })
+		}
+	}
+
 	tabHandler = tab => {
 		if (this.state.data === undefined) { return; }
 			
@@ -95,9 +127,13 @@ export default class App extends React.Component {
 		if (isLoggedIn) {
 			display = (
 				<Container>
-					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} />
-					<CabXTabs onChangeTab={this.tabHandler} />
-					<CabXList data={this.state.data} />
+					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} toggleSuggestion={this.toggleSuggestion} suggestion={this.suggestion} />
+					{ this.state.suggestionList ?
+						<CabXSuggestion data={this.state.dataSuggestion} />
+					:
+						[<CabXTabs key={1} onChangeTab={this.tabHandler} />,
+						<CabXList key={2} data={this.state.data} suggestion={this.state.suggestionList} dataSuggestion={this.state.dataSuggestion} />]
+					}
 				</Container>
 			);
 		} else {
