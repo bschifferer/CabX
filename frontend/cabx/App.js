@@ -2,13 +2,16 @@ import React from 'react';
 import { StyleSheet, View, Alert } from 'react-native';
 import { Container } from "native-base";
 import PropTypes from 'prop-types';
-import { Stitch, UserPasswordCredential, UserPasswordAuthProviderClient, AuthProviderClientFactory, ServiceClientFactory, NamedAuthProviderClientFactory} from 'mongodb-stitch-react-native-sdk';
+import { Stitch, UserPasswordCredential, UserPasswordAuthProviderClient, AuthProviderClientFactory, ServiceClientFactory, NamedAuthProviderClientFactory, RemoteMongoClient} from 'mongodb-stitch-react-native-sdk';
 
 import CabXHeader from './components/CabXHeader';
 import CabXTabs from './components/CabXTabs';
 import CabXList from './components/CabXList';
 import LoginPage from './components/LoginPage.js';
 import CabXSuggestion from './components/CabXSuggestion';
+
+const DB = 'cabx';
+const COLLECTION_USER = 'users_v2';
 
 export default class App extends React.Component {
 
@@ -21,6 +24,8 @@ export default class App extends React.Component {
 			client: undefined,
 			currentUserId: undefined,
 			suggestionList: false,
+			startHistory: [],
+			destinationHistory: [],
 		};
 	}
 
@@ -34,8 +39,63 @@ export default class App extends React.Component {
 
 			if(client.auth.isLoggedIn) {
 				this.setState({ currentUserId: client.auth.user.id, isLoggedIn: true });
+				this.loadHistory();
 			}
 		});
+	}
+
+	loadHistory = () => {
+		this.state.client.getServiceClient(RemoteMongoClient.factory, "mongodb-atlas").db(DB).collection(COLLECTION_USER).find({}, {}).asArray().then(
+			(response) =>  {
+				if(response.length > 0) {
+					if (response[0].hasOwnProperty('history')) {
+						if (response[0].history.hasOwnProperty('startHistory')) {
+							this.setState({startHistory: response[0].history.startHistory});
+						}
+						if (response[0].history.hasOwnProperty('destinationHistory')) {
+							this.setState({destinationHistory: response[0].history.destinationHistory});
+						}
+					}
+				}
+			}
+		)
+	}
+
+	updateHistory = (key, value) => {
+        var tempHistory = this.state[key];
+        var indValue = tempHistory.indexOf(value);
+        if (indValue > -1) {
+        	tempHistory.splice(indValue, 1);
+        }
+        tempHistory.unshift(value);
+        if (tempHistory.length > 5) {
+            tempHistory.pop();
+        }
+        return(tempHistory)
+    }
+
+	saveHistory = (start, destination) => {
+		this.setState({startHistory: this.updateHistory('startHistory', start)});
+		this.setState({destinationHistory: this.updateHistory('destinationHistory', destination)});
+		this.state.client.getServiceClient(RemoteMongoClient.factory, "mongodb-atlas").db(DB).collection(COLLECTION_USER).find({}, {}).asArray().then(
+			(response) => {
+				if (response.length > 0) {
+					response[0]['history'] = {};
+					response[0]['history']['startHistory'] = this.state.startHistory;
+					response[0]['history']['destinationHistory'] = this.state.destinationHistory;
+					this.state.client.getServiceClient(RemoteMongoClient.factory, "mongodb-atlas").db(DB).collection(COLLECTION_USER).updateOne({userId: this.state.currentUserId}, response[0]);
+				} else {
+					doc = {
+						userId: this.state.currentUserId,
+						history: {
+							startHistory: this.state.startHistory,
+							destinationHistory: this.state.destinationHistory
+						} 
+					}
+					this.state.client.getServiceClient(RemoteMongoClient.factory, "mongodb-atlas").db(DB).collection(COLLECTION_USER).insertOne(doc);
+				}
+			}
+		);
 	}
 
 	_onPressLogin = (username, password) => {
@@ -78,11 +138,11 @@ export default class App extends React.Component {
 		this.state.client.auth.logout().then(user => {
 			console.log(`Successfully logged out`);
 			this.setState({ currentUserId: undefined })
-			this.setState({ isLoggedIn: false });
+			this.setState({ isLoggedIn: false, startHistory: [], destinationHistory:[]});
 			this.toggleSuggestion(false);
 		}).catch(err => {
 			console.log(`Failed to log out: ${err}`);
-			this.setState({ currentUserId: undefined });
+			this.setState({ currentUserId: undefined, startHistory: [], destinationHistory:[]});
 		});
 	}
 
@@ -102,6 +162,7 @@ export default class App extends React.Component {
 					this.showError(responseJson.error);
 				} else {
 					this.setState({ data: responseJson });
+					this.saveHistory(start, destination);
 				}
 			})
 			.catch((error) => {
@@ -164,7 +225,7 @@ export default class App extends React.Component {
 		if (isLoggedIn) {
 			display = (
 				<Container>
-					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} toggleSuggestion={this.toggleSuggestion} />
+					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} toggleSuggestion={this.toggleSuggestion} loadHistory={this.loadClientData} startHistory={this.state.startHistory} destinationHistory={this.state.destinationHistory}/>
 					{ !this.state.suggestionList &&
 						[<CabXTabs key={1} onChangeTab={this.tabHandler} />,
 						<CabXList key={2} data={this.state.data} />]
@@ -172,7 +233,7 @@ export default class App extends React.Component {
 				</Container>
 			);
 		} else {
-			display = <LoginPage login={this._onPressLogin} createAccount={this._onPressCreateAccount} resetPW={this._onPressResetPW} />;
+			display = <LoginPage login={this._onPressLogin} createAccount={this._onPressCreateAccount} resetPW={this._onPressResetPW} loadHistory={this.loadHistory}/>;
 		}
 		
 		return (
