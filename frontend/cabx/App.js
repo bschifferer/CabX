@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import { Container } from "native-base";
 import PropTypes from 'prop-types';
 import { Stitch, UserPasswordCredential, UserPasswordAuthProviderClient, AuthProviderClientFactory, ServiceClientFactory, NamedAuthProviderClientFactory} from 'mongodb-stitch-react-native-sdk';
@@ -98,11 +98,28 @@ export default class App extends React.Component {
 			}),
 		}).then((response) => response.json())
 			.then((responseJson) => {
-				this.setState({ data: responseJson })
+				if (responseJson.hasOwnProperty('error')) {
+					this.showError(responseJson.error);
+				} else {
+					this.setState({ data: responseJson });
+				}
 			})
 			.catch((error) => {
-				console.error(error)
+				this.showError(error);
+				console.error(error);
 			})
+	}
+
+	showError = (msg) => {
+		Alert.alert(
+					'Error',
+					msg,
+					[
+					{text: 'OK'},
+					],
+					{ cancelable: false }
+					);
+
 	}
 
 	toggleSuggestion = (status) => {
