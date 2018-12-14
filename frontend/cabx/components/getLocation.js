@@ -35,7 +35,7 @@ export default class testCoords extends Component {
   componentWillUnmount() {
     navigator.geolocation.clearWatch(this.watchID);
   }
-
+/*
   onMapPress(e) {
     console.log(e.nativeEvent.coordinate.longitude);
     let region = {
@@ -45,7 +45,7 @@ export default class testCoords extends Component {
       longitudeDelta: 0.00421*1.5
     }
     this.onRegionChange(region, region.latitude, region.longitude);
-  }
+  }*/
 
   render() {
     return (
@@ -56,14 +56,8 @@ export default class testCoords extends Component {
           showsUserLocation={true}
           followUserLocation={true}
           onRegionChange={this.onRegionChange.bind(this)}
-          onPress={this.onMapPress.bind(this)}>
-          <MapView.Marker
-            coordinate={{
-              latitude: (this.state.lastLat + 0.00050) || -36.82339,
-              longitude: (this.state.lastLong + 0.00050) || -73.03569,
-            }}>
+          /*onPress={this.onMapPress.bind(this)}*/>
 
-          </MapView.Marker>
         </MapView>
       </View>
     );

@@ -9,6 +9,7 @@ import CabXTabs from './components/CabXTabs';
 import CabXList from './components/CabXList';
 import LoginPage from './components/LoginPage.js';
 import CabXSuggestion from './components/CabXSuggestion';
+import GetLocation from './components/getLocation.js';
 
 export default class App extends React.Component {
 
@@ -169,6 +170,7 @@ export default class App extends React.Component {
 						[<CabXTabs key={1} onChangeTab={this.tabHandler} />,
 						<CabXList key={2} data={this.state.data} />]
 					}
+					<GetLocation />
 				</Container>
 			);
 		} else {
