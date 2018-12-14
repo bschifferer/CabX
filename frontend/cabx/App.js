@@ -8,17 +8,19 @@ import CabXHeader from './components/CabXHeader';
 import CabXTabs from './components/CabXTabs';
 import CabXList from './components/CabXList';
 import LoginPage from './components/LoginPage.js';
+import CabXSuggestion from './components/CabXSuggestion';
 
 export default class App extends React.Component {
 
 	constructor(props) {
 		super(props);
 		this.state = { 
-			data: [], 
+			data: [],
 			isLoggedIn: false,
 			logout: false,
 			client: undefined,
 			currentUserId: undefined,
+			suggestionList: false,
 		};
 	}
 
@@ -39,8 +41,9 @@ export default class App extends React.Component {
 	_onPressLogin = (username, password) => {
 		return this.state.client.auth.loginWithCredential(new UserPasswordCredential(username, password)).then(user => {
 			const msg = `Successfully logged in as user ${user.id}`;
-			this.setState({ currentUserId: user.id })
-			this.setState({ isLoggedIn: true })
+			this.setState({ currentUserId: user.id });
+			this.setState({ isLoggedIn: true });
+			this.toggleSuggestion(false);
 			return { message: msg }
 		}).catch(err => {
 			const msg = `Failed to log in anonymously: ${err}`;
@@ -76,9 +79,10 @@ export default class App extends React.Component {
 			console.log(`Successfully logged out`);
 			this.setState({ currentUserId: undefined })
 			this.setState({ isLoggedIn: false });
+			this.toggleSuggestion(false);
 		}).catch(err => {
 			console.log(`Failed to log out: ${err}`);
-			this.setState({ currentUserId: undefined })
+			this.setState({ currentUserId: undefined });
 		});
 	}
 
@@ -101,6 +105,32 @@ export default class App extends React.Component {
 			})
 	}
 
+	toggleSuggestion = (status) => {
+		this.setState({ suggestionList: status});
+	}
+
+	suggestion = (address) => {
+		if(address.length >= 5) {
+			fetch('http://ec2-18-215-158-47.compute-1.amazonaws.com:3000/suggestion/', {
+				method: 'POST',
+				headers: {
+					"Content-Type": "application/json"
+				},
+				body: JSON.stringify({
+					"suggestion": address,
+				}),
+			}).then((response) => response.json())
+				.then((responseJson) => {
+					this.setState({ dataSuggestion: responseJson })
+				})
+				.catch((error) => {
+					console.error(error)
+				})
+		} else {
+			this.setState({ dataSuggestion: [] })
+		}
+	}
+
 	tabHandler = tab => {
 		if (this.state.data === undefined) { return; }
 			
@@ -117,9 +147,11 @@ export default class App extends React.Component {
 		if (isLoggedIn) {
 			display = (
 				<Container>
-					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} />
-					<CabXTabs onChangeTab={this.tabHandler} />
-					<CabXList data={this.state.data} />
+					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} toggleSuggestion={this.toggleSuggestion} />
+					{ !this.state.suggestionList &&
+						[<CabXTabs key={1} onChangeTab={this.tabHandler} />,
+						<CabXList key={2} data={this.state.data} />]
+					}
 				</Container>
 			);
 		} else {
