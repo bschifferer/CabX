@@ -16,7 +16,6 @@ export default class App extends React.Component {
 		super(props);
 		this.state = { 
 			data: [],
-			dataSuggestion: [], 
 			isLoggedIn: false,
 			logout: false,
 			client: undefined,
@@ -42,8 +41,9 @@ export default class App extends React.Component {
 	_onPressLogin = (username, password) => {
 		return this.state.client.auth.loginWithCredential(new UserPasswordCredential(username, password)).then(user => {
 			const msg = `Successfully logged in as user ${user.id}`;
-			this.setState({ currentUserId: user.id })
-			this.setState({ isLoggedIn: true })
+			this.setState({ currentUserId: user.id });
+			this.setState({ isLoggedIn: true });
+			this.toggleSuggestion(false);
 			return { message: msg }
 		}).catch(err => {
 			const msg = `Failed to log in anonymously: ${err}`;
@@ -57,9 +57,10 @@ export default class App extends React.Component {
 			console.log(`Successfully logged out`);
 			this.setState({ currentUserId: undefined })
 			this.setState({ isLoggedIn: false });
+			this.toggleSuggestion(false);
 		}).catch(err => {
 			console.log(`Failed to log out: ${err}`);
-			this.setState({ currentUserId: undefined })
+			this.setState({ currentUserId: undefined });
 		});
 	}
 
@@ -82,11 +83,8 @@ export default class App extends React.Component {
 			})
 	}
 
-	toggleSuggestion = () => {
-		let suggestionList = this.state.suggestionList;
-		setTimeout(() => {
-      		this.setState({ suggestionList: !suggestionList, dataSuggestion: []});	
-    	}, 200);
+	toggleSuggestion = (status) => {
+		this.setState({ suggestionList: status});
 	}
 
 	suggestion = (address) => {
@@ -127,12 +125,10 @@ export default class App extends React.Component {
 		if (isLoggedIn) {
 			display = (
 				<Container>
-					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} toggleSuggestion={this.toggleSuggestion} suggestion={this.suggestion} />
-					{ this.state.suggestionList ?
-						<CabXSuggestion data={this.state.dataSuggestion} />
-					:
+					<CabXHeader logout={this._onPressLogout} onSearch={this.searchHandler} toggleSuggestion={this.toggleSuggestion} />
+					{ !this.state.suggestionList &&
 						[<CabXTabs key={1} onChangeTab={this.tabHandler} />,
-						<CabXList key={2} data={this.state.data} suggestion={this.state.suggestionList} dataSuggestion={this.state.dataSuggestion} />]
+						<CabXList key={2} data={this.state.data} />]
 					}
 				</Container>
 			);

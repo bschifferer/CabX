@@ -18,10 +18,10 @@ export default class CabXList extends Component {
 				<FlatList
 				data = { this.props.data }
 				extraData = { this.props }
-				keyExtractor={item => item.address.formattedAddress}
+				keyExtractor={item => (item.name || 'a').concat(' '.concat((item.address.formattedAddress || '')))}
 				renderItem = {({ item }) => (
 					<ListItem
-					onPress={() => console.log('a')} 
+					onPress={() => {this.props.updateAddress((item.name || '').concat(' '.concat((item.address.formattedAddress || ''))))}} 
 					title={ item.name }
 					subtitle={  item.address.formattedAddress }
 								avatar={"uber" == "uber" ? uberIcon : lyftIcon }  
