@@ -35,6 +35,8 @@ export default class LoginPage extends React.Component {
 		console.log(res.message);
 		if (res.error) {
 			this.setState({ loginFailure: true });
+		} else {
+			this.props.loadHistory();
 		}
 	}
 

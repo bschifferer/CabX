@@ -1,0 +1,4 @@
+
+> empty-project-template@ eslint /home/travis/build/bazile-clyde/CabX
+> node_modules/eslint/bin/eslint.js backend/src frontend/src
+

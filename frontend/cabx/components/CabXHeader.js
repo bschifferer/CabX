@@ -4,6 +4,10 @@ import { Drawer, Left, Body, Right, Title, Header, Content, Item, Picker, Button
 import PropTypes from 'prop-types';
 import AutoSuggest from 'react-native-autosuggest'
 import CabXSuggestion from './CabXSuggestion';
+import { RemoteMongoClient} from 'mongodb-stitch-react-native-sdk';
+
+const DB = 'cabx';
+const COLLECTION_USER = 'users_v2';
 
 export default class CabXHeader extends Component {
     constructor(props) {
@@ -28,6 +32,10 @@ export default class CabXHeader extends Component {
 
     componentWillUnmount() {
         this._isMounted = false;
+    }
+
+    initData = () => {
+
     }
 
     initData = key => {
@@ -114,7 +122,7 @@ export default class CabXHeader extends Component {
 									iosIcon={<Icon name="ios-arrow-down-outline" />}
 									onValueChange={ value => { this.setState({ start: value }) }}
 								>
-									{this.state.startHistory.map((item, index) => { return (<Picker.Item label={item} key={index} value={item}/>) })}                
+									{this.props.startHistory.map((item, index) => { return (<Picker.Item label={item} key={index} value={item}/>) })}                
 								</Picker>
 							</Item>
 							<Item style={{ borderColor: 'transparent' }}>
@@ -124,7 +132,7 @@ export default class CabXHeader extends Component {
 									iosIcon={<Icon name="ios-arrow-down-outline" />}
 									onValueChange={ value => { this.setState({ destination: value }) }}
 								>
-									{this.state.destinationHistory.map((item, index) => { return (<Picker.Item label={item} key={index} value={item}/>) })}                
+									{this.props.destinationHistory.map((item, index) => { return (<Picker.Item label={item} key={index} value={item}/>) })}                
 								</Picker>
 							</Item>
 						</Content>
