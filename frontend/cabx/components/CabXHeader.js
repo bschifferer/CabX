@@ -80,11 +80,11 @@ export default class CabXHeader extends Component {
 	}
 
 	updateAddress = (address) => {
-		if (this.state.inputFiledFocus === 'start') {
+		if (this.state.inputFieldFocus === 'start') {
 			this.setState({start: address});
 			this.toggleSuggestionHeader('None', false);
 		}
-		if (this.state.inputFiledFocus === 'destination') {
+		if (this.state.inputFieldFocus === 'destination') {
 			this.setState({destination: address});
 			this.toggleSuggestionHeader('None', false);
 		}
