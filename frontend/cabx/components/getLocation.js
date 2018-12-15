@@ -20,7 +20,12 @@ export default class testCoords extends Component {
         longitudeDelta: 0.00421*1.5
       }
       this.onRegionChange(region, region.latitude, region.longitude);
-    });
+    },
+    (error)=> console.log(JSON.stringify(error)),
+    {enableHighAccuracy:false, timeout: 2000, maximumAge:1000})
+
+
+    ;
   }
 
   onRegionChange(region, lastLat, lastLong) {
