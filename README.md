@@ -12,9 +12,9 @@ You have two choices for the GUI:
 1. Install [Expo](https://expo.io/)
 2. (Optional) Install [Xcode](https://developer.apple.com/xcode/) — note that Xcode is only available to Mac users
 
-Pull the repository. Run ``npm install`` at in the ``CabX/backend`` and ``CabX/frontend`` folders to ensure you have all required dependencies for the app.
+Pull the repository. Run ``npm install`` at the ``CabX/backend`` and ``CabX/frontend`` folders to ensure you have all required dependencies for the app.
 
-To start the app, go to ``CabX/frontend/cabx`` run ``npm start``
+To start the app, go to ``CabX/frontend/cabx`` and run ``npm start``
 
 If you only have Expo downloaded, you can load the app on your mobile device by pointing your camera at the QR code and tapping the banner link. It will redirect you to Expo, where after the JavaScript bundle has been downloaded, you can begin navigating through the app.
 
