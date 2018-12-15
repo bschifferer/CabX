@@ -27,6 +27,7 @@ export default class App extends React.Component {
 			suggestionList: false,
 			startHistory: [],
 			destinationHistory: [],
+			tab: {i: 0},
 		};
 	}
 
@@ -139,11 +140,11 @@ export default class App extends React.Component {
 		this.state.client.auth.logout().then(user => {
 			console.log(`Successfully logged out`);
 			this.setState({ currentUserId: undefined })
-			this.setState({ isLoggedIn: false, startHistory: [], destinationHistory:[]});
+			this.setState({ isLoggedIn: false, startHistory: [], destinationHistory:[], data:[]});
 			this.toggleSuggestion(false);
 		}).catch(err => {
 			console.log(`Failed to log out: ${err}`);
-			this.setState({ currentUserId: undefined, startHistory: [], destinationHistory:[]});
+			this.setState({ currentUserId: undefined, startHistory: [], destinationHistory:[], data:[]});
 		});
 	}
 
@@ -164,6 +165,7 @@ export default class App extends React.Component {
 				} else {
 					this.setState({ data: responseJson });
 					this.saveHistory(start, destination);
+					this.tabHandler(this.state.tab);
 				}
 			})
 			.catch((error) => {
@@ -215,8 +217,10 @@ export default class App extends React.Component {
 			
 		if (tab.i === 0) {
 			this.setState( prevState => ({ data: prevState.data.sort((a, b) => a.estimated_cost_cents_max - b.estimated_cost_cents_max) }) );
+			this.setState({tab: {i: 0}});
 		} else if (tab.i === 1) {
 			this.setState( prevState => ({ data: prevState.data.sort((a, b) => a.estimated_duration_seconds - b.estimated_duration_seconds) }) );
+			this.setState({tab: {i: 1}});
 		}
 	}
 
