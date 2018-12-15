@@ -5,6 +5,7 @@ CabX is a ride-hailing service aggregator, developed as a semester-long project 
 
 With CabX, you can input your origin and destination addresses and the app will return a list of available ride-hailing services that you can call to get to your destination.
 
+
 How to Build
 -------
 You have two choices for the GUI:
@@ -17,16 +18,17 @@ If you only have Expo downloaded, you can load the app on your mobile device by 
 
 If you downloaded Xcode, you can choose to display the app on the Xcode Simulator by pressing `i` in the Terminal.
 
+
 How to Use
 -------
 
 ### Login/Sign up
-If you're a new user, you have to sign up for an account. Click the "sign up" button and input a valid email address as well as matching passwords in the password fields. Once you sign up, you'll receive an email at the provided email address with a verification link. Your account will be valid and you will be able to access the CabX app after you click on the link.
+If you're a new user, you have to sign up for an account. Click the ``sign up`` button and input a valid email address as well as matching passwords in the password fields. Once you sign up, you'll receive an email at the provided email address with a verification link. Your account will be valid and you will be able to access the CabX app after you click on the link.
 
 Existing users can login with their email and password to access the app.
 
 ### Forgot Your Password?
-If you forgot your password, simply click on the "forgot my password" button and input the email address associated with your account. We will email you a reset link where you can reset your password.
+If you forgot your password, simply click on the ``forgot my password`` button and input the email address associated with your account. We will email you a reset link where you can reset your password.
 
 ### Find Rides
 Input your starting point and destination addresses into the input area on the top of the app. Once you select the correct address, click the search button (magnifying glass icon) to get a list of available ride-hailing services. 
@@ -36,6 +38,7 @@ To sort the list by price, click on the money tab. To sort by estimated time of 
 
 ### Search History
 To access your search history, you can click the dropdown buttons located by the input area. This will pull up your past searches that you can click on to populate either search bars.
+
 
 
 How to Test
