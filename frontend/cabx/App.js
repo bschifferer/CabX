@@ -162,6 +162,7 @@ export default class App extends React.Component {
 			.then((responseJson) => {
 				if (responseJson.hasOwnProperty('error')) {
 					this.showError(responseJson.error);
+					this.setState({ data: []});
 				} else {
 					this.setState({ data: responseJson });
 					this.saveHistory(start, destination);
@@ -169,6 +170,7 @@ export default class App extends React.Component {
 				}
 			})
 			.catch((error) => {
+				this.setState({ data: []});
 				this.showError(error);
 				console.error(error);
 			})
