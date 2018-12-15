@@ -12,7 +12,7 @@ You have two choices for the GUI:
 1. Install [Expo](https://expo.io/)
 2. (Optional) Install [Xcode](https://developer.apple.com/xcode/) — note that Xcode is only available to Mac users
 
-Pull the repository. Run ``npm install`` at the ``CabX/backend`` and ``CabX/frontend`` folders to ensure you have all required dependencies for the app.
+Pull the repository. Run ``npm install`` in the ``CabX/frontend`` folder to ensure you have all required dependencies for the app.
 
 To start the app, go to ``CabX/frontend/cabx`` and run ``npm start``
 
