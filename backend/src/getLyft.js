@@ -28,7 +28,7 @@ exports.getLyftPrices = async function(fromLat, fromLong, toLat, toLong) {
 exports.lyftPrices = function(fromLat, fromLong, toLat, toLong) {
   var options = {
     url: PRE_URL_LYFT + 'start_lat=' + fromLat + '&start_lng=' +
-      fromLong + '&end_lat=' + toLat + '&end_lng=' + toLong, timeout: 1500,
+      fromLong + '&end_lat=' + toLat + '&end_lng=' + toLong, timeout: 2500,
     headers: {
       'Authorization': 'bearer sG1iQES+ARRImYkpZAQZ7PnTJEBv8e' +
         '7tRHG6E1AZWCtOr7aYO64C6BUhHbTav3p7JiMwA84pIYOCvYHQo+POUMfAI' +

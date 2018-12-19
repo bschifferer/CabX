@@ -12,6 +12,16 @@ var uber = require('./getUber.js');
 exports.findRides = async function(sAddressFrom, sAddressTo) {
   let res = {};
 
+  if (sAddressFrom === '') {
+    res['error'] = 'The from address is was empty';
+    return (res);
+  }
+
+  if (sAddressTo === '') {
+    res['error'] = 'The to address is was empty';
+    return (res);
+  }
+
   jsonFromResults = await latLong.getRequestLatLongFromAddress(sAddressFrom);
   if (jsonFromResults.hasOwnProperty('error')) {
     res['error'] = 'An error occured by processing the from address';
@@ -32,12 +42,12 @@ exports.findRides = async function(sAddressFrom, sAddressTo) {
     return (res);
   }
 
-  console.log(jsonToResults.processedResponse.jsonProcessedResponses);
-
   fromLat = jsonFromResults.processedResponse.jsonProcessedResponses[0].lat;
   fromLong = jsonFromResults.processedResponse.jsonProcessedResponses[0].long;
+  fromName = jsonFromResults.processedResponse.jsonProcessedResponses[0].name;
   toLat = jsonToResults.processedResponse.jsonProcessedResponses[0].lat;
   toLong = jsonToResults.processedResponse.jsonProcessedResponses[0].long;
+  toName = jsonToResults.processedResponse.jsonProcessedResponses[0].name;
 
   jsonUber = await uber.getUberPrices(fromLat, fromLong, toLat, toLong);
   jsonLyft = await lyft.getLyftPrices(fromLat, fromLong, toLat, toLong);
@@ -45,15 +55,22 @@ exports.findRides = async function(sAddressFrom, sAddressTo) {
     !(jsonUber.hasOwnProperty('error')) &&
     !(jsonLyft.hasOwnProperty('error'))) {
     res = jsonUber['processedResponse'].concat(jsonLyft['processedResponse']);
-    return (res);
-  }
-  if (!(jsonUber.hasOwnProperty('error'))) {
+  } else if (!(jsonUber.hasOwnProperty('error'))) {
     res = jsonUber['processedResponse'];
-    return (res);
-  }
-  if (!(jsonLyft.hasOwnProperty('error'))) {
+  } else if (!(jsonLyft.hasOwnProperty('error'))) {
     res = jsonLyft['processedResponse'];
-    return (res);
   }
+
+  if (res.length === 0) {
+    return ({'error': 'No results could be found for this route!'});
+  }
+
+  res = {res: res,
+    from: {
+      name: fromName,
+      lat: fromLat,
+      long: fromLong,
+      requestedKeyword: sAddressFrom},
+    to: {name: toName, lat: toLat, long: toLong, requestedKeyword: sAddressTo}};
   return (res);
 };

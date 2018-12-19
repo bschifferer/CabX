@@ -274,7 +274,7 @@ describe('getUber.js', function() {
       // Mock the TMDB configuration request response
       nock('https://api.uber.com')
         .get('/v1.2/estimates/price?start_latitude=40.8081588745117&start_longitude=-73.9636535644531&end_latitude=40.7483711242676&end_longitude=-73.9846420288086')
-        .socketDelay(1499)
+        .socketDelay(2499)
         .reply(200, uberResponse);
     });
 
@@ -302,7 +302,7 @@ describe('getUber.js', function() {
       // Mock the TMDB configuration request response
       nock('https://api.uber.com')
         .get('/v1.2/estimates/price?start_latitude=40.8081588745117&start_longitude=-73.9636535644531&end_latitude=40.7483711242676&end_longitude=-73.9846420288086')
-        .socketDelay(1501)
+        .socketDelay(2501)
         .reply(200, uberResponse);
     });
 

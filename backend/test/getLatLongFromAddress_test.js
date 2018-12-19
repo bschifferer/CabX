@@ -86,7 +86,7 @@ describe('getLatLongFromAddress.js', function() {
 
       nock('https://dev.virtualearth.net')
         .get('/REST/v1/Locations/US/Empire%20State%20Building?o=json&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f')
-        .socketDelay(1499)
+        .socketDelay(2499)
         .reply(200, responseBing);
     });
 
@@ -134,7 +134,7 @@ describe('getLatLongFromAddress.js', function() {
 
       nock('https://dev.virtualearth.net')
         .get('/REST/v1/Locations/US/Empire%20State%20Building?o=json&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f')
-        .socketDelay(1501)
+        .socketDelay(2501)
         .reply(200, responseBing);
     });
 

@@ -5,6 +5,34 @@ var rideFinder = require('../src/getFindRides.js');
 
 
 describe('getFindRides.js', function() {
+  describe('findRides() error empty from address', function() {
+    it('500 response code from bing', async function() {
+      sAddressFrom = "";
+      sAddressTo = "Empire State Building_2";
+      expectedResponse = {error: 'The from address is was empty'}
+      let responseBack = await rideFinder.findRides(sAddressFrom, sAddressTo);
+      assert.deepEqual(responseBack, expectedResponse);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
+  describe('findRides() error empty to address', function() {
+    it('500 response code from bing', async function() {
+      sAddressFrom = "Empire State Building_2";
+      sAddressTo = "";
+      expectedResponse = {error: 'The to address is was empty'}
+      let responseBack = await rideFinder.findRides(sAddressFrom, sAddressTo);
+      assert.deepEqual(responseBack, expectedResponse);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
   describe('findRides() error for from address', function() {
     beforeEach(function() {
       var responseBing = {resourceSets: [
@@ -237,7 +265,7 @@ describe('getFindRides.js', function() {
     it('find lyft and uber', async function() {
       sAddressFrom = "Empire State Building";
       sAddressTo = "Empire State Building_2";
-      expectedResponse = [ { ride_hailing_service: 'uber',
+      expectedResponse = {res: [{ ride_hailing_service: 'uber',
         display_name: 'Black SUV',
         estimated_duration_seconds: 1920,
         estimated_distance_miles: 6.88,
@@ -260,9 +288,10 @@ describe('getFindRides.js', function() {
           estimated_duration_seconds: 2000,
           estimated_distance_miles: 10,
           estimated_cost_cents_min: 80,
-          estimated_cost_cents_max: 100 } ]
+          estimated_cost_cents_max: 100 }], 
+          from: {lat: 40.7484359741211, long: -73.9858093261719, name: 'Empire State Building, NY', requestedKeyword: 'Empire State Building'}, 
+          to: {lat: 40.7484359741211, long: -73.9858093261719, name: 'Empire State Building, NY', requestedKeyword: 'Empire State Building_2'}}
       let responseBack = await rideFinder.findRides(sAddressFrom, sAddressTo);
-      console.log(responseBack);
       assert.deepEqual(responseBack, expectedResponse);
     });
 
@@ -270,6 +299,70 @@ describe('getFindRides.js', function() {
       nock.cleanAll();
     });
   });
+
+  describe('findRides() - error empty results', function() {
+    beforeEach(function() {
+      var responseBing = {resourceSets: [
+          { estimatedTotal: 2,
+            resources: [{
+              name: 'Empire State Building, NY',
+              address: {
+                adminDistrict: 'NY',
+                countryRegion: 'United States',
+                formattedAddress: 'Empire State Building, NY',
+                locality: 'New York' },
+              confidence: 'High',
+              entityType: 'LandmarkBuilding',
+              geocodePoints: [
+                {type: 'Point',
+                  coordinates: [40.7484359741211, -73.9858093261719],
+                  calculationMethod: 'Rooftop'
+                }],
+            }]
+          }
+        ]
+      };
+
+      var uberResponse = {
+        prices: [],
+      };
+
+      var lyftResponse = {
+        cost_estimates:[],
+      };
+
+      nock('https://dev.virtualearth.net')
+        .get('/REST/v1/Locations/US/Empire%20State%20Building?o=json&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f')
+        .reply(200, responseBing);
+
+      nock('https://dev.virtualearth.net')
+        .get('/REST/v1/Locations/US/Empire%20State%20Building_2?o=json&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f')
+        .reply(200, responseBing);
+
+      // Mock the TMDB configuration request response
+      nock('https://api.uber.com')
+        .get('/v1.2/estimates/price?start_latitude=40.7484359741211&start_longitude=-73.9858093261719&end_latitude=40.7484359741211&end_longitude=-73.9858093261719')
+        .reply(200, uberResponse);
+
+      // Mock the TMDB configuration request response
+      nock('https://api.lyft.com')
+        .get('/v1/cost?start_lat=40.7484359741211&start_lng=-73.9858093261719&end_lat=40.7484359741211&end_lng=-73.9858093261719')
+        .reply(200, lyftResponse);
+    });
+
+    it('find lyft and uber', async function() {
+      sAddressFrom = "Empire State Building";
+      sAddressTo = "Empire State Building_2";
+      expectedResponse = {error: 'No results could be found for this route!'}
+      let responseBack = await rideFinder.findRides(sAddressFrom, sAddressTo);
+      assert.deepEqual(responseBack, expectedResponse);
+    });
+
+    afterEach(function () {
+      nock.cleanAll();
+    });
+  });
+
 
 });
 
