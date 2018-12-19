@@ -30,7 +30,7 @@ exports.uberPrices = function(fromLat, fromLong, toLat, toLong) {
   var options = {
     url: PRE_URL_UBER + 'start_latitude=' + fromLat + '&start_longitude=' +
       fromLong + '&end_latitude=' + toLat + '&end_longitude=' + toLong,
-    timeout: 1500,
+    timeout: 2500,
     headers: {
       'User-Agent': 'request',
       'Authorization': 'Token cds-RMpAWPazEskuTK1gWxP7EAl_vyvBmT4jjKnY',

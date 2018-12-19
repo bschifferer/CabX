@@ -28,7 +28,7 @@ exports.getRequestLatLongFromAddress = async function(sAddress) {
 exports.requestLatLongFromAddress = function(sAddress) {
   return new Promise(function(resolve, reject) {
     request.get(PRE_URL + encodeURIComponent(sAddress) + POST_URL + BING_KEY,
-        {json: true, timeout: 1500}, (err, res, body) => {
+        {json: true, timeout: 2500}, (err, res, body) => {
           if (err) {
             reject(err);
           } else if (res.statusCode != 200) {

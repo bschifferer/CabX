@@ -269,7 +269,7 @@ describe('getLyft.js', function() {
       // Mock the TMDB configuration request response
       nock('https://api.lyft.com')
         .get('/v1/cost?start_lat=40.8081588745117&start_lng=-73.9636535644531&end_lat=40.7483711242676&end_lng=-73.9846420288086')
-        .socketDelay(1499)
+        .socketDelay(2499)
         .reply(200, lyftResponse);
     });
 
@@ -297,7 +297,7 @@ describe('getLyft.js', function() {
       // Mock the TMDB configuration request response
       nock('https://api.lyft.com')
         .get('/v1/cost?start_lat=40.8081588745117&start_lng=-73.9636535644531&end_lat=40.7483711242676&end_lng=-73.9846420288086')
-        .socketDelay(1501)
+        .socketDelay(2501)
         .reply(200, lyftResponse);
     });
 
