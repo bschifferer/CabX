@@ -1,0 +1,131 @@
+
+> empty-project-template@ test /home/travis/build/bazile-clyde/CabX
+> node_modules/mocha/bin/mocha ./backend/test frontend/test
+
+
+
+  getFindRides.js
+    findRides() error empty from address
+      ✓ 500 response code from bing
+    findRides() error empty to address
+      ✓ 500 response code from bing
+    findRides() error for from address
+      ✓ 500 response code from bing
+    findRides() cannot find from address
+      ✓ empty response from bing
+    findRides() error for to address
+      ✓ 500 response code from bing
+    findRides() cannot find to address
+      ✓ empty response to bing
+    findRides() - standard sucess
+      ✓ find lyft and uber
+    findRides() - error empty results
+      ✓ find lyft and uber
+
+  getLatLongFromAddress.js
+    requestLatLongFromAddress() success
+      ✓ 200 response code
+    requestLatLongFromAddress() success delayed
+      ✓ 200 response code
+    requestLatLongFromAddress() success timeout
+      ✓ 200 response code
+    requestLatLongFromAddress() error
+      ✓ 500 response code
+    getRelevantInformationFromLatLongResponse()
+      ✓ success
+      ✓ missing name
+      ✓ missing confidence
+      ✓ missing geocodePoints
+      ✓ missing address
+      ✓ missing coordinates
+      ✓ only one coordinate
+    processBingResponseBody()
+      ✓ success standard case - loop1
+      ✓ success standard case - loop2
+      ✓ success standard case - loop2
+      ✓ success empty input - loop0
+      ✓ error one wrong, one correct
+      ✓ error two wrong
+    processBingLatLongResponse()
+      ✓ success standard case
+      ✓ error missing resourceSets
+      ✓ error missing resources
+
+  getLyft.js
+    getRelevantInformationFromLyftResponse()
+      ✓ success - standard case
+      ✓ error - missing display_name
+      ✓ error - missing estimated_distance_miles
+      ✓ error - missing estimated_cost_cents_max
+      ✓ error - missing estimated_cost_cents_min
+      ✓ error - missing estimated_duration_seconds
+    processLyftResponseBody()
+      ✓ success - standard case - loop1
+      ✓ success - standard case - loop2
+      ✓ success - standard case - loop3
+      ✓ success empty input - loop0
+      ✓ error one wrong, one correct
+      ✓ error two wrong
+    lyftPrices() success
+      ✓ 200 response code
+    lyftPrices() error
+      ✓ 500 response code
+    lyftPrices() success delayed
+      ✓ 200 response code
+    lyftPrices() success timeout
+      ✓ 200 response code
+
+  getSuggestion.js
+    requestSuggestion() success
+http://dev.virtualearth.net/REST/v1/Autosuggest?query=Columbia%20University&includeEntityTypes=Business,Address,Place&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f
+      ✓ 200 response code
+    requestSuggestion() error
+http://dev.virtualearth.net/REST/v1/Autosuggest?query=Columbia%20University&includeEntityTypes=Business,Address,Place&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f
+      ✓ 500 response code
+    requestSuggestion() success delayed
+http://dev.virtualearth.net/REST/v1/Autosuggest?query=Columbia%20University&includeEntityTypes=Business,Address,Place&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f
+      ✓ 200 response code
+    requestSuggestion() success timeout
+http://dev.virtualearth.net/REST/v1/Autosuggest?query=Columbia%20University&includeEntityTypes=Business,Address,Place&key=AjpMdmorYvx_955ltPZVK1BNYpGA0Dl8YjGR2cNWh1PjTK0khLpjrtQKwSvrMv2f
+      ✓ 200 response code
+    processBingSuggestionResponse()
+      ✓ success
+      ✓ success - empty results
+      ✓ error - no resource
+      ✓ error - no resourceset
+
+  getUber.js
+    getRelevantInformationFromUberResponse()
+      ✓ success - standard case
+      ✓ error - missing display_name
+      ✓ error - missing distance
+      ✓ error - missing high_estimate
+      ✓ error - missing low_estimate
+      ✓ error - missing duration
+    processUberResponseBody()
+      ✓ success - standard case - loop1
+      ✓ success - standard case - loop2
+      ✓ success - standard case - loop3
+      ✓ success empty input - loop0
+      ✓ error one wrong, one correct
+      ✓ error two wrong
+    uberPrices() success
+      ✓ 200 response code
+    uberPrices() error
+      ✓ 500 response code
+    uberPrices() success delayed
+      ✓ 200 response code
+    uberPrices() success timeout
+      ✓ 200 response code
+
+  Array
+    #indexOf()
+      ✓ should return -1 when the value is not present
+
+  Array
+    #indexOf()
+      ✓ should return -1 when the value is not present
+
+
+  70 passing (97ms)
+
